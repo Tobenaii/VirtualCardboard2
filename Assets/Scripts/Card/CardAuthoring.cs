@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -14,17 +15,27 @@ public class CardUIElements
     [field: SerializeField] public TextMeshProUGUI DescriptionText { get; private set; }
 }
 
-public class CardAuthoring : MonoBehaviour
+public class CardAuthoring : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Card _card;
     [SerializeField] private CardUIElements _uiElements;
+    private float _zTarget;
 
     public void AssignCard(Card card)
     {
         _card = card;
+        UpdateUI();
     }
 
-    private void OnValidate()
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+    }
+
+    private void UpdateUI()
     {
         if (_card == null)
         {
@@ -40,5 +51,10 @@ public class CardAuthoring : MonoBehaviour
         _uiElements.MainImage.sprite = _card.Image;
         _uiElements.TypeText.text = _card.Type;
         _uiElements.DescriptionText.text = _card.Description;
+    }
+
+    private void OnValidate()
+    {
+        UpdateUI();
     }
 }
