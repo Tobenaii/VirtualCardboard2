@@ -19,6 +19,11 @@ public class CardAuthoring : MonoBehaviour
     [SerializeField] private Card _card;
     [SerializeField] private CardUIElements _uiElements;
 
+    public void AssignCard(Card card)
+    {
+        _card = card;
+    }
+
     private void OnValidate()
     {
         if (_card == null)
