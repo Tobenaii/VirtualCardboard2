@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dfca680f115a0e4497393aa2c83a39d, type: 3}
-  m_Name: Punch
+  m_Name: Rock Throw
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Rock Throw
   <Resource>k__BackingField: {fileID: 11400000, guid: 544b985ad0aa26040b291cc683994f36, type: 2}

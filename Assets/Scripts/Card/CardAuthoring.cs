@@ -30,7 +30,7 @@ public class CardAuthoring : MonoBehaviour
             _uiElements.DescriptionText.text = "Description";
             return;
         }
-        _uiElements.NameText.text = _card.name;
+        _uiElements.NameText.text = _card.Name;
         _uiElements.ResourceImage.sprite = _card.Resource.Icon;
         _uiElements.MainImage.sprite = _card.Image;
         _uiElements.TypeText.text = _card.Type;
