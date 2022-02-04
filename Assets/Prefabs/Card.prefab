@@ -304,8 +304,8 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 250, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -803,10 +803,10 @@ RectTransform:
   m_Father: {fileID: 3116995817856080918}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: -40.000004, y: -200}
+  m_AnchoredPosition: {x: 0, y: -125}
+  m_SizeDelta: {x: -40.000004, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3116995819829513255
 GameObject:
@@ -845,7 +845,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10.199997}
+  m_AnchoredPosition: {x: 0, y: -10.200012}
   m_SizeDelta: {x: -20, y: 37.4}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3116995819829513252
@@ -920,10 +920,10 @@ RectTransform:
   m_Father: {fileID: 3116995817856080918}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.5, y: -41.820007}
-  m_SizeDelta: {x: -27, y: -326.36005}
+  m_AnchoredPosition: {x: -1.5, y: -216.82}
+  m_SizeDelta: {x: -27, y: 23.639954}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3946575615113546093
 CanvasRenderer:
@@ -997,10 +997,10 @@ RectTransform:
   m_Father: {fileID: 3116995817856080918}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -108.20499}
-  m_SizeDelta: {x: -30.000004, y: -248.39}
+  m_AnchoredPosition: {x: 0, y: -283.205}
+  m_SizeDelta: {x: -30.000004, y: 101.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3947384676527644845
 CanvasRenderer:
