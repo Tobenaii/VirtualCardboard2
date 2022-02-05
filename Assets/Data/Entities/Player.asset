@@ -19,3 +19,9 @@ MonoBehaviour:
   - _attribute: {fileID: 11400000, guid: c1b11ecb61c9fd04fb72ec6076800f8a, type: 2}
     _maxValue: 1
     _defaultValue: 1
+  - _attribute: {fileID: 11400000, guid: 6d3734416baf4024e924578d7bcfab01, type: 2}
+    _maxValue: 30
+    _defaultValue: 30
+  - _attribute: {fileID: 11400000, guid: 83cccffe0f751d34da768a3c20a86ccf, type: 2}
+    _maxValue: 5
+    _defaultValue: 5

@@ -43,6 +43,7 @@ public class Attribute : ScriptableObject
             actions.Add(onValueChanged);
             _callbackMap.Add(entity, actions);
         }
+        onValueChanged(this[entity]);
     }
 
     public void Register(EntityInstance entity, Instance attribute)

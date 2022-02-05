@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "VC2/Player")]
-public class Player : ScriptableObject, ISerializationCallbackReceiver
+public class Player : ScriptableObject
 {
     public interface IPlayerCallbacks
     {
@@ -42,15 +42,6 @@ public class Player : ScriptableObject, ISerializationCallbackReceiver
                 callback.OnCardRemovedFromHand(Hand[i], i);
             }
         }
-        Hand.Clear();
-    }
-
-    public void OnBeforeSerialize()
-    {
-    }
-
-    public void OnAfterDeserialize()
-    {
         Hand.Clear();
     }
 }

@@ -12,7 +12,6 @@ public class AttributePanelScaler : MonoBehaviour
     private void Start()
     {
         _attribute.RegisterCallback(_entity.Instance, OnValueChanged);
-        OnValueChanged(_attribute[_entity.Instance]);
     }
 
     private void OnValueChanged(float value)
