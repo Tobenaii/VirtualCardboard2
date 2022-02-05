@@ -5,16 +5,16 @@ using UnityEngine;
 
 public abstract class CardAction : ScriptableObject
 {
-    public abstract void Execute(Entity player);
+    public abstract void Execute(EntityInstance player);
 
 }
 
 [System.Serializable] [InlineEditor]
 public abstract class CardAction<T> : CardAction
 {
-    public override void Execute(Entity player)
+    public override void Execute(EntityInstance player)
     {
         
     }
-    public abstract void Execute(Entity player, T data);
+    public abstract void Execute(EntityInstance player, T data);
 }

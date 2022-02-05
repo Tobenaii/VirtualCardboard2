@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7892789418996909126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9856ec672a88b344ab0965776900323a, type: 3}
+  m_Name: ShieldCheck
+  m_EditorClassIdentifier: 
+  _checkOn: 1
+  _shieldingAttribute: {fileID: 11400000, guid: 7d99ae5077214534386397480082a342,
+    type: 2}
+--- !u!114 &-5672080833481032437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: ShieldAttributeResolverCheck
+  m_EditorClassIdentifier: Assembly-CSharp::ShieldAttributeResolverCheck
+  _checkOn: 1
+  _shieldingAttribute: {fileID: 11400000, guid: 7d99ae5077214534386397480082a342,
+    type: 2}
+--- !u!114 &-3812309746882226296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e4c175c96bcdb46a80701651339b75, type: 3}
+  m_Name: MultiplierCheck
+  m_EditorClassIdentifier: 
+  _checkOn: 0
+  _multiplierAttribute: {fileID: 11400000, guid: c1b11ecb61c9fd04fb72ec6076800f8a,
+    type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36189ec32aed2c34696c343ebfdcbf30, type: 3}
+  m_Name: DamageResolver
+  m_EditorClassIdentifier: 
+  _attribute: {fileID: 11400000, guid: 1e6f7b99d0afb8d49b196a6caa137c9c, type: 2}
+  _resolverChecks:
+  - {fileID: -3812309746882226296}
+  - {fileID: -7892789418996909126}

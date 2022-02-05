@@ -6,7 +6,7 @@ using UnityEngine;
 public class CardDeck : ScriptableObject, ISerializationCallbackReceiver
 {
     [field: SerializeField] public List<Card> Cards { get; private set; }
-    private Stack<Card> _runtimeCards;
+    private Stack<Card> _runtimeCards = new Stack<Card>();
 
     public Card PopCard() => _runtimeCards.Pop();
 

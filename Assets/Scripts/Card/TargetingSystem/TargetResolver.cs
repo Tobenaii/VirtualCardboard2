@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class TargetResolver : ScriptableObject
 {
-    public abstract void AddTargets(Entity player, List<Entity> targets);
+    public abstract void GetTargets(EntityInstance player, List<EntityInstance> targets);
 }

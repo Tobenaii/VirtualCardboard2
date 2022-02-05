@@ -1,23 +1,54 @@
+using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+[InlineProperty]
+public class EntityRef
+{
+    [HorizontalGroup]
+    [HideLabel]
+    [SerializeField] private Entity _entity;
+    [HorizontalGroup] [HideLabel]
+    [SerializeField] private int _key;
+
+    public EntityInstance Instance => _entity[_key];
+}
+
+[CreateAssetMenu(menuName = "VC2/Entity")]
 public class Entity : ScriptableObject
 {
-    [SerializeField] private List<Attribute> _attributes;
+    [SerializeField] private List<Attribute.Instance> _attributeDefaults = new List<Attribute.Instance>();
 
-    private Dictionary<Attribute, float> _attributeMap;
+    private Dictionary<int, EntityInstance> _entityInstances = new Dictionary<int,EntityInstance>();
 
-    public string Name { get; }
-
-    public float GetAttribute(Attribute attribute)
+    public void Register(EntityInstance instance, int key)
     {
-        return _attributeMap[attribute];
+        if (_entityInstances.ContainsKey(key))
+        {
+            Remove(_entityInstances[key]);
+            _entityInstances[key] = instance;
+        }
+        else
+            _entityInstances.Add(key, instance);
+
+        foreach (var attribute in _attributeDefaults)
+            attribute.Register(instance);
     }
 
-    public void SetAttribute(Attribute attribute, float value)
+    public void Remove(EntityInstance instance)
     {
-        Debug.Log($"Set {Name} {attribute} to {value}");
-        _attributeMap[attribute] = value;
+        foreach (var attribute in _attributeDefaults)
+            attribute.Remove(instance);
+    }
+
+    public EntityInstance this[int key]
+    {
+        get
+        {
+            return _entityInstances[key];
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "VC2/TargetResolver/Player")]
 public class PlayerTargetResolver : TargetResolver
 {
-    public override void AddTargets(Entity player, List<Entity> targets)
+    public override void GetTargets(EntityInstance player, List<EntityInstance> targets)
     {
         targets.Add(player);
         Debug.Log($"Targeted {player.Name}");

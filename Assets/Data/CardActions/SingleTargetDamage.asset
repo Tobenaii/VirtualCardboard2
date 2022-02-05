@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SingleTargetDamage
   m_EditorClassIdentifier: 
   _targetingSystem: {fileID: 11400000, guid: fa7889e0c43121f42b6942a7ac104d4f, type: 2}
-  _attribute: {fileID: 11400000, guid: 1e6f7b99d0afb8d49b196a6caa137c9c, type: 2}
+  _attributeResolver: {fileID: 11400000, guid: 36cc6648a50f6a64bac789faf5d46222, type: 2}

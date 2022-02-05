@@ -8,7 +8,7 @@ public class ActionRequirement : CardActionData
     [SerializeReference] private List<RequirementResolver> _requirements = new List<RequirementResolver>();
     [SerializeReference] private List<CardActionData> _actionsWhenMet = new List<CardActionData>();
 
-    public override void Execute(Entity player)
+    public override void Execute(EntityInstance player)
     {
         var targets = _targetingSystems.Execute(player);
         foreach (var requirement in _requirements)
@@ -24,7 +24,7 @@ public class ActionRequirement : CardActionData
         ContinueExecution(player);
     }
 
-    public void ContinueExecution(Entity player)
+    public void ContinueExecution(EntityInstance player)
     {
         foreach (var action in _actionsWhenMet)
             action.Execute(player);

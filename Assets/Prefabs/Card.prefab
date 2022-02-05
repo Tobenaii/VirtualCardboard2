@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3116995817731940279}
-  - component: {fileID: 1587035893}
+  - component: {fileID: -3384060440536776754}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -309,7 +309,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 250, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1587035893
+--- !u!114 &-3384060440536776754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

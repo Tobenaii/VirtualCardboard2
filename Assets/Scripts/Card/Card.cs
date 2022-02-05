@@ -30,7 +30,7 @@ public class Card : ScriptableObject
 
     [SerializeField] private CardActionList _actions;
 
-    public void Execute(Entity player)
+    public void Execute(EntityInstance player)
     {
         foreach (var action in _actions.Actions)
             action.Execute(player);

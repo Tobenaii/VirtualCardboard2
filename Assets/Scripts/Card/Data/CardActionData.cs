@@ -13,7 +13,7 @@ public abstract class CardActionData : ScriptableObject
         _action = action;
     }
 
-    public virtual void Execute(Entity player)
+    public virtual void Execute(EntityInstance player)
     {
         _action.Execute(player);
     }
@@ -23,7 +23,7 @@ public abstract class CardActionData<T, V> : CardActionData where T : CardAction
 {
     [SerializeField] [HideLabel] private V _data;
     [SerializeField] [HideInInspector] private CardAction<V> _actionData;
-    public override void Execute(Entity player)
+    public override void Execute(EntityInstance player)
     {
         _actionData.Execute(player, _data);
     }

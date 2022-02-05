@@ -13,13 +13,13 @@ public class AttributeAction : CardAction<AttributeAction.Data>
     }
 
     [SerializeField] private TargetingSystem _targetingSystem;
-    [SerializeField] private Attribute _attribute;
+    [SerializeField] private AttributeResolver _attributeResolver;
 
-    public override void Execute(Entity player, Data data)
+    public override void Execute(EntityInstance player, Data data)
     {
         foreach (var target in _targetingSystem.Execute(player))
         {
-            target.SetAttribute(_attribute, target.GetAttribute(_attribute) + data.Amount);
+            _attributeResolver.Resolve(player, target, data.Amount);
         }
     }
 }
