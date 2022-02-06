@@ -21,7 +21,6 @@ public class ArmourSystem : SystemBase
                 else
                 {
                     armour.Value -= damage.amount;
-                    armour.Value = 0;
                     damage.amount = armour.Value * -1;
                 }
                 SetComponent<Armour>(target.target, armour);

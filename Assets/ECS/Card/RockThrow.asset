@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - _component:
-      rid: 5362457971577323525
+      rid: 5362457984381222915
   - _component:
-      rid: 5362457981529096194
+      rid: 5362457984381222916
   references:
     version: 2
     RefIds:
-    - rid: 5362457971577323525
+    - rid: 5362457984381222915
       type: {class: DealDamageComponent, ns: , asm: Assembly-CSharp}
       data:
-        _damageAmount: 22
-    - rid: 5362457981529096194
+        _damageAmount: 25
+    - rid: 5362457984381222916
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
