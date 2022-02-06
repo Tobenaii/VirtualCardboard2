@@ -10,9 +10,9 @@ public struct CardTester : IComponentAuthoring<CardTester, CardTesterComponent>
 
 public class CardTesterComponent : UnitComponentAuthoring<CardTester>
 {
-    [SerializeField] private Card _card;
+    [SerializeField] private CardData _card;
     protected override CardTester AuthorComponent(World world)
     {
-        return new CardTester() { cardPrefab = _card.CreatePrefab(world.EntityManager) };
+        return new CardTester() { cardPrefab = _card.GetPrefab(world.EntityManager) };
     }
 }

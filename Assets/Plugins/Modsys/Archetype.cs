@@ -12,6 +12,7 @@ using UnityEngine;
 public abstract class Archetype : ScriptableObject
 {
     protected abstract Type authoringType { get; }
+    protected abstract Type bufferAuthoringType { get; }
     [ListDrawerSettings(HideAddButton = true)]
     [SerializeField][HideReferenceObjectPicker] protected List<ReadOnlyComponent> _components = new List<ReadOnlyComponent>();
     public IEnumerable<ComponentAuthoringBase> Components => _components.Select(x => x.Component);
@@ -24,7 +25,14 @@ public abstract class Archetype : ScriptableObject
     [Button]
     private void AddComponent()
     {
-        var selector = new GenericSelector<Type>("Component Selector", TypeCache.GetTypesDerivedFrom(authoringType).Where(x => !x.IsAbstract));
+        IEnumerable<Type> list = TypeCache.GetTypesDerivedFrom(authoringType);
+        if (bufferAuthoringType != null)
+        {
+            list = list.Concat(TypeCache.GetTypesDerivedFrom(bufferAuthoringType));
+        }
+        list = list.Where(x => !x.IsAbstract);
+        var selector = new GenericSelector<Type>("Component Selector", list);
+
         selector.SelectionConfirmed += selection =>
         {
             var type = selection.FirstOrDefault();

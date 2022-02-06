@@ -7,4 +7,6 @@ using UnityEngine;
 public class Unit : Archetype
 {
     protected override Type authoringType => typeof(UnitComponentAuthoring<>);
+
+    protected override Type bufferAuthoringType => typeof(UnitBufferComponentAuthoring<>);
 }

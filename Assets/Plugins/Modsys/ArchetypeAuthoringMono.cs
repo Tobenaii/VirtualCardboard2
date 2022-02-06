@@ -8,7 +8,7 @@ using Unity.Entities;
 using UnityEditor;
 using UnityEngine;
 
-public class ArchetypeAuthoringMono : SerializedMonoBehaviour, IConvertGameObjectToEntity
+public class ArchetypeAuthoringMono : MonoBehaviour, IConvertGameObjectToEntity
 {
     [SerializeField] private ArchetypeReference _component;
     [HorizontalGroup]

@@ -19,6 +19,8 @@ MonoBehaviour:
       rid: 5362457972813332480
   - _component:
       rid: 5362457981529096192
+  - _component:
+      rid: 5362457984381222920
   references:
     version: 2
     RefIds:
@@ -32,3 +34,7 @@ MonoBehaviour:
       type: {class: CardTesterComponent, ns: , asm: Assembly-CSharp}
       data:
         _card: {fileID: 0}
+    - rid: 5362457984381222920
+      type: {class: CardHandComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _cardData: []
