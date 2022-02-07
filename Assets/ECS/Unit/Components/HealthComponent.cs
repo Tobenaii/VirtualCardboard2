@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public struct Health : IComponentAuthoring<Health, HealthComponent>
+public struct Health : IComponentData
 {
     public float Value;
     public float MaxValue;

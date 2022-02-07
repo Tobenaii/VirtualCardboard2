@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public struct CardTester : IComponentAuthoring<CardTester, CardTesterComponent>
+public struct CardTester : IComponentData
 {
     public Entity cardPrefab;
 }

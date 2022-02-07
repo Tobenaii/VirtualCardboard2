@@ -4,19 +4,19 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-public struct Targetable : IComponentAuthoring<Targetable, TargetableComponent>
+public struct Targetable : IComponentData
 {
-    public float3 localMarkerOffset;
-    public float markerScale;
+    public float3 offset;
+    public float scale;
 }
 
 public class TargetableComponent : UnitComponentAuthoring<Targetable>
 {
-    [SerializeField] private Vector3 _localMarkerOffset;
+    [SerializeField] private Vector3 _offset;
     [SerializeField] private float _markerScale;
 
     protected override Targetable AuthorComponent(World world)
     {
-        return new Targetable() { localMarkerOffset = _localMarkerOffset, markerScale = _markerScale };
+        return new Targetable() { offset = _offset, scale = _markerScale };
     }
 }

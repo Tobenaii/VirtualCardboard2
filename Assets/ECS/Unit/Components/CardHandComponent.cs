@@ -5,7 +5,7 @@ using Unity.Entities;
 using UnityEngine;
 
 [InternalBufferCapacity(8)]
-public struct CardHand : IBufferComponentAuthoring<CardHand, CardHandComponent>
+public struct CardHand : IBufferElementData
 {
     public Entity card;
 }

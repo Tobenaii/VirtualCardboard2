@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public struct Target : IComponentAuthoring<Target, TargetComponent>
+public struct Target : IComponentData
 {
     public Entity dealer;
     public Entity target;

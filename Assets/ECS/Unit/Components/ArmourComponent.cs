@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public struct Armour : IComponentAuthoring<Armour, ArmourComponent>
+public struct Armour : IComponentData
 {
     public float Value;
     public float BaseValue;

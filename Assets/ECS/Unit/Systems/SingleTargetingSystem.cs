@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
+using Unity.Transforms;
 using UnityEngine;
 
-public class SingleTargetSystem : SystemBase
+public class SingleTargetingSystem : SystemBase
 {
     private EntityQuery _targetableQuery;
     protected override void OnCreate()
@@ -17,7 +18,7 @@ public class SingleTargetSystem : SystemBase
     {
         var tab = Input.GetKeyDown(KeyCode.Tab);
         var targetableArray = _targetableQuery.ToEntityArray(Unity.Collections.Allocator.TempJob);
-        Entities.ForEach((ref SingleTarget target) =>
+        Entities.ForEach((ref SingleTargeting target) =>
         {
             if (tab)
             {
@@ -25,8 +26,16 @@ public class SingleTargetSystem : SystemBase
                 if (target.targetIndex >= targetableArray.Length)
                     target.targetIndex = 0;
             }
-            var targetable = targetableArray[target.targetIndex];
-            target.target = targetable;
+            var targetableEntity = targetableArray[target.targetIndex];
+
+            var localToWorld = GetComponentDataFromEntity<LocalToWorld>(true)[targetableEntity];
+            var targetable = GetComponentDataFromEntity<Targetable>(true)[targetableEntity];
+            float3 newWorldPos = math.mul(localToWorld.Value, new float4(targetable.offset, 1)).xyz;
+
+            target.target = targetableEntity;
+            target.position = newWorldPos;
+            target.scale = targetable.scale;
         }).WithDisposeOnCompletion(targetableArray).Schedule();
+        CompleteDependency();
     }
 }
