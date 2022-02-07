@@ -3113,7 +3113,7 @@ MonoBehaviour:
     - rid: 5362457972215382018
       type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
       data:
-        _health: 100
+        _maxHealth: 100
     - rid: 5362457972453146625
       type: {class: TargetableComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -4283,7 +4283,7 @@ MonoBehaviour:
     - rid: 5362457972215382019
       type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
       data:
-        _health: 200
+        _maxHealth: 200
     - rid: 5362457972453146626
       type: {class: TargetableComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -12981,7 +12981,7 @@ MonoBehaviour:
     - rid: 5362457972453146627
       type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
       data:
-        _health: 100
+        _maxHealth: 0
     - rid: 5362457981529096193
       type: {class: CardTesterComponent, ns: , asm: Assembly-CSharp}
       data:

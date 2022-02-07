@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour, IComponentListener<Health>
+public class HealthBar : MonoBehaviour, IComponentListener<IStat>
 {
     [SerializeField] private EntityRef _entity;
     [SerializeField] private HealthEvent _healthEvent;
@@ -21,9 +21,9 @@ public class HealthBar : MonoBehaviour, IComponentListener<Health>
         _target = _maxWidth;
     }
 
-    public void OnComponentChanged(Health newHealth)
+    public void OnComponentChanged(IStat newHealth)
     {
-        var width = _maxWidth * (newHealth.Value / newHealth.MaxValue);
+        var width = _maxWidth * (newHealth.CurrentValue / newHealth.MaxValue);
         _target = width;
     }
 

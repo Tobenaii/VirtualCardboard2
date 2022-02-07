@@ -5,13 +5,19 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-public struct SingleTargeting : IComponentData
+public interface ITargeting : IComponentData 
+{ 
+    public float3 Position { get; set; }
+    public float Scale { get; set; }
+}
+
+public struct SingleTargeting : ITargeting
 {
     public bool isTargeting;
     public int targetIndex;
     public Entity target;
-    public float3 position;
-    public float scale;
+    public float3 Position { get; set; }
+    public float Scale { get; set; }
 }
 
 public class SingleTargetingComponent : UnitComponentAuthoring<SingleTargeting>

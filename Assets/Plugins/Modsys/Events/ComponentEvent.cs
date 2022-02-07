@@ -4,26 +4,60 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-public interface IComponentListener<T> where T : unmanaged
+public interface IComponentListener<T>
 {
-    public void OnComponentChanged(T newValue);
+    public void OnComponentChanged(T value);
 }
 
-public interface IComponentEvent<T> where T : unmanaged
+public interface IComponentEvent<T>
 {
     public void OnComponentChanged(T value, Entity entity);
 }
 
-public abstract class ComponentEvent : ScriptableObject
+public abstract class ComponentEvent : ScriptableObject 
 {
     public abstract void Init();
     public abstract void Disable();
 }
 
-public abstract class ComponentEvent<T, V> : ComponentEvent, IComponentEvent<T> where T : unmanaged, IComponentData where V : ComponentEventSystem<T>
+public abstract class ComponentEvent<U> : ComponentEvent
 {
-    private Dictionary<Entity, List<IComponentListener<T>>> _listenerMap = new Dictionary<Entity, List<IComponentListener<T>>>();
+    protected Dictionary<Entity, List<IComponentListener<U>>> _listenerMap = new Dictionary<Entity, List<IComponentListener<U>>>();
 
+    public void Register(Entity entity, IComponentListener<U> listener)
+    {
+        List<IComponentListener<U>> listeners;
+        if (_listenerMap.TryGetValue(entity, out listeners))
+            listeners.Add(listener);
+        else
+        {
+            listeners = new List<IComponentListener<U>>();
+            listeners.Add(listener);
+            _listenerMap.Add(entity, listeners);
+        }
+    }
+    protected void ValidateMap()
+    {
+        var remove = new List<Entity>();
+        foreach (var key in _listenerMap.Keys)
+        {
+            var listeners = _listenerMap[key];
+            listeners.RemoveAll(x => x.Equals(null));
+            if (listeners.Count == 0)
+                remove.Add(key);
+        }
+        foreach (var entity in remove)
+            _listenerMap.Remove(entity);
+    }
+
+    public void Unregister(Entity entity)
+    {
+        _listenerMap.Remove(entity);
+    }
+}
+
+public abstract class ComponentEvent<T, V, U> : ComponentEvent<U>, IComponentEvent<T> where T : unmanaged, U where V : ComponentEventSystem<T> where U : IComponentData
+{
     public override void Init()
     {
         ValidateMap();
@@ -44,46 +78,9 @@ public abstract class ComponentEvent<T, V> : ComponentEvent, IComponentEvent<T> 
         sim.RemoveSystemFromUpdateList(system);
     }
 
-    public void ValidateMap()
-    {
-        var remove = new List<Entity>();
-        foreach (var key in _listenerMap.Keys)
-        {
-            var listeners = _listenerMap[key];
-            listeners.RemoveAll(x => x.Equals(null));
-            if (listeners.Count == 0)
-                remove.Add(key);
-        }
-        foreach (var entity in remove)
-            _listenerMap.Remove(entity);
-    }
-
-    private void Clear()
-    {
-        _listenerMap.Clear();
-    }
-
-    public void Register(Entity entity, IComponentListener<T> listener)
-    {
-        List<IComponentListener<T>> listeners;
-        if (_listenerMap.TryGetValue(entity, out listeners))
-            listeners.Add(listener);
-        else
-        {
-            listeners = new List<IComponentListener<T>>();
-            listeners.Add(listener);
-            _listenerMap.Add(entity, listeners);
-        }
-    }
-
-    public void Unregister(Entity entity)
-    {
-        _listenerMap.Remove(entity);
-    }
-
     public void OnComponentChanged(T newValue, Entity entity)
     {
-        List<IComponentListener<T>> listeners;
+        List<IComponentListener<U>> listeners;
         if (_listenerMap.TryGetValue(entity, out listeners))
         {
             foreach (var listener in listeners)
@@ -94,10 +91,8 @@ public abstract class ComponentEvent<T, V> : ComponentEvent, IComponentEvent<T> 
     }
 }
 
-public abstract class BufferComponentEvent<T, V> : ComponentEvent, IComponentEvent<DynamicBuffer<T>> where T : unmanaged, IBufferElementData where V : BufferComponentEventSystem<T>
+public abstract class BufferEvent<T, V, U> : ComponentEvent<U>, IComponentEvent<T> where T : unmanaged, U where V : BufferEventSystem<T> where U : IBufferElementData
 {
-    private Dictionary<Entity, List<IComponentListener<DynamicBuffer<T>>>> _listenerMap = new Dictionary<Entity, List<IComponentListener<DynamicBuffer<T>>>>();
-
     public override void Init()
     {
         ValidateMap();
@@ -118,49 +113,14 @@ public abstract class BufferComponentEvent<T, V> : ComponentEvent, IComponentEve
         sim.RemoveSystemFromUpdateList(system);
     }
 
-    private void Clear()
+    public void OnComponentChanged(T value, Entity entity)
     {
-        _listenerMap.Clear();
-    }
-    public void ValidateMap()
-    {
-        var remove = new List<Entity>();
-        foreach (var key in _listenerMap.Keys)
-        {
-            var listeners = _listenerMap[key];
-            listeners.RemoveAll(x => x.Equals(null));
-            if (listeners.Count == 0)
-                remove.Add(key);
-        }
-        foreach (var entity in remove)
-            _listenerMap.Remove(entity);
-    }
-    public void Register(Entity entity, IComponentListener<DynamicBuffer<T>> listener)
-    {
-        List<IComponentListener<DynamicBuffer<T>>> listeners;
-        if (_listenerMap.TryGetValue(entity, out listeners))
-            listeners.Add(listener);
-        else
-        {
-            listeners = new List<IComponentListener<DynamicBuffer<T>>>();
-            listeners.Add(listener);
-            _listenerMap.Add(entity, listeners);
-        }
-    }
-
-    public void Unregister(Entity entity)
-    {
-        _listenerMap.Remove(entity);
-    }
-
-    public void OnComponentChanged(DynamicBuffer<T> newValue, Entity entity)
-    {
-        List<IComponentListener<DynamicBuffer<T>>> listeners;
+        List<IComponentListener<U>> listeners;
         if (_listenerMap.TryGetValue(entity, out listeners))
         {
             foreach (var listener in listeners)
             {
-                listener.OnComponentChanged(newValue);
+                listener.OnComponentChanged(value);
             }
         }
     }

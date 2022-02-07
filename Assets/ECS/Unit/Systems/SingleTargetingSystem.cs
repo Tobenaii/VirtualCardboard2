@@ -33,8 +33,8 @@ public class SingleTargetingSystem : SystemBase
             float3 newWorldPos = math.mul(localToWorld.Value, new float4(targetable.offset, 1)).xyz;
 
             target.target = targetableEntity;
-            target.position = newWorldPos;
-            target.scale = targetable.scale;
+            target.Position = newWorldPos;
+            target.Scale = targetable.scale;
         }).WithDisposeOnCompletion(targetableArray).Schedule();
         CompleteDependency();
     }

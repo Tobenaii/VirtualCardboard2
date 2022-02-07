@@ -48,13 +48,13 @@ public abstract class ComponentEventSystem<T> : SystemBase where T : unmanaged, 
     }
 }
 
-public abstract class BufferComponentEventSystem<T> : SystemBase where T : unmanaged, IBufferElementData
+public abstract class BufferEventSystem<T> : SystemBase where T : unmanaged, IBufferElementData
 {
     public struct GenericComponentEvent : IJobChunk
     {
         [ReadOnly] public BufferTypeHandle<T> genericType;
         [ReadOnly] public EntityTypeHandle entityTypeHandle;
-        [ReadOnly] public IComponentEvent<DynamicBuffer<T>> eventTask;
+        [ReadOnly] public IComponentEvent<T> eventTask;
 
         public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
         {
@@ -62,14 +62,14 @@ public abstract class BufferComponentEventSystem<T> : SystemBase where T : unman
             NativeArray<Entity> entities = chunk.GetNativeArray(entityTypeHandle);
             for (int i = 0; i < generics.Length; i++)
             {
-                var componentEvent = eventTask;
-                componentEvent.OnComponentChanged(generics[i], entities[i]);
+                for (int x = 0; x < generics[i].Length; x++)
+                    eventTask.OnComponentChanged(generics[i][x], entities[i]);
             }
         }
     }
 
     private EntityQuery _genericQuery;
-    public IComponentEvent<DynamicBuffer<T>> componentChangedEvent;
+    public IComponentEvent<T> componentChangedEvent;
 
     protected override void OnCreate()
     {

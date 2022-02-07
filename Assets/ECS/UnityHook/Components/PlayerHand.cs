@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public class PlayerHand : MonoBehaviour, IComponentListener<DynamicBuffer<CardHand>>
+public class PlayerHand : MonoBehaviour, IComponentListener<IEntityBuffer>
 {
     [SerializeField] private EntityRef _entity;
     [SerializeField] private CardHandEvent _cardHandEvent;
@@ -59,15 +59,17 @@ public class PlayerHand : MonoBehaviour, IComponentListener<DynamicBuffer<CardHa
         }
     }
 
-    public void OnComponentChanged(DynamicBuffer<CardHand> newValue)
+    public void OnComponentChanged(IEntityBuffer newValue)
     {
-        _cards.Clear();
-        for (int i = 0; i < newValue.Length; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             var child = transform.GetChild(i);
+            if (child.gameObject.activeSelf)
+                continue;
             var card = child.GetComponent<CardUI>();
-            card.RegisterCard(newValue[i], _entity.Entity);
+            card.RegisterCard(newValue, _entity.Entity);
             _cards.Add(card);
+            return;
         }
     }
 }

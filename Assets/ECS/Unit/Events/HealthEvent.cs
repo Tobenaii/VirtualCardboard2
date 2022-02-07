@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-[assembly: RegisterGenericJobType(typeof(HealthEventSystem.GenericComponentEvent))]
-
 [CreateAssetMenu(menuName = "VC2/Events/Health Event")]
-public class HealthEvent : ComponentEvent<Health, HealthEventSystem>
+public class HealthEvent : ComponentEvent<Health, HealthEventSystem, IStat>
 {
 }
 

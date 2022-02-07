@@ -4,10 +4,15 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-[InternalBufferCapacity(8)]
-public struct CardHand : IBufferElementData
+public interface IEntityBuffer : IBufferElementData
 {
-    public Entity card;
+    public Entity Entity { get; set; }
+}
+
+[InternalBufferCapacity(8)]
+public struct CardHand : IEntityBuffer
+{
+    public Entity Entity { get; set; }
 }
 
 public class CardHandComponent : UnitBufferComponentAuthoring<CardHand>
@@ -19,7 +24,7 @@ public class CardHandComponent : UnitBufferComponentAuthoring<CardHand>
         var array = new NativeArray<CardHand>(_cardData.Count, Allocator.Temp);
         for (int i = 0; i < _cardData.Count; i++)
         {
-            array[i] = new CardHand() { card = _cardData[i].GetPrefab(world.EntityManager) };
+            array[i] = new CardHand() { Entity = _cardData[i].GetPrefab(world.EntityManager) };
         }
         return array;
     }

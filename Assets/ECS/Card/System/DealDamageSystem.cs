@@ -19,7 +19,7 @@ public class DealDamageSystem : SystemBase
         Entities.ForEach((int entityInQueryIndex, Entity entity, in Target target, in DealDamage dealDamage) =>
         {
             var targetHealth = GetComponentDataFromEntity<Health>(true)[target.target];
-            targetHealth.Value -= dealDamage.amount;
+            targetHealth.CurrentValue -= dealDamage.amount;
             ecb.SetComponent<Health>(entityInQueryIndex, target.target, targetHealth);
             ecb.DestroyEntity(entityInQueryIndex, entity);
         }).ScheduleParallel();

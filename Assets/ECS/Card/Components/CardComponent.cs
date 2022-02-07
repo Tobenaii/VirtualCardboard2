@@ -4,6 +4,8 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
+
+
 public struct Card : IComponentData
 {
     public FixedString64 name;

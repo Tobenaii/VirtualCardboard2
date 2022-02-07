@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public class TargetMarkerUI : MonoBehaviour, IComponentListener<SingleTargeting>
+public class TargetMarkerUI : MonoBehaviour, IComponentListener<ITargeting>
 {
     [SerializeField] private SingleTargetingEvent _event;
     [SerializeField] private EntityRef _target;
@@ -33,9 +33,9 @@ public class TargetMarkerUI : MonoBehaviour, IComponentListener<SingleTargeting>
         transform.Rotate(transform.forward, 20 * Time.deltaTime, Space.World);
     }
 
-    public void OnComponentChanged(SingleTargeting target)
+    public void OnComponentChanged(ITargeting target)
     {
-        _targetPos = target.position;
-        _targetScale = new Vector3(target.scale, target.scale, target.scale);
+        _targetPos = target.Position;
+        _targetScale = new Vector3(target.Scale, target.Scale, target.Scale);
     }
 }
