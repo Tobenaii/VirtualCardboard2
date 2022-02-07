@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public class PlayerHand : MonoBehaviour, IComponentListener<IEntityBuffer>
+public class PlayerHand : MonoBehaviour, IComponentListener<IPrefabCollection>
 {
     [SerializeField] private EntityRef _entity;
     [SerializeField] private CardHandEvent _cardHandEvent;
@@ -59,7 +59,7 @@ public class PlayerHand : MonoBehaviour, IComponentListener<IEntityBuffer>
         }
     }
 
-    public void OnComponentChanged(IEntityBuffer newValue)
+    public void OnComponentChanged(IPrefabCollection newValue)
     {
         for (int i = 0; i < transform.childCount; i++)
         {

@@ -58,7 +58,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         Destroy(gameObject);
     }
 
-    public void RegisterCard(IEntityBuffer cardHand, Entity player)
+    public void RegisterCard(IPrefabCollection cardHand, Entity player)
     {
         var card = World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<Card>(cardHand.Entity);
         _card = cardHand.Entity;

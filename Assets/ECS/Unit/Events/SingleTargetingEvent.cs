@@ -4,12 +4,12 @@ using Unity.Entities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "VC2/Events/Single Target Event")]
-public class SingleTargetingEvent : ComponentEvent<SingleTargeting, SingleTargetingEventSystem, ITargeting>
+public class SingleTargetingEvent : ComponentEvent<SingleTarget, SingleTargetingEventSystem, ISingleTargeting>
 {
 }
 
 [DisableAutoCreation]
-public class SingleTargetingEventSystem : ComponentEventSystem<SingleTargeting>
+public class SingleTargetingEventSystem : ComponentEventSystem<SingleTarget>
 {
 
 }

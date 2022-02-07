@@ -21,13 +21,17 @@ MonoBehaviour:
       rid: 5362457984381222920
   - _component:
       rid: 5362458004739063808
+  - _component:
+      rid: 5362458015949389824
+  - _component:
+      rid: 5362458015949389826
   references:
     version: 2
     RefIds:
     - rid: 5362457972215382016
       type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
       data:
-        _health: 0
+        _maxHealth: 0
     - rid: 5362457981529096192
       type: {class: CardTesterComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -38,3 +42,11 @@ MonoBehaviour:
         _cardData: []
     - rid: 5362458004739063808
       type: {class: SingleTargetingComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458015949389824
+      type: {class: DeckComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _cardData: []
+    - rid: 5362458015949389826
+      type: {class: ElementComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _element: []

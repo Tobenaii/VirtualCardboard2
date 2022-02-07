@@ -3113,7 +3113,7 @@ MonoBehaviour:
     - rid: 5362457972215382018
       type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
       data:
-        _maxHealth: 100
+        _maxValue: 100
     - rid: 5362457972453146625
       type: {class: TargetableComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -3122,7 +3122,7 @@ MonoBehaviour:
     - rid: 5362457984381222914
       type: {class: ArmourComponent, ns: , asm: Assembly-CSharp}
       data:
-        _amount: 0
+        _value: 0
 --- !u!114 &427632201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4283,7 +4283,7 @@ MonoBehaviour:
     - rid: 5362457972215382019
       type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
       data:
-        _maxHealth: 200
+        _maxValue: 200
     - rid: 5362457972453146626
       type: {class: TargetableComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -4292,7 +4292,7 @@ MonoBehaviour:
     - rid: 5362457984381222913
       type: {class: ArmourComponent, ns: , asm: Assembly-CSharp}
       data:
-        _amount: 0
+        _value: 0
 --- !u!114 &510165634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4316,6 +4316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 519158478}
   - component: {fileID: 519158479}
+  - component: {fileID: 519158480}
   m_Layer: 5
   m_Name: ResourceHolder
   m_TagString: Untagged
@@ -4382,6 +4383,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &519158480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519158477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01f6577099d9fb43b712779fc2e73c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &523085286
 GameObject:
   m_ObjectHideFlags: 0
@@ -12971,6 +12984,10 @@ MonoBehaviour:
         rid: 5362457984381222921
     - _component:
         rid: 5362458004739063809
+    - _component:
+        rid: 5362458015949389825
+    - _component:
+        rid: 5362458015949389827
   _entityRef: 1
   _entity:
     _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
@@ -12981,7 +12998,7 @@ MonoBehaviour:
     - rid: 5362457972453146627
       type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
       data:
-        _maxHealth: 0
+        _maxValue: 0
     - rid: 5362457981529096193
       type: {class: CardTesterComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -12989,14 +13006,25 @@ MonoBehaviour:
     - rid: 5362457984381222921
       type: {class: CardHandComponent, ns: , asm: Assembly-CSharp}
       data:
-        _cardData:
-        - {fileID: 11400000, guid: 4ff3f748a6c3f9341b1999005c03e411, type: 2}
-        - {fileID: 11400000, guid: 6c330e51a137cc644a5bd82d28aa4787, type: 2}
-        - {fileID: 11400000, guid: 6c330e51a137cc644a5bd82d28aa4787, type: 2}
-        - {fileID: 11400000, guid: 4ff3f748a6c3f9341b1999005c03e411, type: 2}
-        - {fileID: 11400000, guid: 6c330e51a137cc644a5bd82d28aa4787, type: 2}
+        _prefabs: []
     - rid: 5362458004739063809
       type: {class: SingleTargetingComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458015949389825
+      type: {class: DeckComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _prefabs: []
+    - rid: 5362458015949389827
+      type: {class: ElementComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _element:
+        - Type: 0
+          Count: 3
+        - Type: 4
+          Count: 4
+        - Type: 6
+          Count: 3
+        - Type: 9
+          Count: 2
 --- !u!1 &2014438344
 GameObject:
   m_ObjectHideFlags: 0

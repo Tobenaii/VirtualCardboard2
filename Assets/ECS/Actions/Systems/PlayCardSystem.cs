@@ -19,7 +19,7 @@ public class PlayCardSystem : SystemBase
         Entities.ForEach((int entityInQueryIndex, Entity entity, in PlayCard playCard) =>
         {
             var dealer = playCard.dealer;
-            var target = GetComponentDataFromEntity<SingleTargeting>(true)[dealer];
+            var target = GetComponentDataFromEntity<SingleTarget>(true)[dealer];
             var card = ecb.Instantiate(entityInQueryIndex, playCard.card);
             ecb.SetComponent<Target>(entityInQueryIndex, card, new Target() { dealer = dealer, target = target.target });
             ecb.DestroyEntity(entityInQueryIndex, entity);

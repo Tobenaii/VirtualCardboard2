@@ -18,7 +18,7 @@ public class SingleTargetingSystem : SystemBase
     {
         var tab = Input.GetKeyDown(KeyCode.Tab);
         var targetableArray = _targetableQuery.ToEntityArray(Unity.Collections.Allocator.TempJob);
-        Entities.ForEach((ref SingleTargeting target) =>
+        Entities.ForEach((ref SingleTarget target) =>
         {
             if (tab)
             {

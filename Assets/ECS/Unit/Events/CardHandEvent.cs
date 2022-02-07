@@ -4,7 +4,7 @@ using Unity.Entities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "VC2/Events/Card Hand Event")]
-public class CardHandEvent : BufferEvent<CardHand, CardHandEventSystem, IEntityBuffer>
+public class CardHandEvent : BufferEvent<CardHand, CardHandEventSystem, IPrefabCollection>
 {
 }
 

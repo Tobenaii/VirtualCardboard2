@@ -6,7 +6,31 @@ using Unity.Entities;
 using Unity.Jobs;
 using UnityEngine;
 
-public abstract class ComponentEventSystem<T> : SystemBase where T : unmanaged, IComponentData
+public abstract class ComponentEventSystemBase<T> : SystemBase
+{
+    protected EntityQuery _genericQuery;
+    public IComponentEvent<T> componentChangedEvent;
+
+    protected override void OnCreate()
+    {
+        _genericQuery = GetEntityQuery(ComponentType.ReadOnly<T>());
+        _genericQuery.SetChangedVersionFilter(new ComponentType(typeof(T)));
+    }
+}
+
+public abstract class ComponentEventSystemBase<T, V> : ComponentEventSystemBase<T> where V : struct, IJobChunk
+{
+    protected abstract V CreateJob();
+
+    protected override void OnUpdate()
+    {
+        var job = CreateJob();
+        var iterator = _genericQuery.GetArchetypeChunkIterator();
+        job.RunWithoutJobs(ref iterator);
+    }
+}
+
+public abstract class ComponentEventSystem<T> : ComponentEventSystemBase<T, ComponentEventSystem<T>.GenericComponentEvent> where T : unmanaged, IComponentData
 {
     public struct GenericComponentEvent : IJobChunk
     {
@@ -26,16 +50,7 @@ public abstract class ComponentEventSystem<T> : SystemBase where T : unmanaged, 
         }
     }
 
-    private EntityQuery _genericQuery;
-    public IComponentEvent<T> componentChangedEvent;
-
-    protected override void OnCreate()
-    {
-        _genericQuery = GetEntityQuery(ComponentType.ReadOnly<T>());
-        _genericQuery.SetChangedVersionFilter(new ComponentType(typeof(T)));
-    }
-
-    protected override void OnUpdate()
+    protected override GenericComponentEvent CreateJob()
     {
         GenericComponentEvent job = new GenericComponentEvent
         {
@@ -43,12 +58,12 @@ public abstract class ComponentEventSystem<T> : SystemBase where T : unmanaged, 
             entityTypeHandle = GetEntityTypeHandle(),
             eventTask = componentChangedEvent
         };
-        var iterator = _genericQuery.GetArchetypeChunkIterator();
-        job.RunWithoutJobs(ref iterator);
+        return job;
     }
+
 }
 
-public abstract class BufferEventSystem<T> : SystemBase where T : unmanaged, IBufferElementData
+public abstract class BufferEventSystem<T> : ComponentEventSystemBase<T, BufferEventSystem<T>.GenericComponentEvent> where T : unmanaged, IBufferElementData
 {
     public struct GenericComponentEvent : IJobChunk
     {
@@ -68,16 +83,7 @@ public abstract class BufferEventSystem<T> : SystemBase where T : unmanaged, IBu
         }
     }
 
-    private EntityQuery _genericQuery;
-    public IComponentEvent<T> componentChangedEvent;
-
-    protected override void OnCreate()
-    {
-        _genericQuery = GetEntityQuery(ComponentType.ReadOnly<T>());
-        _genericQuery.SetChangedVersionFilter(new ComponentType(typeof(T)));
-    }
-
-    protected override void OnUpdate()
+    protected override GenericComponentEvent CreateJob()
     {
         GenericComponentEvent job = new GenericComponentEvent
         {
@@ -85,7 +91,6 @@ public abstract class BufferEventSystem<T> : SystemBase where T : unmanaged, IBu
             entityTypeHandle = GetEntityTypeHandle(),
             eventTask = componentChangedEvent,
         };
-        var iterator = _genericQuery.GetArchetypeChunkIterator();
-        job.RunWithoutJobs(ref iterator);
+        return job;
     }
 }

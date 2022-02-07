@@ -5,13 +5,13 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-public interface ITargeting : IComponentData 
+public interface ISingleTargeting : IComponentData 
 { 
     public float3 Position { get; set; }
     public float Scale { get; set; }
 }
 
-public struct SingleTargeting : ITargeting
+public struct SingleTarget : ISingleTargeting
 {
     public bool isTargeting;
     public int targetIndex;
@@ -20,10 +20,10 @@ public struct SingleTargeting : ITargeting
     public float Scale { get; set; }
 }
 
-public class SingleTargetingComponent : UnitComponentAuthoring<SingleTargeting>
+public class SingleTargetingComponent : UnitComponentAuthoring<SingleTarget>
 {
-    protected override SingleTargeting AuthorComponent(World world)
+    protected override SingleTarget AuthorComponent(World world)
     {
-        return new SingleTargeting() { isTargeting = true };
+        return new SingleTarget() { isTargeting = true };
     }
 }
