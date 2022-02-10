@@ -55,3 +55,24 @@ public abstract class PrefabCollectionAuthoring<T> : UnitBufferComponentAuthorin
         return array;
     }
 }
+
+public interface ICollectionContainer : IComponentData
+{
+    public int MaxCount { get; set; }
+    public int CurrentCount { get; set; }
+}
+
+public abstract class CollectionContainerAuthoring<T, V> : UnitComponentAuthoring<T> where T : struct, ICollectionContainer where V : struct, IBufferElementData
+{
+    [SerializeField] private int _maxCount;
+
+    protected override T AuthorComponent(World world)
+    {
+        return new T() { CurrentCount = 0, MaxCount = _maxCount };
+    }
+
+    public override void AuthorDependencies(Entity entity, EntityManager dstManager)
+    {
+        dstManager.AddBuffer<V>(entity);
+    }
+}

@@ -10,6 +10,6 @@ public struct DeckCard : IPrefabCollection
     public Entity Entity { get; set; }
 }
 
-public class DeckCardComponent : PrefabCollectionAuthoring<DeckCard>
-{
-}
+//public class DeckCardComponent : PrefabCollectionAuthoring<DeckCard>
+//{
+//}

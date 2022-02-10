@@ -62,7 +62,7 @@ public abstract class Archetype : ScriptableObject, ISerializationCallbackReceiv
         {
             if (asset == this)
                 continue;
-            if (!_components.Select(x => x.Component.GetType()).Contains(asset.GetType()))
+            if (asset == null || !_components.Select(x => x.Component.GetType()).Contains(asset.GetType()))
                 UnityEngine.Object.DestroyImmediate(asset, true);
         }
         foreach (var entity in _entities.ToList())

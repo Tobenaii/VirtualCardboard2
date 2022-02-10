@@ -22,7 +22,9 @@ public abstract class ComponentAuthoring<T> : ComponentAuthoringBase where T : s
     public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
         dstManager.AddComponentData(entity, AuthorComponent(dstManager.World));
+        AuthorDependencies(entity, dstManager);
     }
+    public virtual void AuthorDependencies(Entity entity, EntityManager dstManager) { }
     protected abstract T AuthorComponent(World world);
 }
 
@@ -121,7 +123,7 @@ public class ArchetypeReference<T> where T : Archetype
             {
                 if (asset == entity)
                     continue;
-                if (!_components.Select(x => x.Component.GetType()).Contains(asset.GetType()))
+                if (asset == null || !_components.Select(x => x.Component.GetType()).Contains(asset.GetType()))
                     UnityEngine.Object.DestroyImmediate(asset, true);
             }
         }

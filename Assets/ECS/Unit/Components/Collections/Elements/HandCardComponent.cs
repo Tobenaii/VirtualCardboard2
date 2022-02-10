@@ -10,6 +10,6 @@ public struct HandCard : IPrefabCollection
     public Entity Entity { get; set; }
 }
 
-public class CardHandComponent : PrefabCollectionAuthoring<HandCard>
-{
-}
+//public class CardHandComponent : PrefabCollectionAuthoring<HandCard>
+//{
+//}

@@ -5461,6 +5461,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 84e382254b83c104b89e5d2025821c43, type: 2}
   - {fileID: 11400000, guid: 7584b94db717b864f8925c36cbb12285, type: 2}
   - {fileID: 11400000, guid: 7b17c1f21c8fcfe4a94ee7b3f883f864, type: 2}
+  - {fileID: 11400000, guid: 136eb5246bdd1f842948dc2118021c06, type: 2}
 --- !u!4 &719997232
 Transform:
   m_ObjectHideFlags: 0
@@ -8083,6 +8084,7 @@ GameObject:
   - component: {fileID: 1194856670}
   - component: {fileID: 1194856672}
   - component: {fileID: 1194856671}
+  - component: {fileID: 1194856673}
   m_Layer: 5
   m_Name: Deck
   m_TagString: Untagged
@@ -8149,6 +8151,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194856669}
   m_CullTransparentMesh: 1
+--- !u!114 &1194856673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194856669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f5f93f013f1784db50ef891f26d3c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerEvent: {fileID: 11400000, guid: 136eb5246bdd1f842948dc2118021c06, type: 2}
+  _target:
+    _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
+    _key: 0
+  _text: {fileID: 1205203407}
+  _format: 'Deck: {Current}/{Max}'
 --- !u!1 &1205203404
 GameObject:
   m_ObjectHideFlags: 0
