@@ -10,18 +10,15 @@ using UnityEngine;
 
 public class ArchetypeAuthoringMono : MonoBehaviour, IConvertGameObjectToEntity
 {
-    [SerializeField] private ArchetypeReference _component;
-    [HorizontalGroup]
-    [SerializeField] private bool _entityRef;
-    [HorizontalGroup]
-    [SerializeField][ShowIf("@_entityRef")][HideLabel][InlineProperty] private EntityRef _entity;
+    [InlineEditor]
+    [SerializeField] private ModEntity _entity;
+    [InlineProperty]
+    [SerializeField] private EntityRef _group;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        foreach (var component in _component.Components)
-            component.Component.AuthorComponent(entity, dstManager);
-        if (_entityRef)
-            _entity.Entity = entity;
+        _entity.Convert(entity, dstManager, conversionSystem);
+        _group.Entity = entity;
     }
 
     public Entity GetEntity(World world)
@@ -31,19 +28,4 @@ public class ArchetypeAuthoringMono : MonoBehaviour, IConvertGameObjectToEntity
             return GameObjectConversionUtility.ConvertGameObjectHierarchy(gameObject, GameObjectConversionSettings.FromWorld(world, blob));
         }
     }
-
-    private void OnDestroy()
-    {
-        if (_entityRef)
-            _entity.Unregister();
-    }
-
-#if UNITY_EDITOR
-    [MenuItem("Assets/Modsys/Archetype Prefab")]
-    private static void CreateArchetypePrefabInEditor()
-    {
-        //var source = new GameObject("New Archetype");
-        //PrefabUtility.SaveAsPrefabAsset(source, )
-    }
-#endif
 }

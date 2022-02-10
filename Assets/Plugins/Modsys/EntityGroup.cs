@@ -50,7 +50,10 @@ public class EntityGroup : ScriptableObject
     public void Register(int key, Entity entity)
     {
         if (_entities.ContainsKey(key))
-            throw new KeyNotFoundException("You must unregister the previous entity before registering a new one");
+        {
+            _entities.Remove(key);
+            _entities.Add(key, entity);
+        }
         else
             _entities.Add(key, entity);
     }

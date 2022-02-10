@@ -20,10 +20,26 @@ public abstract class ComponentEvent : ScriptableObject
     public abstract void Disable();
 }
 
-public abstract class ComponentEventBase<T, V, U> : ComponentEvent, IComponentEvent<T> where T : unmanaged, U where V : ComponentEventSystemBase<T>
+public abstract class ComponentEvent<U> : ComponentEvent
 {
     protected Dictionary<Entity, List<IComponentListener<U>>> _listenerMap = new Dictionary<Entity, List<IComponentListener<U>>>();
 
+    public void Register(Entity entity, IComponentListener<U> listener)
+    {
+        List<IComponentListener<U>> listeners;
+        if (_listenerMap.TryGetValue(entity, out listeners))
+            listeners.Add(listener);
+        else
+        {
+            listeners = new List<IComponentListener<U>>();
+            listeners.Add(listener);
+            _listenerMap.Add(entity, listeners);
+        }
+    }
+}
+
+public abstract class ComponentEventBase<T, V, U> : ComponentEvent<U>, IComponentEvent<T> where T : unmanaged, U where V : ComponentEventSystemBase<T>
+{
     public override void Init()
     {
         ValidateMap();
@@ -53,19 +69,6 @@ public abstract class ComponentEventBase<T, V, U> : ComponentEvent, IComponentEv
             {
                 listener.OnComponentChanged(newValue);
             }
-        }
-    }
-
-    public void Register(Entity entity, IComponentListener<U> listener)
-    {
-        List<IComponentListener<U>> listeners;
-        if (_listenerMap.TryGetValue(entity, out listeners))
-            listeners.Add(listener);
-        else
-        {
-            listeners = new List<IComponentListener<U>>();
-            listeners.Add(listener);
-            _listenerMap.Add(entity, listeners);
         }
     }
 

@@ -1207,14 +1207,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136877279}
-  m_LocalRotation: {x: -0, y: 0.984785, z: -0, w: -0.17377697}
-  m_LocalPosition: {x: 1.7223005, y: 1.3, z: -5.614702}
-  m_LocalScale: {x: 0.14999998, y: 0.15, z: 0.14999998}
+  m_LocalRotation: {x: -0, y: 0.99985075, z: -0, w: -0.017277863}
+  m_LocalPosition: {x: -0.821, y: 2, z: -4.799}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1.98, z: 0}
 --- !u!212 &136877282
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1755,7 +1755,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ATB
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1818,7 +1818,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 14.895407, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3094,35 +3094,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36fc967299ca5284f8c1711c5011dad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _component:
-    _componentData: {fileID: 11400000, guid: 98ed217fe05fa274e85e7d11b025975f, type: 2}
-    _components:
-    - _component:
-        rid: 5362457972215382018
-    - _component:
-        rid: 5362457972453146625
-    - _component:
-        rid: 5362457984381222914
-  _entityRef: 1
-  _entity:
+  _entity: {fileID: 11400000, guid: 54e69b1ac3f347d41b2ab8da3021eff0, type: 2}
+  _group:
     _entityList: {fileID: 11400000, guid: 28a6a4a2c1a536041aab9fd9d3891dfa, type: 2}
     _key: 1
-  references:
-    version: 2
-    RefIds:
-    - rid: 5362457972215382018
-      type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _maxValue: 100
-    - rid: 5362457972453146625
-      type: {class: TargetableComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _offset: {x: 0, y: 1.3, z: 0.75}
-        _markerScale: 0.15
-    - rid: 5362457984381222914
-      type: {class: ArmourComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _value: 0
 --- !u!114 &427632201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3700,6 +3675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 475365321}
+  - component: {fileID: 475365322}
   m_Layer: 5
   m_Name: PlayerHealth
   m_TagString: Untagged
@@ -3730,6 +3706,24 @@ RectTransform:
   m_AnchoredPosition: {x: 180, y: 178}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &475365322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475365320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847c812c88a9e18498ecc08a6a03e046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statEvent: {fileID: 11400000, guid: bb8c7002bada3da4aa7691077679a31c, type: 2}
+  _target:
+    _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
+    _key: 0
+  _text: {fileID: 554333163}
+  _format: '{Current}/{Max}'
 --- !u!1 &486050045
 GameObject:
   m_ObjectHideFlags: 0
@@ -4264,35 +4258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36fc967299ca5284f8c1711c5011dad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _component:
-    _componentData: {fileID: 11400000, guid: 98ed217fe05fa274e85e7d11b025975f, type: 2}
-    _components:
-    - _component:
-        rid: 5362457972215382019
-    - _component:
-        rid: 5362457972453146626
-    - _component:
-        rid: 5362457984381222913
-  _entityRef: 1
-  _entity:
+  _entity: {fileID: 11400000, guid: f3b52e4fa74e61d4d8e71f0f35a0864b, type: 2}
+  _group:
     _entityList: {fileID: 11400000, guid: 28a6a4a2c1a536041aab9fd9d3891dfa, type: 2}
     _key: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: 5362457972215382019
-      type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _maxValue: 200
-    - rid: 5362457972453146626
-      type: {class: TargetableComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _offset: {x: 0, y: 2, z: 0.75}
-        _markerScale: 0.25
-    - rid: 5362457984381222913
-      type: {class: ArmourComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _value: 0
 --- !u!114 &510165634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4316,7 +4285,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519158478}
   - component: {fileID: 519158479}
-  - component: {fileID: 519158480}
   m_Layer: 5
   m_Name: ResourceHolder
   m_TagString: Untagged
@@ -4383,18 +4351,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &519158480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519158477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c01f6577099d9fb43b712779fc2e73c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &523085286
 GameObject:
   m_ObjectHideFlags: 0
@@ -5504,6 +5460,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bb8c7002bada3da4aa7691077679a31c, type: 2}
   - {fileID: 11400000, guid: 84e382254b83c104b89e5d2025821c43, type: 2}
   - {fileID: 11400000, guid: 7584b94db717b864f8925c36cbb12285, type: 2}
+  - {fileID: 11400000, guid: 7b17c1f21c8fcfe4a94ee7b3f883f864, type: 2}
 --- !u!4 &719997232
 Transform:
   m_ObjectHideFlags: 0
@@ -12973,58 +12930,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36fc967299ca5284f8c1711c5011dad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _component:
-    _componentData: {fileID: 11400000, guid: 45b1a043c8811ca4ab27124f55958acd, type: 2}
-    _components:
-    - _component:
-        rid: 5362457972453146627
-    - _component:
-        rid: 5362457981529096193
-    - _component:
-        rid: 5362457984381222921
-    - _component:
-        rid: 5362458004739063809
-    - _component:
-        rid: 5362458015949389825
-    - _component:
-        rid: 5362458015949389827
-  _entityRef: 1
-  _entity:
+  _entity: {fileID: 11400000, guid: 9d60f41bb17a8e449ad44be762e69ad9, type: 2}
+  _group:
     _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
     _key: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: 5362457972453146627
-      type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _maxValue: 0
-    - rid: 5362457981529096193
-      type: {class: CardTesterComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _card: {fileID: 11400000, guid: 6c330e51a137cc644a5bd82d28aa4787, type: 2}
-    - rid: 5362457984381222921
-      type: {class: CardHandComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _prefabs: []
-    - rid: 5362458004739063809
-      type: {class: SingleTargetingComponent, ns: , asm: Assembly-CSharp}
-    - rid: 5362458015949389825
-      type: {class: DeckComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _prefabs: []
-    - rid: 5362458015949389827
-      type: {class: ElementComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _element:
-        - Type: 0
-          Count: 3
-        - Type: 4
-          Count: 4
-        - Type: 6
-          Count: 3
-        - Type: 9
-          Count: 2
 --- !u!1 &2014438344
 GameObject:
   m_ObjectHideFlags: 0
@@ -13555,6 +13464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2086180715}
+  - component: {fileID: 2086180716}
   m_Layer: 5
   m_Name: ElementalGauge
   m_TagString: Untagged
@@ -13585,6 +13495,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -377}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2086180716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086180714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01f6577099d9fb43b712779fc2e73c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementIcons:
+  - <ElementType>k__BackingField: 0
+    <ElementIcon>k__BackingField: {fileID: 21300000, guid: baae7fe8b80e6bf45aca2d483868802a,
+      type: 3}
+  - <ElementType>k__BackingField: 1
+    <ElementIcon>k__BackingField: {fileID: 21300000, guid: bab9bea39c9392f49be812a1da124a94,
+      type: 3}
+  - <ElementType>k__BackingField: 2
+    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 059778036b8fef040bcee665e37553c3,
+      type: 3}
+  - <ElementType>k__BackingField: 3
+    <ElementIcon>k__BackingField: {fileID: 21300000, guid: bf527b859655e60449fdc0ec6c386939,
+      type: 3}
+  - <ElementType>k__BackingField: 4
+    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 5741ca48a03733e42b338fedf14a90e3,
+      type: 3}
+  - <ElementType>k__BackingField: 5
+    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 3524614b68a2c624ba3ed6e9cc60604f,
+      type: 3}
+  - <ElementType>k__BackingField: 6
+    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 22521e64532e1af42982e52eb0d9e141,
+      type: 3}
+  - <ElementType>k__BackingField: 7
+    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 3da5b0550e3eaad4c934721103faeaa5,
+      type: 3}
+  - <ElementType>k__BackingField: 8
+    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 97a3d93222237e94fb5f4ae0fb7acda4,
+      type: 3}
+  - <ElementType>k__BackingField: 9
+    <ElementIcon>k__BackingField: {fileID: 21300000, guid: f3aff0dfb0e18cf439facae71990e68f,
+      type: 3}
+  _resourceHolder: {fileID: 519158478}
+  _event: {fileID: 11400000, guid: 7b17c1f21c8fcfe4a94ee7b3f883f864, type: 2}
+  _entity:
+    _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
+    _key: 0
 --- !u!1 &2094526513
 GameObject:
   m_ObjectHideFlags: 0

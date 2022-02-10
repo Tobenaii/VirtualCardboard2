@@ -1,20 +1,16 @@
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using Sirenix.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
+using UnityEditor;
 using UnityEngine;
 
-public abstract class ComponentAuthoringBase
-{
-    public abstract ComponentType ComponentType { get; }
-    public abstract void AuthorComponent(Entity entity, EntityManager dstManager);
-}
-
-public abstract class ComponentListAuthoringBase
+public abstract class ComponentAuthoringBase : ScriptableObject
 {
     public abstract ComponentType ComponentType { get; }
     public abstract void AuthorComponent(Entity entity, EntityManager dstManager);
@@ -57,57 +53,78 @@ public abstract class BufferComponentAuthoring<T> : ComponentAuthoringBase where
 [InlineProperty]
 [HideLabel]
 [HideReferenceObjectPicker]
-public class ArchetypeReference : ISerializationCallbackReceiver
+public class ArchetypeReference<T> where T : Archetype
 {
-    [System.Serializable]
-    public class ReadWriteComponent
-    {
-        [SerializeReference][HideReferenceObjectPicker][LabelText("@_component.GetType().Name")] private ComponentAuthoringBase _component;
-        public ComponentAuthoringBase Component => _component;
+    [ShowIf("@_archetype == null")]
+    [SerializeField] private T _archetype;
 
-        public static implicit operator ReadWriteComponent(ComponentAuthoringBase component)
-            => new ReadWriteComponent() { _component = component };
-    }
+    [ShowInInspector] public T Archetype => _archetype;
 
-    [SerializeField] private Archetype _componentData;
     [SerializeField]
     [ListDrawerSettings(IsReadOnly = true)]
     [HideReferenceObjectPicker]
-    [ShowIf("@_components != null")]
+    [ShowIf("@_archetype != null")]
     private List<ReadWriteComponent> _components;
-
+    
     public List<ReadWriteComponent> Components => _components;
 
-    private void ValidateComponents()
+    public void ValidateComponents(ScriptableObject entity)
     {
-        if (_componentData == null)
-            _components = null;
-        else
+        if (_archetype == null)
+            return;
+        //Clear all components if archetype is null
+        if (_archetype == null && _components.Count > 0)
         {
-            if (_components != null)
+            foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(entity)))
             {
-                var typesAvailable = _componentData.Components.Select(x => x.GetType()).ToList();
-                _components.RemoveAll(x => x == null || x.Component == null);
-                _components.RemoveAll(x => !typesAvailable.Contains(x.Component.GetType()));
+                if (asset == entity)
+                    continue;
+                _components.Remove(_components.FirstOrDefault(x => x.Component == asset));
+                UnityEngine.Object.DestroyImmediate(asset);
             }
-            else
-                _components = new List<ReadWriteComponent>();
-            _components.AddRange(_componentData.Components.Select(x => x.GetType()).Except(_components.Select(x => x.Component.GetType())).Select(x => (ReadWriteComponent)(ComponentAuthoringBase)Activator.CreateInstance(x)));
+            _components.Clear();
         }
-    }
 
-    public Entity GetEntity(World world)
-    {
-        return world.EntityManager.CreateEntity(_componentData.CreateArchetype(world.EntityManager));
-    }
+        if (_archetype != null && _components != null)
+        {   
+            foreach (var component in _components.ToList())
+            {
+                if (component.Component == null)
+                    _components.Remove(component);
+            }    
+            //Add components that should exist
+            foreach (var component in _archetype.Components)
+            {
+                if (_components.Select(x => x.Component.GetType()).Where(x => x == component.GetType()).FirstOrDefault() == null)
+                {
+                    var newComponent = ScriptableObject.CreateInstance(component.GetType()) as ComponentAuthoringBase;
+                    _components.Add(newComponent);
+                    AssetDatabase.AddObjectToAsset(newComponent, entity);
+                    AssetDatabase.Refresh();
+                }
+            }
 
-    public void OnBeforeSerialize()
-    {
-        ValidateComponents();
-    }
+            //Remove components that shouldn't exist
+            foreach (var component in _components.ToList())
+            {
+                if (_archetype.Components.Select(
+                    x => x.GetType()).Where(x => x == component.Component.GetType()).FirstOrDefault() == null)
+                {
+                    _components.Remove(component);
+                    UnityEngine.Object.DestroyImmediate(component.Component, true);
+                    AssetDatabase.Refresh();
+                }
+            }
 
-    public void OnAfterDeserialize()
-    {
+            //Remove all subassets that shouldn't exist (the above should handle this in most cases)
+            foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(entity)))
+            {
+                if (asset == entity)
+                    continue;
+                if (!_components.Select(x => x.Component.GetType()).Contains(asset.GetType()))
+                    UnityEngine.Object.DestroyImmediate(asset, true);
+            }
+        }
     }
 }
 
@@ -115,7 +132,11 @@ public class ArchetypeReference : ISerializationCallbackReceiver
 [System.Serializable]
 public class ReadOnlyComponent
 {
-    [SerializeReference][HideReferenceObjectPicker][Sirenix.OdinInspector.ReadOnly][LabelText("@_component.GetType().Name")] private ComponentAuthoringBase _component;
+    [HideReferenceObjectPicker]
+    [Sirenix.OdinInspector.ReadOnly]
+    [HideLabel]
+    [InlineEditor]
+    [SerializeField] private ComponentAuthoringBase _component;
     public ComponentAuthoringBase Component => _component;
     public static implicit operator ReadOnlyComponent(ComponentAuthoringBase component)
         => new ReadOnlyComponent() { _component = component };
@@ -124,7 +145,9 @@ public class ReadOnlyComponent
 [System.Serializable]
 public class ReadWriteComponent
 {
-    [SerializeReference][HideReferenceObjectPicker][LabelText("@_component.GetType().Name")] private ComponentAuthoringBase _component;
+    [LabelText("@_component.GetType()")]
+    [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.CompletelyHidden, DrawHeader = true)]
+    [SerializeField] private ComponentAuthoringBase _component;
     public ComponentAuthoringBase Component => _component;
     public static implicit operator ReadWriteComponent(ComponentAuthoringBase component)
         => new ReadWriteComponent() { _component = component };

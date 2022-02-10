@@ -9,7 +9,7 @@ public interface IAttribute : IComponentData
     public float Value { get; set; }
 }
 
-public class AttributeAuthoring<T> : UnitComponentAuthoring<T> where T : struct, IAttribute
+public abstract class AttributeAuthoring<T> : UnitComponentAuthoring<T> where T : struct, IAttribute
 {
     [SerializeField] private float _value;
 
@@ -26,7 +26,7 @@ public interface IStat : IComponentData
     public float MaxValue { get; set; }
 }
 
-public class StatAuthoring<T> : UnitComponentAuthoring<T> where T : struct, IStat
+public abstract class StatAuthoring<T> : UnitComponentAuthoring<T> where T : struct, IStat
 {
     [SerializeField] private float _maxValue;
 
@@ -41,9 +41,9 @@ public interface IPrefabCollection : IBufferElementData
     public Entity Entity { get; set; }
 }
 
-public class PrefabCollectionAuthoring<T> : UnitBufferComponentAuthoring<T> where T : struct, IPrefabCollection
+public abstract class PrefabCollectionAuthoring<T> : UnitBufferComponentAuthoring<T> where T : struct, IPrefabCollection
 {
-    [SerializeField] private List<ArchetypePrefab> _prefabs;
+    [SerializeField] private List<ModEntity> _prefabs;
 
     protected override NativeArray<T> AuthorComponent(World world)
     {

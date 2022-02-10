@@ -18,11 +18,11 @@ public class DrawCardsSystem : SystemBase
     {
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
         Entities.ForEach((int entityInQueryIndex, Entity entity, in DrawCards draw) => {
-            var deck = GetBufferFromEntity<Deck>(false)[draw.Entity];
-            var cardHand = GetBufferFromEntity<CardHand>(false)[draw.Entity];
+            var deck = GetBufferFromEntity<DeckCard>(false)[draw.Entity];
+            var cardHand = GetBufferFromEntity<HandCard>(false)[draw.Entity];
             for (int i = 0; i < draw.Amount; i++)
             {
-                cardHand.Add(new CardHand() { Entity = deck[i].Entity });
+                cardHand.Add(new HandCard() { Entity = deck[i].Entity });
             }
             deck.RemoveRange(0, draw.Amount);
             ecb.DestroyEntity(entityInQueryIndex, entity);

@@ -5,11 +5,11 @@ using Unity.Entities;
 using UnityEngine;
 
 [InternalBufferCapacity(8)]
-public struct Deck : IPrefabCollection
+public struct DeckCard : IPrefabCollection
 {
     public Entity Entity { get; set; }
 }
 
-public class DeckComponent : PrefabCollectionAuthoring<Deck>
+public class DeckCardComponent : PrefabCollectionAuthoring<DeckCard>
 {
 }

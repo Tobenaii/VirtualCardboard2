@@ -60,7 +60,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public void RegisterCard(IPrefabCollection cardHand, Entity player)
     {
-        var card = World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<Card>(cardHand.Entity);
+        var card = World.DefaultGameObjectInjectionWorld.EntityManager.GetComponentData<CardData>(cardHand.Entity);
         _card = cardHand.Entity;
         _player = player;
         _title.text = card.name.ConvertToString();
