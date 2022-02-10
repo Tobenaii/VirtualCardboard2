@@ -17,6 +17,9 @@ public abstract class ModEntity : ScriptableObject
 [CreateAssetMenu(menuName = "Modsys/Entity")]
 public abstract class ModEntity<T> : ModEntity, ISerializationCallbackReceiver where T : Archetype
 {
+    [ShowIf("@_archetype.Archetype != null")] [PropertyOrder(-1000)]
+    [ShowInInspector] public T Archetype => (T)_archetype.Archetype;
+    [PropertyOrder(10000)]
     [SerializeField] private ArchetypeReference<T> _archetype;
     private Entity _prefab;
 
@@ -37,6 +40,14 @@ public abstract class ModEntity<T> : ModEntity, ISerializationCallbackReceiver w
         return entity;
     }
 
+    [ShowIf("@UnityEngine.Application.isPlaying")] [PropertyOrder(100000)]
+    [Button("Test")]
+    private void DebugInstantiate()
+    {
+        var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        entityManager.Instantiate(GetPrefab(entityManager));
+    }
+
     public void OnAfterDeserialize()
     {
         
@@ -50,6 +61,7 @@ public abstract class ModEntity<T> : ModEntity, ISerializationCallbackReceiver w
 
     public void OnBeforeSerialize()
     {
-        _archetype.Archetype.Register(this);
+        if (_archetype != null)
+            _archetype.Archetype?.Register(this);
     }
 }

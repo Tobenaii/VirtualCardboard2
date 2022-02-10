@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -62,17 +63,37 @@ public interface ICollectionContainer : IComponentData
     public int CurrentCount { get; set; }
 }
 
-public abstract class CollectionContainerAuthoring<T, V> : UnitComponentAuthoring<T> where T : struct, ICollectionContainer where V : struct, IBufferElementData
+public interface IPrefabCollectionContainer<T> : ICollectionContainer where T : struct, IPrefabCollection
+{
+}
+
+public abstract class PrefabCollectionContainerAuthoring<T, V, U> : UnitComponentAuthoring<T> where T : struct, IPrefabCollectionContainer<V> where V : struct, IPrefabCollection where U : ModEntity
 {
     [SerializeField] private int _maxCount;
+    [SerializeField] private bool _debugList;
+    [ShowIf("@_debugList")]
+    [SerializeField] private List<U> _entities;
 
     protected override T AuthorComponent(World world)
     {
-        return new T() { CurrentCount = 0, MaxCount = _maxCount };
+        return new T() { CurrentCount = _debugList ? _entities.Count : _maxCount, MaxCount = _maxCount };
     }
 
     public override void AuthorDependencies(Entity entity, EntityManager dstManager)
     {
-        dstManager.AddBuffer<V>(entity);
+        var instances = new NativeArray<V>(_entities.Count, Allocator.Temp);
+        if (_debugList)
+        {
+            int i = 0;
+            foreach (var modEntity in _entities)
+            {
+                var instance = new V();
+                instance.Entity = modEntity.GetPrefab(dstManager);
+                instances[i] = instance;
+                i++;
+            }
+        }
+        var buffer = dstManager.AddBuffer<V>(entity);
+        buffer.AddRange(instances);
     }
 }

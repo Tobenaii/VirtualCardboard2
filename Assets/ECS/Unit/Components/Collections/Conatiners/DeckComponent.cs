@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Entities;
 using UnityEngine;
 
-public struct Deck : ICollectionContainer
+[assembly: RegisterGenericJobType(typeof(DeckCollectionSystem.GenericContainerJob))]
+
+public struct Deck : IPrefabCollectionContainer<DeckCard>
 {
     public int MaxCount { get; set; }
     public int CurrentCount { get; set; }
 }
 
-public class DeckComponent : CollectionContainerAuthoring<Deck, DeckCard>
+public class DeckComponent : PrefabCollectionContainerAuthoring<Deck, DeckCard, Card>
 {
 }
+
+public class DeckCollectionSystem : CollectionContainerSystem<Deck, DeckCard> { }

@@ -20,13 +20,18 @@ public class DrawCardsSystem : SystemBase
         Entities.ForEach((int entityInQueryIndex, Entity entity, in DrawCards draw) => {
             var deck = GetBufferFromEntity<DeckCard>(false)[draw.Entity];
             var cardHand = GetBufferFromEntity<HandCard>(false)[draw.Entity];
-            for (int i = 0; i < draw.Amount; i++)
+            var drawAmount = draw.Amount;
+            if (deck.Length < drawAmount)
+                drawAmount = deck.Length;
+            for (int i = 0; i < drawAmount; i++)
             {
                 cardHand.Add(new HandCard() { Entity = deck[i].Entity });
             }
-            deck.RemoveRange(0, draw.Amount);
+            if (drawAmount != 0)
+                deck.RemoveRange(0, drawAmount);
             ecb.DestroyEntity(entityInQueryIndex, entity);
-        }).ScheduleParallel();
+        }).Schedule();
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
+        CompleteDependency();
     }
 }

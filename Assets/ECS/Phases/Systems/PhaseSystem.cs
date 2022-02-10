@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-[UpdateInGroup(typeof(ActionResolverGroup))]
-public class DealDamageSystem : SystemBase
+public class PhaseSystem : SystemBase
 {
     private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
 
@@ -16,13 +15,19 @@ public class DealDamageSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, in Target target, in DealDamage dealDamage) =>
+        var deltaTime = Time.DeltaTime;
+        Entities.ForEach((int entityInQueryIndex, Entity entity, ref PhaseData phase) =>
         {
-            var targetHealth = GetComponentDataFromEntity<Health>(true)[target.target];
-            targetHealth.CurrentValue -= dealDamage.amount;
-            ecb.SetComponent<Health>(entityInQueryIndex, target.target, targetHealth);
-            ecb.DestroyEntity(entityInQueryIndex, entity);
-        }).ScheduleParallel();
+            phase.Timer -= deltaTime;
+            if (phase.Timer >= phase.Time)
+            {
+                if (phase.HasNextPhase)
+                    ecb.Instantiate(entityInQueryIndex, phase.NextPhase);
+
+                ecb.DestroyEntity(entityInQueryIndex, entity);
+            }
+        }).Schedule();
         _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
+
     }
 }

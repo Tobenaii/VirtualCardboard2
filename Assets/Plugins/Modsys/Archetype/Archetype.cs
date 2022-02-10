@@ -11,7 +11,7 @@ using UnityEngine;
 
 public abstract class Archetype : ScriptableObject, ISerializationCallbackReceiver
 {
-    [SerializeField] private List<ModEntity> _entities;
+    [SerializeField] [HideInInspector] private List<ModEntity> _entities;
     protected abstract Type authoringType { get; }
     protected abstract Type bufferAuthoringType { get; }
     [ListDrawerSettings(HideAddButton = true, CustomRemoveElementFunction = "RemoveComponent")]

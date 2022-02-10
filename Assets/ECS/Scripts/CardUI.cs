@@ -9,7 +9,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 {
     [SerializeField] private TMPro.TextMeshProUGUI _title;
     [SerializeField] private TMPro.TextMeshProUGUI _description;
-    [SerializeField] private Archetype _playCardAction;
+    [SerializeField] private Action _playCardAction;
 
     public bool IsHovering { get; private set; }
     public bool IsDead { get; private set; }
@@ -82,8 +82,8 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        var entity = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntity();
-        World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData<PlayCard>(entity, new PlayCard() { dealer = _player, card = _card });
+        var actionData = new PlayCard() { Dealer = _player, Card = _card };
+        _playCardAction.Execute(actionData);
         StartCoroutine(Die());
     }
 }

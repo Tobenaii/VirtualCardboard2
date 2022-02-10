@@ -1213,7 +1213,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 1.98, z: 0}
 --- !u!212 &136877282
 SpriteRenderer:
@@ -1608,7 +1608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: {fileID: 2111907044}
   _description: {fileID: 1609409837}
-  _playCardAction: {fileID: 0}
+  _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
 --- !u!225 &186743662
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2483,7 +2483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: {fileID: 58029214}
   _description: {fileID: 1583753560}
-  _playCardAction: {fileID: 0}
+  _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
 --- !u!225 &335395409
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2664,7 +2664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: {fileID: 77195366}
   _description: {fileID: 467252039}
-  _playCardAction: {fileID: 0}
+  _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
 --- !u!225 &363224939
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2731,7 +2731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: {fileID: 108862985}
   _description: {fileID: 2014438346}
-  _playCardAction: {fileID: 0}
+  _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
 --- !u!225 &363448667
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4961,7 +4961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: {fileID: 1742510186}
   _description: {fileID: 1505751069}
-  _playCardAction: {fileID: 0}
+  _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
 --- !u!225 &632002666
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5236,7 +5236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: {fileID: 496293121}
   _description: {fileID: 1981330857}
-  _playCardAction: {fileID: 0}
+  _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
 --- !u!225 &661685187
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7195,7 +7195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: {fileID: 1125024413}
   _description: {fileID: 948437032}
-  _playCardAction: {fileID: 0}
+  _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
 --- !u!225 &1070557025
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -11118,7 +11118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1718186209}
   m_Layer: 0
-  m_Name: RoundSystem
+  m_Name: StartCombat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11137,7 +11137,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1742510184
 GameObject:
@@ -12021,7 +12021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: {fileID: 1657711794}
   _description: {fileID: 1120949541}
-  _playCardAction: {fileID: 0}
+  _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
 --- !u!225 &1849214478
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -59,9 +59,6 @@ public class ArchetypeReference<T> where T : Archetype
 {
     [ShowIf("@_archetype == null")]
     [SerializeField] private T _archetype;
-
-    [ShowInInspector] public T Archetype => _archetype;
-
     [SerializeField]
     [ListDrawerSettings(IsReadOnly = true)]
     [HideReferenceObjectPicker]
@@ -69,6 +66,7 @@ public class ArchetypeReference<T> where T : Archetype
     private List<ReadWriteComponent> _components;
     
     public List<ReadWriteComponent> Components => _components;
+    public Archetype Archetype => _archetype;
 
     public void ValidateComponents(ScriptableObject entity)
     {
