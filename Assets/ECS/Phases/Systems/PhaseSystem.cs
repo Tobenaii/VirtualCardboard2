@@ -18,7 +18,7 @@ public class PhaseSystem : SystemBase
         var deltaTime = Time.DeltaTime;
         Entities.ForEach((int entityInQueryIndex, Entity entity, ref PhaseData phase) =>
         {
-            phase.Timer -= deltaTime;
+            phase.Timer += deltaTime;
             if (phase.Timer >= phase.Time)
             {
                 if (phase.HasNextPhase)

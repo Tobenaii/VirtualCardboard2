@@ -37,6 +37,29 @@ public abstract class StatAuthoring<T> : UnitComponentAuthoring<T> where T : str
     }
 }
 
+public interface IChargeStat : IComponentData
+{
+    public int Charges { get; set; }
+    public float ChargeTime { get; set; }
+    public int MaxCharges { get; set; }
+    public int MaxPool { get; set; }
+    public int Pool { get; set; }
+    public float ChargeTimer { get; set; }
+}
+
+public abstract class ChargeStatAuthoring<T> : UnitComponentAuthoring<T> where T : struct, IChargeStat
+{
+    [SerializeField] private float _chargeTime;
+    [SerializeField] private int _maxCharges;
+    [SerializeField] private int _chargePool;
+
+    protected override T AuthorComponent(World world)
+    {
+        return new T() { Charges = 0, ChargeTime = _chargeTime, MaxCharges = _maxCharges,
+                        MaxPool = _chargePool, Pool = _chargePool, ChargeTimer = 0 };
+    }
+}
+
 public interface IPrefabCollection : IBufferElementData
 {
     public Entity Entity { get; set; }

@@ -5,11 +5,13 @@ using Unity.Entities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IComponentListener<IActionError>
 {
+    [SerializeField] private ComponentEvent<IActionError> _actionError;
     [SerializeField] private TMPro.TextMeshProUGUI _title;
     [SerializeField] private TMPro.TextMeshProUGUI _description;
     [SerializeField] private Action _playCardAction;
+    [SerializeField] private TMPro.TextMeshProUGUI _errorText;
 
     public bool IsHovering { get; private set; }
     public bool IsDead { get; private set; }
@@ -46,6 +48,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public IEnumerator Die()
     {
+        yield return null;
         var alpha = GetComponent<CanvasGroup>();
         IsDead = true;
         float time = 0;
@@ -55,7 +58,8 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             time += Time.deltaTime;
             yield return null;
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        alpha.alpha = 1;
     }
 
     public void RegisterCard(IPrefabCollection cardHand, Entity player)
@@ -83,7 +87,31 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public void OnPointerClick(PointerEventData eventData)
     {
         var actionData = new PlayCard() { Dealer = _player, Card = _card };
-        _playCardAction.Execute(actionData);
+        var entity = _playCardAction.Execute(actionData);
+        _actionError.Register(entity, this);
         StartCoroutine(Die());
+    }
+
+    public void OnComponentChanged(IActionError value)
+    {
+        var error = value.ErrorMessage;
+        string message = error.ConvertToString();
+        //This is bad, it shouldn't chuck an event when created
+        if (message == "")
+            return;
+        StopAllCoroutines();
+        StartCoroutine(ErrorText(message));
+    }
+
+    private IEnumerator ErrorText(string error)
+    {
+        _errorText.text = error;
+        float timer = 0;
+        while (timer < 1)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        _errorText.text = "";
     }
 }

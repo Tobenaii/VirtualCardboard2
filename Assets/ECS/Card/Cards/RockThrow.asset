@@ -44,3 +44,4 @@ MonoBehaviour:
     - _component: {fileID: -486176328012787696}
   _name: Rock Throw
   _description: Produce a throw of the rock
+  _consumeATB: 1

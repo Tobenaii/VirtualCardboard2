@@ -14,13 +14,13 @@ public struct CardData : IComponentData
 [CreateAssetMenu(menuName = "VC2/Card")]
 public class Card : ModEntity<CardEffect>
 {
-    [PropertyOrder(-100)]
     [SerializeField] private string _name;
-    [TextArea] [PropertyOrder(-100)]
     [SerializeField] private string _description;
+    [SerializeField] private int _consumeATB;
     public override void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
         dstManager.AddComponentData(entity, new CardData() { name = _name, description = _description });
+        dstManager.AddComponentData(entity, new ConsumeATB() { amount = _consumeATB });
         base.Convert(entity, dstManager, conversionSystem);
     }
 }

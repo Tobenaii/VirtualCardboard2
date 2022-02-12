@@ -12,6 +12,11 @@ public abstract class ModEntity : ScriptableObject
 
     public abstract void ValidateComponents();
 
+    public void Instantiate()
+    {
+        var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        entityManager.Instantiate(GetPrefab(entityManager));
+    }
 }
 
 [CreateAssetMenu(menuName = "Modsys/Entity")]
@@ -44,8 +49,7 @@ public abstract class ModEntity<T> : ModEntity, ISerializationCallbackReceiver w
     [Button("Test")]
     private void DebugInstantiate()
     {
-        var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        entityManager.Instantiate(GetPrefab(entityManager));
+        Instantiate();
     }
 
     public void OnAfterDeserialize()

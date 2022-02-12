@@ -6,9 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Modsys/Action")]
 public class Action : ScriptableObject
 {
-    public virtual void Execute<T>(T data) where T : struct, IComponentData
+    public virtual Entity Execute<T>(T data) where T : struct, IComponentData
     {
         var entity = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntity();
         World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData<T>(entity, data);
+        return entity;
     }
 }
