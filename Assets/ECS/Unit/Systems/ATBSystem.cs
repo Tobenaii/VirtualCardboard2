@@ -11,6 +11,8 @@ public class ATBSystem : SystemBase
         var deltaTime = Time.DeltaTime;
         Entities.ForEach((ref ATB atb) =>
         {
+            if (!atb.CanCharge)
+                return;
             if (atb.Pool == 0)
                 return;
             atb.ChargeTimer += deltaTime;

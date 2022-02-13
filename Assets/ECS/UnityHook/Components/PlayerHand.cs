@@ -36,10 +36,11 @@ public class PlayerHand : MonoBehaviour, IComponentListener<IPrefabCollection>
 
         var baseOffsetCount = (_cards.Count - 1) / 2.0f;
         int index = 0;
-        foreach (var card in _cards)
+        for (int i = _cards.Count - 1; i >= 0; i--)
         {
-            var cardIndex = index - baseOffsetCount;
-            card.UpdatePosition(cardIndex, transform.position, _circularOffset, _radius, _horizontalOffset, _rotationalOffset, _smoothing);
+            var card = _cards[i];
+            var cardIndex = i - baseOffsetCount;
+            card.UpdatePosition(index, cardIndex, _circularOffset, _radius, _horizontalOffset, _rotationalOffset, _smoothing);
             index++;
         }
 

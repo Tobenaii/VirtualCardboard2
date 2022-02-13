@@ -10,6 +10,7 @@ public struct ATB : IChargeStat
     public int MaxPool { get; set; }
     public int Pool { get; set; }
     public float ChargeTimer { get; set; }
+    public bool CanCharge { get; set; }
 }
 
 public class ATBComponent : ChargeStatAuthoring<ATB>

@@ -23,6 +23,7 @@ public abstract class ComponentEvent : ScriptableObject
 public abstract class ComponentEvent<U> : ComponentEvent
 {
     protected Dictionary<Entity, List<IComponentListener<U>>> _listenerMap = new Dictionary<Entity, List<IComponentListener<U>>>();
+    protected List<IComponentListener<U>> _listeners = new List<IComponentListener<U>>();
 
     public void Register(Entity entity, IComponentListener<U> listener)
     {
@@ -35,6 +36,11 @@ public abstract class ComponentEvent<U> : ComponentEvent
             listeners.Add(listener);
             _listenerMap.Add(entity, listeners);
         }
+    }
+
+    public void Register(IComponentListener<U> listener)
+    {
+        _listeners.Add(listener);
     }
 }
 
@@ -70,6 +76,10 @@ public abstract class ComponentEventBase<T, V, U> : ComponentEvent<U>, IComponen
                 listener.OnComponentChanged(newValue);
             }
         }
+        foreach (var listener in _listeners)
+        {
+            listener.OnComponentChanged(newValue);
+        }
     }
 
     protected void ValidateMap()
@@ -84,6 +94,8 @@ public abstract class ComponentEventBase<T, V, U> : ComponentEvent<U>, IComponen
         }
         foreach (var entity in remove)
             _listenerMap.Remove(entity);
+        _listeners.RemoveAll(x => x.Equals(null));
+            
     }
 
     public void Unregister(Entity entity)

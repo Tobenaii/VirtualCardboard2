@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4771057177253849444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c832181128500f849ae21670a197a896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _message: 'Draw
+
+    Phase'
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,7 +31,8 @@ MonoBehaviour:
     _archetype: {fileID: 11400000, guid: 5ca7526b6a13e8447815cf9dc9165671, type: 2}
     _components:
     - _component: {fileID: 491472041111458993}
-  _time: 10
+    - _component: {fileID: -4771057177253849444}
+  _time: 1.5
   _nextPhase: {fileID: 11400000, guid: 951ffb0e9eb411f438af81134a5ca473, type: 2}
 --- !u!114 &491472041111458993
 MonoBehaviour:

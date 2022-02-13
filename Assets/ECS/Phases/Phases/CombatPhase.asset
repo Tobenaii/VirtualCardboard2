@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8672393114877914819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c832181128500f849ae21670a197a896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _message: 'Combat
+
+    Phase'
+--- !u!114 &-6824067462504456810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc8533412d01aa4ba89e5b547ad214e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,7 +40,9 @@ MonoBehaviour:
   m_Name: CombatPhase
   m_EditorClassIdentifier: 
   _archetype:
-    _archetype: {fileID: 0}
-    _components: []
-  _time: 0
+    _archetype: {fileID: 11400000, guid: c77a1682e011c854bb9b253fb04174de, type: 2}
+    _components:
+    - _component: {fileID: -8672393114877914819}
+    - _component: {fileID: -6824067462504456810}
+  _time: 120
   _nextPhase: {fileID: 0}

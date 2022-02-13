@@ -21,11 +21,12 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     private float _upOffset;
     private Vector3 _scaleOffset;
-    private Vector3 _velocity;
+    private Vector2 _velocity;
     private Vector3 _scaleVelocity;
 
     private Vector3 _prevScale;
     private Vector3 _initScale;
+    private float _waitTimer;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public void OnPointerEnter(PointerEventData eventData)
     {
         IsHovering = true;
-        _upOffset = 50;
+        _upOffset = -0.1f;
         _scaleOffset = new Vector3(0.2f, 0.2f, 0.2f);
     }
 
@@ -70,17 +71,24 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         _title.text = card.name.ConvertToString();
         _description.text = card.description.ConvertToString();
         gameObject.SetActive(true);
+        _waitTimer = 0;
     }
 
-    public void UpdatePosition(float index, Vector3 origin, float circularOffset, float radius, float horizontalOffset, float rotationalOffset, float smoothing)
+    public void UpdatePosition(int index, float cardIndex, float circularOffset, float radius, float horizontalOffset, float rotationalOffset, float smoothing)
     {
-        var offset = new Vector3(Mathf.Sin(index * (Mathf.Deg2Rad * circularOffset)), Mathf.Cos(index * (Mathf.Deg2Rad * circularOffset)), 0) * radius;
-        var targetPos = origin + offset;
-        targetPos += Vector3.right * horizontalOffset * index;
-        targetPos += Vector3.up * _upOffset;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _velocity, smoothing);
+        if (_waitTimer < 0.15f * index)
+        {
+            _waitTimer += Time.deltaTime;
+            return;
+        }
+        var offset = new Vector2(Mathf.Sin(cardIndex * (Mathf.Deg2Rad * circularOffset)), Mathf.Cos(cardIndex * (Mathf.Deg2Rad * circularOffset))) * radius;
+        var targetPos = offset;
+        targetPos += Vector2.right * horizontalOffset * cardIndex;
+        targetPos += Vector2.up * _upOffset;
+        var rect = (transform as RectTransform);
+        rect.pivot = Vector2.SmoothDamp(rect.pivot, targetPos, ref _velocity, smoothing);
         transform.rotation = Quaternion.identity;
-        transform.Rotate(Vector3.forward, index * -rotationalOffset);
+        transform.Rotate(Vector3.forward, cardIndex * -rotationalOffset);
         transform.localScale = Vector3.SmoothDamp(transform.localScale, _initScale + _scaleOffset, ref _scaleVelocity, smoothing);
     }
 
