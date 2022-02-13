@@ -94,6 +94,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public void OnComponentChanged(IStatusMessage value)
     {
         StopAllCoroutines();
+        _errorText.text = string.Empty;
         if (value.Status == IStatusMessage.StatusType.Success)
         {
             StartCoroutine(Die());
