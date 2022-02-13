@@ -19,7 +19,8 @@ public class ATBCheckSystem : SystemBase
             if (dealerAtb.Charges < requiredATB.amount)
             {
                 playCard.Failed = true;
-                playCard.ErrorMessage = "Not Enough ATB";
+                playCard.Status = IStatusMessage.StatusType.Failed;
+                playCard.Message = "Not Enough ATB";
             }
             else
             {

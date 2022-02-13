@@ -5,9 +5,9 @@ using Unity.Entities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IComponentListener<IActionError>
+public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IComponentListener<IStatusMessage>
 {
-    [SerializeField] private ComponentEvent<IActionError> _actionError;
+    [SerializeField] private ComponentEvent<IStatusMessage> _actionError;
     [SerializeField] private TMPro.TextMeshProUGUI _title;
     [SerializeField] private TMPro.TextMeshProUGUI _description;
     [SerializeField] private Action _playCardAction;
@@ -89,18 +89,21 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         var actionData = new PlayCard() { Dealer = _player, Card = _card };
         var entity = _playCardAction.Execute(actionData);
         _actionError.Register(entity, this);
-        StartCoroutine(Die());
     }
 
-    public void OnComponentChanged(IActionError value)
+    public void OnComponentChanged(IStatusMessage value)
     {
-        var error = value.ErrorMessage;
-        string message = error.ConvertToString();
-        //This is bad, it shouldn't chuck an event when created
-        if (message == "")
-            return;
         StopAllCoroutines();
-        StartCoroutine(ErrorText(message));
+        if (value.Status == IStatusMessage.StatusType.Success)
+        {
+            StartCoroutine(Die());
+        }
+        else
+        {
+            var error = value.Message;
+            string message = error.ConvertToString();
+            StartCoroutine(ErrorText(message));
+        }
     }
 
     private IEnumerator ErrorText(string error)

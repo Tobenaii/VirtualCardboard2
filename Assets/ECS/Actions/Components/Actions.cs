@@ -4,9 +4,11 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-public interface IActionError : IComponentData
+public interface IStatusMessage : IComponentData
 {
-    public FixedString128 ErrorMessage { get; set; }
+    public enum StatusType { Success, Failed }
+    public FixedString128 Message { get; set; }
+    public StatusType Status { get; set; }
 }
 
 public struct StartCombat : IComponentData
@@ -14,12 +16,13 @@ public struct StartCombat : IComponentData
     public Entity InitialPhase;
 }
 
-public struct PlayCard : IActionError
+public struct PlayCard : IStatusMessage
 {
     public Entity Dealer;
     public Entity Card;
     public bool Failed;
-    public FixedString128 ErrorMessage { get; set; }
+    public FixedString128 Message { get; set; }
+    public IStatusMessage.StatusType Status { get; set; }
 }
 
 public struct DrawCards : IComponentData

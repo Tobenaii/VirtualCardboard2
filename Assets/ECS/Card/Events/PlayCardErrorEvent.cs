@@ -4,7 +4,7 @@ using Unity.Entities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "VC2/Events/Play Card Error Event")]
-public class PlayCardErrorEvent : ComponentEvent<PlayCard, PlayCardErrorEventSystem, IActionError>
+public class PlayCardErrorEvent : ComponentEvent<PlayCard, PlayCardErrorEventSystem, IStatusMessage>
 {
 }
 
