@@ -11,7 +11,6 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     [SerializeField] private TMPro.TextMeshProUGUI _title;
     [SerializeField] private TMPro.TextMeshProUGUI _description;
     [SerializeField] private Action _playCardAction;
-    [SerializeField] private TMPro.TextMeshProUGUI _errorText;
 
     public bool IsHovering { get; private set; }
     public bool IsDead { get; private set; }
@@ -102,7 +101,6 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public void OnComponentChanged(IStatusMessage value)
     {
         StopAllCoroutines();
-        _errorText.text = string.Empty;
         if (value.Status == IStatusMessage.StatusType.Success)
         {
             StartCoroutine(Die());
@@ -117,13 +115,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     private IEnumerator ErrorText(string error)
     {
-        _errorText.text = error;
         float timer = 0;
         while (timer < 1)
         {
             timer += Time.deltaTime;
             yield return null;
         }
-        _errorText.text = "";
     }
 }

@@ -1610,7 +1610,6 @@ MonoBehaviour:
   _title: {fileID: 2111907044}
   _description: {fileID: 1609409837}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
-  _errorText: {fileID: 1073179538}
 --- !u!225 &186743662
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2227,7 +2226,6 @@ MonoBehaviour:
   _title: {fileID: 58029214}
   _description: {fileID: 1583753560}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
-  _errorText: {fileID: 1073179538}
 --- !u!225 &335395409
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2410,7 +2408,6 @@ MonoBehaviour:
   _title: {fileID: 77195366}
   _description: {fileID: 467252039}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
-  _errorText: {fileID: 1073179538}
 --- !u!225 &363224939
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2479,7 +2476,6 @@ MonoBehaviour:
   _title: {fileID: 108862985}
   _description: {fileID: 2014438346}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
-  _errorText: {fileID: 1073179538}
 --- !u!225 &363448667
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4973,7 +4969,6 @@ MonoBehaviour:
   _title: {fileID: 1742510186}
   _description: {fileID: 1505751069}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
-  _errorText: {fileID: 1073179538}
 --- !u!225 &632002666
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5250,7 +5245,6 @@ MonoBehaviour:
   _title: {fileID: 496293121}
   _description: {fileID: 1981330857}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
-  _errorText: {fileID: 1073179538}
 --- !u!225 &661685187
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5276,7 +5270,7 @@ GameObject:
   - component: {fileID: 664431838}
   - component: {fileID: 664431837}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: EnemyUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5450,6 +5444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 689531822}
+  - component: {fileID: 689531823}
   m_Layer: 5
   m_Name: PlayerHand
   m_TagString: Untagged
@@ -5479,6 +5474,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &689531823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689531821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6802d2f38097501479af15adb53ce391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statusEvent: {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
+  _text: {fileID: 1073179538}
+  _visibleTime: 0.5
 --- !u!1 &705961858
 GameObject:
   m_ObjectHideFlags: 0
@@ -7326,7 +7336,6 @@ MonoBehaviour:
   _title: {fileID: 1125024413}
   _description: {fileID: 948437032}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
-  _errorText: {fileID: 1073179538}
 --- !u!225 &1070557025
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -12618,7 +12627,6 @@ MonoBehaviour:
   _title: {fileID: 1657711794}
   _description: {fileID: 1120949541}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
-  _errorText: {fileID: 1073179538}
 --- !u!225 &1849214478
 CanvasGroup:
   m_ObjectHideFlags: 0

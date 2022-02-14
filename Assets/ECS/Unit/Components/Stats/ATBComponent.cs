@@ -10,6 +10,8 @@ public struct ATB : IChargeStat
     public int MaxPool { get; set; }
     public int Pool { get; set; }
     public float ChargeTimer { get; set; }
+
+    //Yeah idk about this one aye
     public bool CanCharge { get; set; }
 }
 
