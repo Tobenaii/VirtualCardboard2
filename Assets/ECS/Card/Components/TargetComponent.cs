@@ -9,7 +9,7 @@ public struct Target : IComponentData
     public Entity target;
 }
 
-public class TargetComponent : CardEffectAuthoring<Target>
+public class TargetComponent : ComponentAuthoring<Target>
 {
     protected override Target AuthorComponent(World world)
     {

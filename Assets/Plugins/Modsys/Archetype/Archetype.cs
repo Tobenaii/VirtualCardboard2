@@ -9,11 +9,10 @@ using Unity.Entities;
 using UnityEditor;
 using UnityEngine;
 
-public abstract class Archetype : ScriptableObject, ISerializationCallbackReceiver
+[CreateAssetMenu(menuName = "Modsys/Archetype")]
+public class Archetype : ScriptableObject, ISerializationCallbackReceiver
 {
     [SerializeField] [HideInInspector] private List<ModEntity> _entities;
-    protected abstract Type authoringType { get; }
-    protected abstract Type bufferAuthoringType { get; }
     [ListDrawerSettings(HideAddButton = true, CustomRemoveElementFunction = "RemoveComponent")]
     [SerializeField][HideReferenceObjectPicker] protected List<ReadOnlyComponent> _components = new List<ReadOnlyComponent>();
     public IEnumerable<ComponentAuthoringBase> Components => _components.Select(x => x.Component);
@@ -22,11 +21,8 @@ public abstract class Archetype : ScriptableObject, ISerializationCallbackReceiv
     [Button]
     private void AddComponent()
     {
-        IEnumerable<Type> list = TypeCache.GetTypesDerivedFrom(authoringType);
-        if (bufferAuthoringType != null)
-        {
-            list = list.Concat(TypeCache.GetTypesDerivedFrom(bufferAuthoringType));
-        }
+        IEnumerable<Type> list = TypeCache.GetTypesDerivedFrom(typeof(ComponentAuthoring<>));
+        list = list.Concat(TypeCache.GetTypesDerivedFrom(typeof(BufferComponentAuthoring<>)));
         list = list.Where(x => !x.IsAbstract);
         var selector = new GenericSelector<Type>("Component Selector", list);
 
@@ -45,6 +41,8 @@ public abstract class Archetype : ScriptableObject, ISerializationCallbackReceiv
 
     public void Register(ModEntity modEntity)
     {
+        if (_entities == null)
+            return;
         if (!_entities.Contains(modEntity))
             _entities.Add(modEntity);
     }
@@ -65,6 +63,8 @@ public abstract class Archetype : ScriptableObject, ISerializationCallbackReceiv
             if (asset == null || !_components.Select(x => x.Component.GetType()).Contains(asset.GetType()))
                 UnityEngine.Object.DestroyImmediate(asset, true);
         }
+        if (_entities == null)
+            return;
         foreach (var entity in _entities.ToList())
         {
             if (entity == null)

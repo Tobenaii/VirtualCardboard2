@@ -8,6 +8,6 @@ public struct Hand : IPrefabCollectionContainer<HandCard>
     public int CurrentCount { get; set; }
 }
 
-public class HandComponent : PrefabCollectionContainerAuthoring<Hand, HandCard, Card>
+public class HandComponent : PrefabCollectionContainerAuthoring<Hand, HandCard>
 {
 }

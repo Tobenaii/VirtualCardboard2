@@ -10,7 +10,7 @@ public struct Targetable : IComponentData
     public float scale;
 }
 
-public class TargetableComponent : UnitComponentAuthoring<Targetable>
+public class TargetableComponent : ComponentAuthoring<Targetable>
 {
     [SerializeField] private Vector3 _offset;
     [SerializeField] private float _markerScale;

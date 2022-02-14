@@ -20,7 +20,7 @@ public struct SingleTarget : ISingleTargeting
     public float Scale { get; set; }
 }
 
-public class SingleTargetingComponent : UnitComponentAuthoring<SingleTarget>
+public class SingleTargetingComponent : ComponentAuthoring<SingleTarget>
 {
     protected override SingleTarget AuthorComponent(World world)
     {

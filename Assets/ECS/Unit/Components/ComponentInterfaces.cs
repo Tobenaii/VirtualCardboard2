@@ -10,7 +10,7 @@ public interface IAttribute : IComponentData
     public float Value { get; set; }
 }
 
-public abstract class AttributeAuthoring<T> : UnitComponentAuthoring<T> where T : struct, IAttribute
+public abstract class AttributeAuthoring<T> : ComponentAuthoring<T> where T : struct, IAttribute
 {
     [SerializeField] private float _value;
 
@@ -27,7 +27,7 @@ public interface IStat : IComponentData
     public float MaxValue { get; set; }
 }
 
-public abstract class StatAuthoring<T> : UnitComponentAuthoring<T> where T : struct, IStat
+public abstract class StatAuthoring<T> : ComponentAuthoring<T> where T : struct, IStat
 {
     [SerializeField] private float _maxValue;
 
@@ -47,7 +47,7 @@ public interface IChargeStat : IComponentData
     public float ChargeTimer { get; set; }
 }
 
-public abstract class ChargeStatAuthoring<T> : UnitComponentAuthoring<T> where T : struct, IChargeStat
+public abstract class ChargeStatAuthoring<T> : ComponentAuthoring<T> where T : struct, IChargeStat
 {
     [SerializeField] private float _chargeTime;
     [SerializeField] private int _maxCharges;
@@ -65,7 +65,7 @@ public interface IPrefabCollection : IBufferElementData
     public Entity Entity { get; set; }
 }
 
-public abstract class PrefabCollectionAuthoring<T> : UnitBufferComponentAuthoring<T> where T : struct, IPrefabCollection
+public abstract class PrefabCollectionAuthoring<T> : BufferComponentAuthoring<T> where T : struct, IPrefabCollection
 {
     [SerializeField] private List<ModEntity> _prefabs;
 
@@ -90,12 +90,12 @@ public interface IPrefabCollectionContainer<T> : ICollectionContainer where T : 
 {
 }
 
-public abstract class PrefabCollectionContainerAuthoring<T, V, U> : UnitComponentAuthoring<T> where T : struct, IPrefabCollectionContainer<V> where V : struct, IPrefabCollection where U : ModEntity
+public abstract class PrefabCollectionContainerAuthoring<T, V> : ComponentAuthoring<T> where T : struct, IPrefabCollectionContainer<V> where V : struct, IPrefabCollection
 {
     [SerializeField] private int _maxCount;
     [SerializeField] private bool _debugList;
     [ShowIf("@_debugList")]
-    [SerializeField] private List<U> _entities;
+    [SerializeField] private List<ModEntity> _entities;
 
     protected override T AuthorComponent(World world)
     {

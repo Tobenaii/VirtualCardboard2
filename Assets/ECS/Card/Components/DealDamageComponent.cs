@@ -8,7 +8,7 @@ public struct DealDamage : IComponentData
     public float amount;
 }
 
-public class DealDamageComponent : CardEffectAuthoring<DealDamage>
+public class DealDamageComponent : ComponentAuthoring<DealDamage>
 {
     [SerializeField] private float _damageAmount;
     protected override DealDamage AuthorComponent(World world)

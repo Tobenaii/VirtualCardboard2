@@ -55,10 +55,10 @@ public abstract class BufferComponentAuthoring<T> : ComponentAuthoringBase where
 [InlineProperty]
 [HideLabel]
 [HideReferenceObjectPicker]
-public class ArchetypeReference<T> where T : Archetype
+public class ArchetypeReference
 {
     [ShowIf("@_archetype == null")]
-    [SerializeField] private T _archetype;
+    [SerializeField] private Archetype _archetype;
     [SerializeField]
     [ListDrawerSettings(IsReadOnly = true)]
     [HideReferenceObjectPicker]
@@ -72,6 +72,8 @@ public class ArchetypeReference<T> where T : Archetype
     {
         if (_archetype == null)
             return;
+        if (_components == null)
+            _components = new List<ReadWriteComponent>();
         //Clear all components if archetype is null
         if (_archetype == null && _components.Count > 0)
         {

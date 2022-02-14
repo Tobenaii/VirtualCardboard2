@@ -11,7 +11,7 @@ public struct Deck : IPrefabCollectionContainer<DeckCard>
     public int CurrentCount { get; set; }
 }
 
-public class DeckComponent : PrefabCollectionContainerAuthoring<Deck, DeckCard, Card>
+public class DeckComponent : PrefabCollectionContainerAuthoring<Deck, DeckCard>
 {
 }
 

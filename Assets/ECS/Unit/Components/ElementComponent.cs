@@ -20,7 +20,7 @@ public struct Element : IElementData
     public int Count { get; set; }
 }
 
-public class ElementComponent : UnitBufferComponentAuthoring<Element>
+public class ElementComponent : BufferComponentAuthoring<Element>
 {
     [System.Serializable]
     private struct ElementAuthoring
