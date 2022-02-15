@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-[UpdateInGroup(typeof(ActionResolverGroup))]
 public class DealDamageSystem : SystemBase
 {
-    private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
+    private EndSimulationEntityCommandBufferSystem _commandBuffer;
 
     protected override void OnCreate()
     {
-        _endSimulationEcbSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+        _commandBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
     }
 
     protected override void OnUpdate()
     {
-        var ecb = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, in Target target, in DealDamage dealDamage) =>
+        var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in DealDamage dealDamage, in Target target) =>
         {
-            var targetHealth = GetComponentDataFromEntity<Health>(true)[target.target];
-            targetHealth.CurrentValue -= dealDamage.amount;
-            ecb.SetComponent<Health>(entityInQueryIndex, target.target, targetHealth);
+            var damage = GetComponentDataFromEntity<Damage>(true)[target.target];
+            damage.Amount += dealDamage.amount;
+            ecb.SetComponent(entityInQueryIndex, target.target, damage);
             ecb.DestroyEntity(entityInQueryIndex, entity);
-        }).ScheduleParallel();
-        _endSimulationEcbSystem.AddJobHandleForProducer(this.Dependency);
+        }).Schedule();
+        _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }
 }

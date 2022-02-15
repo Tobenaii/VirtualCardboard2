@@ -13,7 +13,6 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
     [PropertyOrder(10000)]
     [SerializeField] private ArchetypeReference _archetype;
     private Entity _prefab;
-    private bool _hasPrefab;
 
     public void Instantiate()
     {
@@ -30,13 +29,12 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
     public Entity GetPrefab(EntityManager manager)
     {
         //TODO: Work out how to have _hasPrefab not survive sessions
-        //if (_hasPrefab)
-        //    return _prefab;
+        if (manager.Exists(_prefab))
+            return _prefab;
         var entity = manager.CreateEntity();
         Convert(entity, manager, null);
         manager.AddComponent<Prefab>(entity);
         _prefab = entity;
-        _hasPrefab = true;
         return entity;
     }
 

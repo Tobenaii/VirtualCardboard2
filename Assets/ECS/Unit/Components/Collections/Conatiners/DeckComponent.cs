@@ -14,5 +14,3 @@ public struct Deck : IPrefabCollectionContainer<DeckCard>
 public class DeckComponent : PrefabCollectionContainerAuthoring<Deck, DeckCard>
 {
 }
-
-public class DeckCollectionSystem : CollectionContainerSystem<Deck, DeckCard> { }

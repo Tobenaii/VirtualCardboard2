@@ -4,6 +4,9 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
+public class DeckCollectionSystem : CollectionContainerSystem<Deck, DeckCard> { }
+
+
 public abstract class CollectionContainerSystem<Container, Collection> : SystemBase where Container : struct, IPrefabCollectionContainer<Collection> where Collection : struct, IPrefabCollection
 {
     public struct GenericContainerJob : IJobChunk

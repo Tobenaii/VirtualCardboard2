@@ -19,7 +19,7 @@ public class PlayCardSystem : SystemBase
 
         Entities.ForEach((int entityInQueryIndex, Entity entity, in PlayCard playCard) =>
         {
-            if (!playCard.Failed)
+            if (playCard.Status != IStatusMessage.StatusType.Failed)
             {
                 var dealer = playCard.Dealer;
                 var target = GetComponentDataFromEntity<SingleTarget>(true)[dealer];

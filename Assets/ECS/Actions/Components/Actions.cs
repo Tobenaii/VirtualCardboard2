@@ -20,7 +20,6 @@ public struct PlayCard : IStatusMessage
 {
     public Entity Dealer;
     public Entity Card;
-    public bool Failed;
     public FixedString128 Message { get; set; }
     public IStatusMessage.StatusType Status { get; set; }
 }

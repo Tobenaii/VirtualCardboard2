@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4893100743499793956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0306d2e7b94340499ce1a677d6a5b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _description: 
+--- !u!114 &-2049609273874241270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3f01a4a100b8b47a267947bd65942b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
+  m_Name: ApplyDamageMultiplier
+  m_EditorClassIdentifier: 
+  _entities: []
+  _components:
+  - _component: {fileID: 5100759062439527960}
+  - _component: {fileID: -4893100743499793956}
+  - _component: {fileID: 7641712946198356367}
+  - _component: {fileID: -2049609273874241270}
+  - _component: {fileID: 1961088248022714792}
+--- !u!114 &1961088248022714792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccda97295178364e9621d266c62fca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amount: 0
+--- !u!114 &5100759062439527960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e62502aad18494da76fdb36c585019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabs: []
+--- !u!114 &7641712946198356367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de8a1df45cc9c945a4220566935f75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
