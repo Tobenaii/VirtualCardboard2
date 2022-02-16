@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StatusRollInOut : MonoBehaviour, IComponentListener<IStatusMessage>
 {
-    [SerializeField] private ComponentEvent<IStatusMessage> _statusEvent;
+    //[SerializeField] private ComponentEvent<IStatusMessage> _statusEvent;
     [SerializeField] private TMPro.TextMeshProUGUI _text;
     [SerializeField] private float _time;
     [SerializeField] private AnimationCurve _speedCurve;
@@ -15,7 +15,7 @@ public class StatusRollInOut : MonoBehaviour, IComponentListener<IStatusMessage>
     private void Awake()
     {
         _timer = _time;
-        _statusEvent.Register(this);
+        //_statusEvent.Register(this);
     }
 
     private void Update()

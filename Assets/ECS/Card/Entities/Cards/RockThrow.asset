@@ -1,31 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5782290021806535472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77e62502aad18494da76fdb36c585019, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-227710596481713467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ccda97295178364e9621d266c62fca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _amount: 0
---- !u!114 &-109325296794128588
+--- !u!114 &-8181280188549328598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0306d2e7b94340499ce1a677d6a5b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
-  _description: 
---- !u!114 &11400000
+  _name: Rock Throw
+  _description: 'Performs the throwing of the rock
+
+'
+--- !u!114 &-4594822491528547723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,17 +25,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
-  m_Name: DealDamage
+  m_Script: {fileID: 11500000, guid: 77e62502aad18494da76fdb36c585019, type: 3}
+  m_Name: 
   m_EditorClassIdentifier: 
-  _entities:
-  - {fileID: 11400000, guid: 39a44c6ef6c3381408aa9229e62e6ca2, type: 2}
-  _components:
-  - _component: {fileID: 1376369074345813295}
-  - _component: {fileID: -109325296794128588}
-  - _component: {fileID: 1898555659215910198}
-  - _component: {fileID: -5782290021806535472}
---- !u!114 &1376369074345813295
+  _modifiers:
+  - _type: 0
+    _amount: 50
+--- !u!114 &-1333225474050280083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,7 +43,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3f01a4a100b8b47a267947bd65942b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1898555659215910198
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291ac1fa71e93b749a1fbce897da02d7, type: 3}
+  m_Name: RockThrow
+  m_EditorClassIdentifier: 
+  _archetype:
+    _archetype: {fileID: 11400000, guid: b2c107badca95cb4fa83d8ac603294a5, type: 2}
+    _components:
+    - _component: {fileID: -1333225474050280083}
+    - _component: {fileID: -8181280188549328598}
+    - _component: {fileID: 3574904836102754376}
+    - _component: {fileID: -4594822491528547723}
+--- !u!114 &3574904836102754376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,7 +74,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de8a1df45cc9c945a4220566935f75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4920138483762563131
+--- !u!114 &5971475579570978364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccda97295178364e9621d266c62fca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amount: 1
+--- !u!114 &6113611008358526525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,4 +99,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67369fb3fbba1c41bacb8b84b00da0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 0
+  _damageAmount: 50

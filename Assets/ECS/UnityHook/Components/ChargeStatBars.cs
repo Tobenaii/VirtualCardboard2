@@ -10,7 +10,7 @@ public class ChargeStatBars : MonoBehaviour, IComponentListener<IChargeStat>
     [SerializeField] private string _poolTextFormat;
     [SerializeField] private Image _poolImage;
     [SerializeField] private EntityRef _entity;
-    [SerializeField] private ComponentEvent<IChargeStat> _event;
+    //[SerializeField] private ComponentEvent<IChargeStat> _event;
 
 
     private void Awake()
@@ -21,7 +21,7 @@ public class ChargeStatBars : MonoBehaviour, IComponentListener<IChargeStat>
 
     private void Start()
     {
-        _event.Register(_entity.Entity, this);
+        //_event?.Register(_entity.Entity, this);
     }
 
     public void OnComponentChanged(IChargeStat value)

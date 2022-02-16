@@ -509,7 +509,7 @@ MonoBehaviour:
   _entity:
     _entityList: {fileID: 11400000, guid: 28a6a4a2c1a536041aab9fd9d3891dfa, type: 2}
     _key: 1
-  _healthEvent: {fileID: 11400000, guid: bb8c7002bada3da4aa7691077679a31c, type: 2}
+  _healthEvent: {fileID: 11400000, guid: ca2be42427418464b8d4b2bed46dc6c6, type: 2}
   _healthBar: {fileID: 617083993}
 --- !u!1 &77195364
 GameObject:
@@ -1279,7 +1279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f7181ffb57ffb479daf4be891d92ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: 84e382254b83c104b89e5d2025821c43, type: 2}
   _target:
     _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
     _key: 0
@@ -1606,7 +1605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281506202c730bf4780908a5e5916451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionError: {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
   _title: {fileID: 2111907044}
   _description: {fileID: 1609409837}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
@@ -2222,7 +2220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281506202c730bf4780908a5e5916451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionError: {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
   _title: {fileID: 58029214}
   _description: {fileID: 1583753560}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
@@ -2404,7 +2401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281506202c730bf4780908a5e5916451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionError: {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
   _title: {fileID: 77195366}
   _description: {fileID: 467252039}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
@@ -2472,7 +2468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281506202c730bf4780908a5e5916451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionError: {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
   _title: {fileID: 108862985}
   _description: {fileID: 2014438346}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
@@ -3462,7 +3457,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847c812c88a9e18498ecc08a6a03e046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statEvent: {fileID: 11400000, guid: bb8c7002bada3da4aa7691077679a31c, type: 2}
   _target:
     _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
     _key: 0
@@ -4965,7 +4959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281506202c730bf4780908a5e5916451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionError: {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
   _title: {fileID: 1742510186}
   _description: {fileID: 1505751069}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
@@ -5241,7 +5234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281506202c730bf4780908a5e5916451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionError: {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
   _title: {fileID: 496293121}
   _description: {fileID: 1981330857}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
@@ -5486,7 +5478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6802d2f38097501479af15adb53ce391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statusEvent: {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
   _text: {fileID: 1073179538}
   _visibleTime: 0.5
 --- !u!1 &705961858
@@ -5557,14 +5548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _events:
-  - {fileID: 11400000, guid: bb8c7002bada3da4aa7691077679a31c, type: 2}
-  - {fileID: 11400000, guid: 84e382254b83c104b89e5d2025821c43, type: 2}
-  - {fileID: 11400000, guid: 7584b94db717b864f8925c36cbb12285, type: 2}
-  - {fileID: 11400000, guid: 7b17c1f21c8fcfe4a94ee7b3f883f864, type: 2}
-  - {fileID: 11400000, guid: 136eb5246bdd1f842948dc2118021c06, type: 2}
-  - {fileID: 11400000, guid: 775ce22b012065643bcc9f4227a5f621, type: 2}
-  - {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
-  - {fileID: 11400000, guid: 0c49484ee86427c4fb153efe90ccdcb1, type: 2}
+  - {fileID: 11400000, guid: ca2be42427418464b8d4b2bed46dc6c6, type: 2}
 --- !u!4 &719997232
 Transform:
   m_ObjectHideFlags: 0
@@ -5995,7 +5979,6 @@ MonoBehaviour:
   _entity:
     _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
     _key: 0
-  _cardHandEvent: {fileID: 11400000, guid: 7584b94db717b864f8925c36cbb12285, type: 2}
   _radius: 0.06
   _circularOffset: 4.7
   _horizontalOffset: 0.61
@@ -7332,7 +7315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281506202c730bf4780908a5e5916451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionError: {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
   _title: {fileID: 1125024413}
   _description: {fileID: 948437032}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
@@ -8362,7 +8344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f5f93f013f1784db50ef891f26d3c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _containerEvent: {fileID: 11400000, guid: 136eb5246bdd1f842948dc2118021c06, type: 2}
   _target:
     _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
     _key: 0
@@ -8944,7 +8925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e6f2ee4bba9a24597ca69c1642a22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statusEvent: {fileID: 11400000, guid: 0c49484ee86427c4fb153efe90ccdcb1, type: 2}
   _text: {fileID: 623061102}
   _time: 1
   _speedCurve:
@@ -11565,7 +11545,6 @@ MonoBehaviour:
   _entity:
     _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
     _key: 0
-  _event: {fileID: 11400000, guid: 775ce22b012065643bcc9f4227a5f621, type: 2}
 --- !u!1001 &1717215210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12623,7 +12602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281506202c730bf4780908a5e5916451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actionError: {fileID: 11400000, guid: 880a1b150da20c34eaed8c4fe5ea9795, type: 2}
   _title: {fileID: 1657711794}
   _description: {fileID: 1120949541}
   _playCardAction: {fileID: 11400000, guid: ef1485d99a4b1084eb1b7483f16d34a1, type: 2}
@@ -13938,7 +13916,7 @@ MonoBehaviour:
   _entity:
     _entityList: {fileID: 11400000, guid: 28a6a4a2c1a536041aab9fd9d3891dfa, type: 2}
     _key: 0
-  _healthEvent: {fileID: 11400000, guid: bb8c7002bada3da4aa7691077679a31c, type: 2}
+  _healthEvent: {fileID: 11400000, guid: ca2be42427418464b8d4b2bed46dc6c6, type: 2}
   _healthBar: {fileID: 378752446}
 --- !u!1 &2065246205
 GameObject:
@@ -14177,7 +14155,6 @@ MonoBehaviour:
     <ElementIcon>k__BackingField: {fileID: 21300000, guid: f3aff0dfb0e18cf439facae71990e68f,
       type: 3}
   _resourceHolder: {fileID: 519158478}
-  _event: {fileID: 11400000, guid: 7b17c1f21c8fcfe4a94ee7b3f883f864, type: 2}
   _entity:
     _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
     _key: 0

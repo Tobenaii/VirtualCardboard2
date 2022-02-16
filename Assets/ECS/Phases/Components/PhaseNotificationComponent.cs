@@ -4,7 +4,7 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-public struct PhaseNotification : IStatusMessage
+public struct PhaseNotification : IStatusMessage, IComponentData
 {
     public FixedString128 Message { get; set; }
     public IStatusMessage.StatusType Status { get; set; }

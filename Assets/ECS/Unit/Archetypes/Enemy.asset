@@ -14,6 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: 0, z: 0}
   _markerScale: 0
+--- !u!114 &-6025852874549066784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f796e9d7c19440f458ac43d2649da49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-2255911261118222049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,11 +50,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  _entities: []
+  _entities:
+  - {fileID: 11400000, guid: 866dcd2ab15de044bbc626baacebe3ed, type: 2}
+  - {fileID: 11400000, guid: 0bf604dcc41ceef48a4cedb8831c6f53, type: 2}
   _components:
   - _component: {fileID: -6303533279223020131}
-  - _component: {fileID: 630713959055249894}
   - _component: {fileID: -2255911261118222049}
+  - _component: {fileID: 8106320197603431929}
+  - _component: {fileID: -6025852874549066784}
 --- !u!114 &630713959055249894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,3 +71,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxValue: 0
+--- !u!114 &8106320197603431929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47d5367420404914e949fc40be74cad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats: []

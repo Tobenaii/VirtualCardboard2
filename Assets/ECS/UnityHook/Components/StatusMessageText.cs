@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class StatusMessageText : MonoBehaviour, IComponentListener<IStatusMessage>
 {
-    [SerializeField] private ComponentEvent<IStatusMessage> _statusEvent;
+    //[SerializeField] private ComponentEvent<IStatusMessage> _statusEvent;
     [SerializeField] private TMPro.TextMeshProUGUI _text;
     [SerializeField] private float _visibleTime;
 
     private void Start()
     {
-        _statusEvent.Register(this);
+        //_statusEvent.Register(this);
     }
 
     public void OnComponentChanged(IStatusMessage value)

@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerHand : MonoBehaviour, IComponentListener<IPrefabCollection>
 {
     [SerializeField] private EntityRef _entity;
-    [SerializeField] private CardHandEvent _cardHandEvent;
+    //[SerializeField] private CardHandEvent _cardHandEvent;
 
     [SerializeField] private float _radius;
     [SerializeField] private float _circularOffset;
@@ -18,8 +18,8 @@ public class PlayerHand : MonoBehaviour, IComponentListener<IPrefabCollection>
 
     private void Start()
     {
-        if (Application.isPlaying)
-            _cardHandEvent.Register(_entity.Entity, this);
+        //if (Application.isPlaying)
+        //    _cardHandEvent.Register(_entity.Entity, this);
     }
 
     private void Update()

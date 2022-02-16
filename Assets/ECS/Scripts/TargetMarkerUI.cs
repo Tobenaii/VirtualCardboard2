@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TargetMarkerUI : MonoBehaviour, IComponentListener<ISingleTargeting>
 {
-    [SerializeField] private SingleTargetingEvent _event;
+    //[SerializeField] private SingleTargetingEvent _event;
     [SerializeField] private EntityRef _target;
     [SerializeField] private float _smoothing;
 
@@ -20,7 +20,7 @@ public class TargetMarkerUI : MonoBehaviour, IComponentListener<ISingleTargeting
     private void Start()
     {
         _camera = Camera.main.transform;
-        _event.Register(_target.Entity, this);
+        //_event.Register(_target.Entity, this);
     }
 
     private void Update()

@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IComponentListener<IStatusMessage>
 {
-    [SerializeField] private ComponentEvent<IStatusMessage> _actionError;
+    //[SerializeField] private ComponentEvent<IStatusMessage, IStatusMessage.StatusType> _actionError;
     [SerializeField] private TMPro.TextMeshProUGUI _title;
     [SerializeField] private TMPro.TextMeshProUGUI _description;
     [SerializeField] private Action _playCardAction;
@@ -94,8 +94,8 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public void OnPointerClick(PointerEventData eventData)
     {
         var actionData = new PlayCard() { Dealer = _player, Card = _card };
-        var entity = _playCardAction.Execute(actionData);
-        _actionError.Register(entity, this);
+        //var entity = _playCardAction.Execute(actionData);
+        //_actionError.Register(entity, this);
     }
 
     public void OnComponentChanged(IStatusMessage value)

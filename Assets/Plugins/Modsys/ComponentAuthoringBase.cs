@@ -14,6 +14,7 @@ public abstract class ComponentAuthoringBase : ScriptableObject
 {
     public abstract ComponentType ComponentType { get; }
     public abstract void AuthorComponent(Entity entity, EntityManager dstManager);
+    public virtual void AuthorDependencies(Entity entity, EntityManager dstManager) { }
 }
 
 public abstract class ComponentAuthoring<T> : ComponentAuthoringBase where T : struct, IComponentData
@@ -24,7 +25,6 @@ public abstract class ComponentAuthoring<T> : ComponentAuthoringBase where T : s
         dstManager.AddComponentData(entity, AuthorComponent(dstManager.World));
         AuthorDependencies(entity, dstManager);
     }
-    public virtual void AuthorDependencies(Entity entity, EntityManager dstManager) { }
     protected abstract T AuthorComponent(World world);
 }
 
@@ -45,7 +45,9 @@ public abstract class BufferComponentAuthoring<T> : ComponentAuthoringBase where
     {
         var components = AuthorComponent(dstManager.World);
         var buffer = dstManager.AddBuffer<T>(entity);
-        buffer.AddRange(components);
+        if (components.Length > 0)
+            buffer.AddRange(components);
+        AuthorDependencies(entity, dstManager);
     }
     protected abstract NativeArray<T> AuthorComponent(World world);
 }    

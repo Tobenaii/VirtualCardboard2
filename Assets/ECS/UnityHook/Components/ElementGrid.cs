@@ -15,7 +15,7 @@ public class ElementGrid : MonoBehaviour, IComponentListener<IElementData>
 
     [SerializeField] private List<ElementData> elementIcons = new List<ElementData>();
     [SerializeField] private Transform _resourceHolder;
-    [SerializeField] private ElementEvent _event;
+    //[SerializeField] private ElementEvent _event;
     [SerializeField] private EntityRef _entity;
 
     private Dictionary<ElementType, Sprite> _sprites = new Dictionary<ElementType, Sprite>();
@@ -38,7 +38,7 @@ public class ElementGrid : MonoBehaviour, IComponentListener<IElementData>
 
     private void Start()
     {
-        _event.Register(_entity.Entity, this);
+        //_event.Register(_entity.Entity, this);
     }
 
     public void OnComponentChanged(IElementData value)

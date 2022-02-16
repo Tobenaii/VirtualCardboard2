@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContainerText : MonoBehaviour, IComponentListener<ICollectionContainer>
 {
-    [SerializeField] private ComponentEvent<ICollectionContainer> _containerEvent;
+    //[SerializeField] private ComponentEvent<ICollectionContainer> _containerEvent;
     [SerializeField] private EntityRef _target;
 
     [SerializeField] private TMPro.TextMeshProUGUI _text;
@@ -18,6 +18,6 @@ public class ContainerText : MonoBehaviour, IComponentListener<ICollectionContai
 
     private void Start()
     {
-        _containerEvent.Register(_target.Entity, this);
+        //_containerEvent.Register(_target.Entity, this);
     }
 }

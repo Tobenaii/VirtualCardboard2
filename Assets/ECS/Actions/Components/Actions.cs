@@ -4,7 +4,7 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-public interface IStatusMessage : IComponentData
+public interface IStatusMessage
 {
     public enum StatusType { Success, Failed }
     public FixedString128 Message { get; set; }

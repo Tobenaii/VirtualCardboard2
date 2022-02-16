@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatText : MonoBehaviour, IComponentListener<IStat>
 {
-    [SerializeField] private ComponentEvent<IStat> _statEvent;
+    //[SerializeField] private ComponentEvent<IStat> _statEvent;
     [SerializeField] private EntityRef _target;
 
     [SerializeField] private TMPro.TextMeshProUGUI _text;
@@ -18,6 +18,6 @@ public class StatText : MonoBehaviour, IComponentListener<IStat>
 
     private void Start()
     {
-        _statEvent.Register(_target.Entity, this);
+        //_statEvent?.Register(_target.Entity, this);
     }
 }

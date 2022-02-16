@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -6,10 +7,10 @@ using Unity.Entities;
 using Unity.Jobs;
 using UnityEngine;
 
-public abstract class ComponentEventSystemBase<T> : SystemBase
+public abstract class ComponentEventSystemBase<T, K> : SystemBase
 {
     protected EntityQuery _genericQuery;
-    public IComponentEvent<T> componentChangedEvent;
+    public IComponentEvent<T, K> componentChangedEvent;
 
     protected override void OnCreate()
     {
@@ -18,25 +19,26 @@ public abstract class ComponentEventSystemBase<T> : SystemBase
     }
 }
 
-public abstract class ComponentEventSystemBase<T, V> : ComponentEventSystemBase<T> where V : struct, IJobChunk
+public abstract class ComponentEventSystemBase<T, V, K> : ComponentEventSystemBase<T, K> where V : struct, IJobChunk
 {
     protected abstract V CreateJob();
 
     protected override void OnUpdate()
     {
+        _genericQuery.GetDependency().Complete();
         var job = CreateJob();
         var iterator = _genericQuery.GetArchetypeChunkIterator();
         job.RunWithoutJobs(ref iterator);
     }
 }
 
-public abstract class ComponentEventSystem<T> : ComponentEventSystemBase<T, ComponentEventSystem<T>.GenericComponentEvent> where T : unmanaged, IComponentData
+public abstract class ComponentEventSystem<T, K> : ComponentEventSystemBase<T, ComponentEventSystem<T, K>.GenericComponentEvent, K> where K : Enum where T : unmanaged, ITypeComponentEvent<K>, IComponentData
 {
     public struct GenericComponentEvent : IJobChunk
     {
         [ReadOnly] public ComponentTypeHandle<T> genericType;
         [ReadOnly] public EntityTypeHandle entityTypeHandle;
-        [ReadOnly] public IComponentEvent<T> eventTask;
+        [ReadOnly] public IComponentEvent<T, K> eventTask;
 
         public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
         {
@@ -45,7 +47,7 @@ public abstract class ComponentEventSystem<T> : ComponentEventSystemBase<T, Comp
             for (int i = 0; i < generics.Length; i++)
             {
                 var componentEvent = eventTask;
-                componentEvent.OnComponentChanged(generics[i], entities[i]);
+                componentEvent.OnComponentChanged(generics[i], entities[i], generics[i].Type);
             }
         }
     }
@@ -63,13 +65,13 @@ public abstract class ComponentEventSystem<T> : ComponentEventSystemBase<T, Comp
 
 }
 
-public abstract class BufferEventSystem<T> : ComponentEventSystemBase<T, BufferEventSystem<T>.GenericComponentEvent> where T : unmanaged, IBufferElementData
+public abstract class BufferEventSystem<T, K> : ComponentEventSystemBase<T, BufferEventSystem<T, K>.GenericComponentEvent, K> where K : Enum where T : unmanaged, ITypeBufferElementEvent<K>, IBufferElementData
 {
     public struct GenericComponentEvent : IJobChunk
     {
         [ReadOnly] public BufferTypeHandle<T> genericType;
         [ReadOnly] public EntityTypeHandle entityTypeHandle;
-        [ReadOnly] public IComponentEvent<T> eventTask;
+        [ReadOnly] public IComponentEvent<T, K> eventTask;
 
         public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
         {
@@ -78,7 +80,7 @@ public abstract class BufferEventSystem<T> : ComponentEventSystemBase<T, BufferE
             for (int i = 0; i < generics.Length; i++)
             {
                 for (int x = 0; x < generics[i].Length; x++)
-                    eventTask.OnComponentChanged(generics[i][x], entities[i]);
+                    eventTask.OnComponentChanged(generics[i][x], entities[i], generics[i][x].Type);
             }
         }
     }
