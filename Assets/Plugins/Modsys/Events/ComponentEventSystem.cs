@@ -24,6 +24,7 @@ public abstract class ComponentEventSystemBase<T, V> : ComponentEventSystemBase<
 
     protected override void OnUpdate()
     {
+        _genericQuery.CompleteDependency();
         var job = CreateJob();
         var iterator = _genericQuery.GetArchetypeChunkIterator();
         job.RunWithoutJobs(ref iterator);
