@@ -104,11 +104,11 @@ public abstract class ComponentEventBase<T, V, U> : ComponentEvent<U>, IComponen
     }
 }
 
-public abstract class ComponentEvent<T, V, U> : ComponentEventBase<T, V, U> where T : unmanaged, U where V : ComponentEventSystem<T> where U : IComponentData
+public abstract class ComponentEvent<T, V, U> : ComponentEventBase<T, V, U> where T : unmanaged, IComponentData, U where V : ComponentEventSystem<T>
 {
 
 }
 
-public abstract class BufferEvent<T, V, U> : ComponentEventBase<T, V, U> where T : unmanaged, U where V : BufferEventSystem<T> where U : IBufferElementData
+public abstract class BufferEvent<T, V, U> : ComponentEventBase<T, V, U> where T : unmanaged, IBufferElementData, U where V : BufferEventSystem<T>
 {
 }

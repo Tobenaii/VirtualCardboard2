@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-[System.Serializable]
+[System.Serializable] [InlineProperty]
 public class EntityRef
 {
     [HorizontalGroup(MaxWidth = 1.0f)]
     [HideLabel]
     [SerializeField] private EntityGroup _entityList;
-    [HorizontalGroup(MaxWidth = 0.25f)] [HideLabel]
+    [HorizontalGroup(MaxWidth = 0.1f)] [HideLabel]
     [SerializeField] private int _key;
 
     public Entity Entity

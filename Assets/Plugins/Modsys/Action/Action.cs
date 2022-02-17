@@ -10,6 +10,7 @@ public class Action : ScriptableObject
     {
         var entity = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntity();
         World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData<T>(entity, data);
+        World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData<ActionStatus>(entity, new ActionStatus());
         return entity;
     }
 }

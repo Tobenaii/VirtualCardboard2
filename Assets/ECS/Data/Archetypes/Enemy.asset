@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
+  m_Name: Enemy
+  m_EditorClassIdentifier: 
+  _entities:
+  - {fileID: 11400000, guid: edf58d074734329408227d2ba2d49696, type: 2}
+  - {fileID: 11400000, guid: 20c2d1265565b8e4b93bb196a8937242, type: 2}
+  _components:
+  - _component: {fileID: 3523001456635667060}
+  - _component: {fileID: 2140552893803282518}
+  - _component: {fileID: 5914958693629911308}
+--- !u!114 &2140552893803282518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c630014449d3584fb7b14c6385920ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialValue: 0
+  _maxValue: 0
+--- !u!114 &3523001456635667060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dde56348be9a104498d3b68acb87144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _position: {x: 0, y: 0, z: 0}
+  _scale: {x: 0, y: 0, z: 0}
+--- !u!114 &5914958693629911308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d03402c8a57554287714d6c3107998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

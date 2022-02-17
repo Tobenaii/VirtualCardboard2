@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3819198026774881438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734ee965c3452834db959fad3e6c5aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _notification: 'Combat
+
+    Phase'
+--- !u!114 &-393734827529527126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c832181128500f849ae21670a197a896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _notification: 'Combat
+
+    Phase'
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291ac1fa71e93b749a1fbce897da02d7, type: 3}
+  m_Name: CombatPhase
+  m_EditorClassIdentifier: 
+  _archetype:
+    _archetype: {fileID: 11400000, guid: 8fb6d727829d6384693b3fb36e5723d9, type: 2}
+    _components:
+    - _component: {fileID: 6773645716421691222}
+    - _component: {fileID: 8727411040918553716}
+    - _component: {fileID: -3819198026774881438}
+--- !u!114 &6773645716421691222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290a71b1a87759c43aed0b7b6fc4ba85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _time: 120
+  _nextPhase: {fileID: 0}
+--- !u!114 &8727411040918553716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c03d6c5df310c743a21dd30b79d9e86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actions:
+  - {fileID: 11400000, guid: 2f502f863d9480a47a6592c46005b51b, type: 2}
