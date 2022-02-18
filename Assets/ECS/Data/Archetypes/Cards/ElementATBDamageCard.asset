@@ -39,7 +39,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
   m_Name: ElementATBDamageCard
   m_EditorClassIdentifier: 
-  _entities: []
+  _entities:
+  - {fileID: 11400000, guid: 92470e57f4c744c41beb113f40c6f4d2, type: 2}
   _components:
   - _component: {fileID: -6573559196965706859}
   - _component: {fileID: 3188415608674363794}
