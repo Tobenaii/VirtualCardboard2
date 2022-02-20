@@ -49,7 +49,7 @@ public class PoolStatBars : MonoBehaviour, IComponentListener<IStat>, IComponent
         }
         if (_stat.CurrentValue == _stat.MaxValue)
             return;
-        _bars[_stat.CurrentValue].fillAmount = _pool.ChargeTimer / _pool.ChargeTime;
+        //_bars[_stat.CurrentValue].fillAmount = _pool.ChargeTimer / _pool.ChargeTime;
     }
 
     public void OnComponentChanged(IStat value)
