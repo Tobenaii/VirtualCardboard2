@@ -57,3 +57,27 @@ public class ElementComponent : BufferComponentAuthoring<Element>
         return array;
     }
 }
+
+public abstract class ElementSelectionComponent<T> : BufferComponentAuthoring<T> where T : unmanaged, IBufferElementData, IElementData
+{
+    [System.Serializable]
+    private struct Authoring
+    {
+        public ElementType Type;
+        public int Amount;
+    }
+
+    [SerializeField] private List<Authoring> _elements = new List<Authoring>();
+
+    protected override NativeArray<T> AuthorComponent(World world)
+    {
+        var array = new NativeArray<T>(_elements.Count, Allocator.Temp);
+        int index = 0;
+        foreach (var authoring in _elements)
+        {
+            array[index] = new T() { Type = authoring.Type, Count = authoring.Amount };
+            index++;
+        }
+        return array;
+    }
+}

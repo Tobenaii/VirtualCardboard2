@@ -18,11 +18,11 @@ MonoBehaviour:
   - _component:
       rid: 5362458279391526918
   - _component:
-      rid: 5362458288434184208
-  - _component:
       rid: 5362458290161451009
   - _component:
       rid: 5362458300426223617
+  - _component:
+      rid: 5362458288434184208
   references:
     version: 2
     RefIds:
@@ -39,6 +39,7 @@ MonoBehaviour:
       type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 0
+        _consume: 0
     - rid: 5362458300426223617
       type: {class: ElementRequirementComponent, ns: , asm: Assembly-CSharp}
       data:

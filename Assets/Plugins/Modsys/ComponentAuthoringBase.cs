@@ -70,9 +70,10 @@ public class ArchetypeAuthoring
     [ListDrawerSettings(IsReadOnly = true)]
     [HideReferenceObjectPicker]
     [ShowIf("@_archetype != null")]
-    [LabelText("@_archetype.name")]
+    [LabelText("@_niceArchetypeName")]
     private List<ReadWriteComponent> _components = new List<ReadWriteComponent>();
-    
+    private string _niceArchetypeName => ObjectNames.NicifyVariableName(_archetype.name);
+
     public List<ReadWriteComponent> Components => _components;
     private Entity _prefab;
 
@@ -136,9 +137,10 @@ public class ArchetypeAuthoring
         {   
             foreach (var component in _components.ToList())
             {
+                //Remove null components
                 if (component.Component == null)
                     _components.Remove(component);
-            }    
+            }
             //Add components that should exist
             foreach (var component in _archetype.Components)
             {
@@ -158,6 +160,14 @@ public class ArchetypeAuthoring
                     _components.Remove(component);
                 }
             }
+            for (int i = 0; i < _components.Count; i++)
+            {
+                int newIndex = _archetype.Components.Select(x => x.GetType()).ToList().IndexOf(
+                    _components.Select(x => x.Component.GetType()).Where(x => x == _components[i].Component.GetType()).First());
+                var temp = _components[newIndex];
+                _components[newIndex] = _components[i];
+                _components[i] = temp;
+            }
         }
         foreach (var component in _components)
             component.Component.ValidateComponent();
@@ -176,8 +186,10 @@ public class ArchetypeAuthoring
 public class ReadOnlyComponent
 {
     [Sirenix.OdinInspector.ReadOnly]
-    [LabelText("@_component.GetType()")]
+    [LabelText("@_name")]
     [SerializeReference] private ComponentAuthoringBase _component;
+    private string _name => ObjectNames.NicifyVariableName(_component.GetType().Name.Replace("Component", ""));
+
     public ComponentAuthoringBase Component => _component;
     public static implicit operator ReadOnlyComponent(ComponentAuthoringBase component)
         => new ReadOnlyComponent() { _component = component };
@@ -186,9 +198,10 @@ public class ReadOnlyComponent
 [System.Serializable]
 public class ReadWriteComponent
 {
-    [LabelText("@_component.GetType()")]
+    [LabelText("@_name")]
     [HideReferenceObjectPicker]
     [SerializeReference] private ComponentAuthoringBase _component;
+    private string _name => ObjectNames.NicifyVariableName(_component.GetType().Name.Replace("Component", ""));
     public ComponentAuthoringBase Component => _component;
     public static implicit operator ReadWriteComponent(ComponentAuthoringBase component)
         => new ReadWriteComponent() { _component = component };

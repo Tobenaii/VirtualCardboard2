@@ -15,7 +15,7 @@ public class PerformActionsElementRequirementSystem : SystemBase
             foreach (var requirement in requirements)
             {
                 var element = elementBuffer[(int)requirement.Type];
-                if (element.Count < requirement.Amount)
+                if (element.Count < requirement.Count)
                 {
                     performer.Status = IPerformActions.StatusType.Failed;
                     performer.Failure = IPerformActions.FailureType.NotEnough;

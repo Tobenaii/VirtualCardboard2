@@ -18,11 +18,11 @@ MonoBehaviour:
     - _component:
         rid: 5362458279391526919
     - _component:
-        rid: 5362458290161451008
-    - _component:
         rid: 5362458290161451010
     - _component:
         rid: 5362458300426223618
+    - _component:
+        rid: 5362458290161451008
   references:
     version: 2
     RefIds:
@@ -38,15 +38,21 @@ MonoBehaviour:
         - _archetype: {fileID: 11400000, guid: 62adb2bace5d16048a9ed4514dfcdbb5, type: 2}
           _components:
           - _component:
-              rid: 5362458290161451011
-          - _component:
               rid: 5362458290326863877
+          - _component:
+              rid: 5362458290161451011
         - _archetype: {fileID: 11400000, guid: 1e172d54df46f1f48a7cb55ef642f1e9, type: 2}
           _components:
           - _component:
               rid: 5362458300426223621
           - _component:
               rid: 5362458300426223622
+        - _archetype: {fileID: 11400000, guid: 858d1fc56f41bf34ea5e4dbf0d149c0c, type: 2}
+          _components:
+          - _component:
+              rid: 5362458300426223625
+          - _component:
+              rid: 5362458300426223626
     - rid: 5362458290161451010
       type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -66,7 +72,7 @@ MonoBehaviour:
     - rid: 5362458300426223618
       type: {class: ElementRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
-        _requirements:
+        _elements:
         - Type: 5
           Amount: 1
     - rid: 5362458300426223621
@@ -79,4 +85,17 @@ MonoBehaviour:
     - rid: 5362458300426223622
       type: {class: ConsumeATBComponent, ns: , asm: Assembly-CSharp}
       data:
-        _amount: 1
+        _amount: 5
+    - rid: 5362458300426223625
+      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _hasInitialTarget: 0
+        _target:
+          _entityList: {fileID: 0}
+          _key: 0
+    - rid: 5362458300426223626
+      type: {class: ConsumeElementComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _elements:
+        - Type: 5
+          Amount: 1

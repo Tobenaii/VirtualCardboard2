@@ -21,7 +21,7 @@ public class ElementRequirementSystem : SystemBase
             {
                 var elementBuffer = GetBufferFromEntity<Element>(false)[target.Dealer];
                 var element = elementBuffer[(int)requirement.Type];
-                element.Count -= requirement.Amount;
+                element.Count -= requirement.Count;
                 elementBuffer[(int)requirement.Type] = element;
             }
 

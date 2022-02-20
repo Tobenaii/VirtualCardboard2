@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
-  m_Name: DealDamage
+  m_Name: ConsumeElement
   m_EditorClassIdentifier: 
   _entities: []
   _components:
   - _component:
-      rid: 5362458290326863876
+      rid: 5362458300426223623
   - _component:
-      rid: 5362458288434184212
+      rid: 5362458300426223624
   references:
     version: 2
     RefIds:
-    - rid: 5362458288434184212
-      type: {class: DealDamageComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _damageAmount: 0
-    - rid: 5362458290326863876
+    - rid: 5362458300426223623
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
       data:
         _hasInitialTarget: 0
         _target:
           _entityList: {fileID: 0}
           _key: 0
+    - rid: 5362458300426223624
+      type: {class: ConsumeElementComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _elements: []

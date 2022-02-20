@@ -14,10 +14,6 @@ public class PerformActionATBRequirementSystem : SystemBase
                 performer.Failure = IPerformActions.FailureType.NotEnough;
                 performer.Message = "ATB";
             }
-            else if (requirement.Consume)
-            {
-                atb.CurrentValue -= requirement.Amount;
-            }
         }).ScheduleParallel();
     }
 }
