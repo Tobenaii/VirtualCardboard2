@@ -57,11 +57,10 @@ MonoBehaviour:
       type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 1
-        _consume: 0
     - rid: 5362458290161451011
       type: {class: DealDamageComponent, ns: , asm: Assembly-CSharp}
       data:
-        _damageAmount: 50
+        _amount: 50
     - rid: 5362458290326863877
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
       data:
