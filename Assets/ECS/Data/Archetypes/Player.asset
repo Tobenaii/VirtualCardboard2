@@ -34,6 +34,8 @@ MonoBehaviour:
   - _component:
       rid: 5362458267926921234
   - _component:
+      rid: 5362458300426223635
+  - _component:
       rid: 5362458290326863878
   references:
     version: 2
@@ -82,3 +84,7 @@ MonoBehaviour:
         _elements: []
     - rid: 5362458290326863878
       type: {class: DamageComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458300426223635
+      type: {class: ElementWheelComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _elements: 

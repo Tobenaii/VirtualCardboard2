@@ -33,6 +33,10 @@ MonoBehaviour:
         rid: 5362458284462964779
     - _component:
         rid: 5362458284462964780
+    - _component:
+        rid: 5362458300426223636
+    - _component:
+        rid: 5362458300426223616
   references:
     version: 2
     RefIds:
@@ -82,6 +86,10 @@ MonoBehaviour:
     - rid: 5362458284462964780
       type: {class: ElementComponent, ns: , asm: Assembly-CSharp}
       data:
-        _elements:
-        - <Type>k__BackingField: 5
-          <Count>k__BackingField: 5
+        _elements: []
+    - rid: 5362458300426223616
+      type: {class: DamageComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458300426223636
+      type: {class: ElementWheelComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _elements: 050000000200000000000000
