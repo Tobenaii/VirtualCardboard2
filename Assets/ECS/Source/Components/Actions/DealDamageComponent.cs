@@ -10,9 +10,9 @@ public struct DealDamage : IComponentData
 
 public class DealDamageComponent : ComponentAuthoring<DealDamage>
 {
-    [SerializeField] private int _damageAmount;
+    [SerializeField] private int _amount;
     protected override DealDamage AuthorComponent(World world)
     {
-        return new DealDamage() { Amount = _damageAmount };
+        return new DealDamage() { Amount = _amount };
     }
 }
