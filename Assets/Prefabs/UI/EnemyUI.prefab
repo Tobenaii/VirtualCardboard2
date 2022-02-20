@@ -677,7 +677,7 @@ MonoBehaviour:
     _entityList: {fileID: 11400000, guid: 28a6a4a2c1a536041aab9fd9d3891dfa, type: 2}
     _key: 0
   _event: {fileID: 11400000, guid: 351e6a9827961fe48bc13f71804e6580, type: 2}
-  _bar: {fileID: 7230824201886282047}
+  _bar: {fileID: 7740126286183273666}
 --- !u!1 &8311618945403273820
 GameObject:
   m_ObjectHideFlags: 0

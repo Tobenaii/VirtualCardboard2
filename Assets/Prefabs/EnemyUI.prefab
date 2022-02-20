@@ -405,7 +405,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8694283443439030485}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -443,9 +443,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entity:
     _entityList: {fileID: 11400000, guid: 28a6a4a2c1a536041aab9fd9d3891dfa, type: 2}
-    _key: 1
-  _healthEvent: {fileID: 11400000, guid: bb8c7002bada3da4aa7691077679a31c, type: 2}
-  _healthBar: {fileID: 8694283442892631403}
+    _key: 0
+  _event: {fileID: 11400000, guid: 351e6a9827961fe48bc13f71804e6580, type: 2}
+  _bar: {fileID: 8694283442892631401}
 --- !u!1 &8694283443491876826
 GameObject:
   m_ObjectHideFlags: 0
