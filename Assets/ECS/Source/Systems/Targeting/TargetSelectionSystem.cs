@@ -17,6 +17,8 @@ public class TargetSelectionSystem : SystemBase
         var targetableArray = _targetableQuery.ToEntityArray(Unity.Collections.Allocator.TempJob);
         Entities.ForEach((ref Target target, ref TargetSelection switching) =>
         {
+            if (targetableArray.Length == 0)
+                return;
             if (tab)
             {
                 switching.Index++;
@@ -24,6 +26,7 @@ public class TargetSelectionSystem : SystemBase
                     switching.Index = 0;
             }
             var targetableEntity = targetableArray[switching.Index];
+            target.HasTarget = true;
             target.TargetEntity = targetableEntity;
         }).WithDisposeOnCompletion(targetableArray).Schedule();
     }

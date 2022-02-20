@@ -17,8 +17,10 @@ public class ArchetypeAuthoringMono : MonoBehaviour, IConvertGameObjectToEntity
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        _entity.Convert(entity, dstManager, conversionSystem);
+        if (_entity == null)
+            return;
         _group.Entity = entity;
+        _entity.Convert(entity, dstManager, conversionSystem);
     }
 
     public Entity GetEntity(World world)

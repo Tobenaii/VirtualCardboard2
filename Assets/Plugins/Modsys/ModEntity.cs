@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
@@ -8,34 +9,23 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Modsys/Entity")]
 public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
 {
-    [ShowIf("@_archetype.Archetype != null")] [PropertyOrder(-1000)]
-    [ShowInInspector] public Archetype Archetype => (Archetype)_archetype.Archetype;
     [PropertyOrder(10000)]
-    [SerializeField] private ArchetypeReference _archetype;
-    private Entity _prefab;
+    [SerializeField] private ArchetypeAuthoring _authoring;
 
     public void Instantiate()
     {
-        var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        entityManager.Instantiate(GetPrefab(entityManager));
+        _authoring.Instantiate();
     }
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        foreach (var component in _archetype.Components)
-            component.Component.AuthorComponent(entity, dstManager);
+        _authoring.Convert(entity, dstManager, conversionSystem);
     }
 
     public Entity GetPrefab(EntityManager manager)
     {
-        //TODO: Work out how to have _hasPrefab not survive sessions
-        if (manager.Exists(_prefab))
-            return _prefab;
-        var entity = manager.CreateEntity();
-        Convert(entity, manager, null);
-        manager.AddComponent<Prefab>(entity);
-        _prefab = entity;
-        return entity;
+        var ecb = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
+        return _authoring.GetPrefab(manager);
     }
 
     [ShowIf("@UnityEngine.Application.isPlaying")] [PropertyOrder(100000)]
@@ -45,25 +35,30 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
         Instantiate();
     }
 
-    public void OnAfterDeserialize()
+    private void Register()
     {
-        
+        if (_authoring != null)
+            _authoring.Archetype?.Register(this);
     }
 
     private void OnValidate()
     {
+        Register();
         ValidateComponents();
     }
 
     public void ValidateComponents()
     {
-        if (_archetype.Archetype != null)
-            _archetype.ValidateComponents(this);
+        if (_authoring.Archetype != null)
+            _authoring.ValidateComponents();
     }
 
-    public void OnBeforeSerialize()
+    void ISerializationCallbackReceiver.OnBeforeSerialize()
     {
-        if (_archetype != null)
-            _archetype.Archetype?.Register(this);
+        Register();
+    }
+
+    public void OnAfterDeserialize()
+    {
     }
 }

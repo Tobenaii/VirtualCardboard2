@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291ac1fa71e93b749a1fbce897da02d7, type: 3}
+  m_Name: BigOrc
+  m_EditorClassIdentifier: 
+  _authoring:
+    _archetype: {fileID: 11400000, guid: 5ac25bbd26553c244814219e30334be0, type: 2}
+    _components:
+    - _component:
+        rid: 5362458279391526932
+    - _component:
+        rid: 5362458279391526933
+    - _component:
+        rid: 5362458279391526934
+  references:
+    version: 2
+    RefIds:
+    - rid: 5362458279391526932
+      type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _initialValue: 200
+        _maxValue: 200
+    - rid: 5362458279391526933
+      type: {class: DamageComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458279391526934
+      type: {class: TargetableComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _position: {x: 0, y: 1.5, z: 0.75}
+        _scale: {x: 0.25, y: 0.25, z: 0.25}

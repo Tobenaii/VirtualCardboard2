@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7684497954383015118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734ee965c3452834db959fad3e6c5aa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _notification: 'Draw
-
-    Phase'
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,52 +12,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291ac1fa71e93b749a1fbce897da02d7, type: 3}
   m_Name: DrawPhase
   m_EditorClassIdentifier: 
-  _archetype:
-    _archetype: {fileID: 11400000, guid: 8fb6d727829d6384693b3fb36e5723d9, type: 2}
+  _authoring:
+    _archetype: {fileID: 11400000, guid: e24aa2f4b9ff28d4f8f487e3eae6fc9d, type: 2}
     _components:
-    - _component: {fileID: 7307179625356212745}
-    - _component: {fileID: 6993112920747225891}
-    - _component: {fileID: -7684497954383015118}
---- !u!114 &303370931193132610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c832181128500f849ae21670a197a896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _notification: 'Draw
+    - _component:
+        rid: 5362458288434184192
+    - _component:
+        rid: 5362458288434184193
+    - _component:
+        rid: 5362458288434184207
+  references:
+    version: 2
+    RefIds:
+    - rid: 5362458288434184192
+      type: {class: PhaseComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _time: 10
+        _nextPhase: {fileID: 0}
+    - rid: 5362458288434184193
+      type: {class: PhaseNotificationComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _notification: 'Combat
 
-    Phase'
---- !u!114 &6993112920747225891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c03d6c5df310c743a21dd30b79d9e86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _actions:
-  - {fileID: 11400000, guid: 5cdd34678126aa44a8e96526a688c6e3, type: 2}
---- !u!114 &7307179625356212745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290a71b1a87759c43aed0b7b6fc4ba85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _time: 2
-  _nextPhase: {fileID: 11400000, guid: 3aba93b2b58af3245b970bd0f53c0295, type: 2}
+          Phase'
+    - rid: 5362458288434184207
+      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _actions:
+        - _archetype: {fileID: 11400000, guid: fd6cb4add68f75642a23955ac2a09fbd, type: 2}
+          _components:
+          - _component:
+              rid: 5362458290326863873
+          - _component:
+              rid: 5362458290326863875
+        - _archetype: {fileID: 11400000, guid: cc2a92df50328ee458b1735cbb75c4e2, type: 2}
+          _components:
+          - _component:
+              rid: 5362458288434184210
+          - _component:
+              rid: 5362458288434184211
+    - rid: 5362458288434184210
+      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _hasInitialTarget: 1
+        _target:
+          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
+            type: 2}
+          _key: 0
+    - rid: 5362458288434184211
+      type: {class: DrawCardsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _amount: 5
+    - rid: 5362458290326863873
+      type: {class: ToggleATBPoolComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _enable: 1
+    - rid: 5362458290326863875
+      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _hasInitialTarget: 1
+        _target:
+          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
+            type: 2}
+          _key: 0

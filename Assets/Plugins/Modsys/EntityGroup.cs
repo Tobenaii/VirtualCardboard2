@@ -35,15 +35,15 @@ public class EntityRef
 public class EntityGroup : ScriptableObject
 {
     [SerializeField] private int _initialCapacity;
-    [ShowInInspector][ReadOnly] private Dictionary<int, Entity?> _entities = new Dictionary<int, Entity?>();
+    [ShowInInspector][ReadOnly] private Dictionary<int, Entity> _entities = new Dictionary<int, Entity>();
 
     public Entity this[int key]
     {
         get
         {
-            if (!_entities[key].HasValue)
-                throw new KeyNotFoundException();
-            return _entities[key].Value;
+            if (!_entities.ContainsKey(key))
+                throw new KeyNotFoundException($"There is no entity at index {key} in {name}");
+            return _entities[key];
         }
     }
 

@@ -1,29 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5668229989334947380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e1d27f8fc7b1f449a31c8d5f65fd73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-1234180736784299155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 435408e6093da9040b8f364f3551343d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,115 +13,72 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   _entities:
-  - {fileID: 11400000, guid: 2c666f758521b1843989e387522d68e3, type: 2}
+  - {fileID: 11400000, guid: 894f6deaa8031b548af78021087c54cd, type: 2}
   _components:
-  - _component: {fileID: 5716368988318588602}
-  - _component: {fileID: -1234180736784299155}
-  - _component: {fileID: -5668229989334947380}
-  - _component: {fileID: 3759489160024036511}
-  - _component: {fileID: 4038063598353828466}
-  - _component: {fileID: 1849954745412338350}
-  - _component: {fileID: 6729937764360548995}
-  - _component: {fileID: 8580707734270191615}
-  - _component: {fileID: 8501489585447315287}
---- !u!114 &1849954745412338350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d93ffefadd6efb499e0b7d756294356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxCount: 0
-  _chargeTime: 0
---- !u!114 &3759489160024036511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c630014449d3584fb7b14c6385920ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _initialValue: 0
-  _maxValue: 0
---- !u!114 &4038063598353828466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ff88f988497b1f4aa8806c20b8d4141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _initialValue: 0
-  _maxValue: 0
---- !u!114 &5716368988318588602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc3f01a4a100b8b47a267947bd65942b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hasInitialTarget: 0
-  _target:
-    _entityList: {fileID: 0}
-    _key: 0
---- !u!114 &6729937764360548995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac532df35bad74540bf269e4d9e3e6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxCount: 0
-  _debugList: 0
-  _entities: []
---- !u!114 &8501489585447315287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c20e078105a7c45a9575854bf236d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _element: []
---- !u!114 &8580707734270191615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d621813cc1fd9b45961015b079dd4cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxCount: 0
-  _debugList: 0
-  _entities: []
+  - _component:
+      rid: 5362458267926921226
+  - _component:
+      rid: 5362458267926921227
+  - _component:
+      rid: 5362458267926921228
+  - _component:
+      rid: 5362458267926921229
+  - _component:
+      rid: 5362458267926921230
+  - _component:
+      rid: 5362458267926921231
+  - _component:
+      rid: 5362458267926921232
+  - _component:
+      rid: 5362458267926921233
+  - _component:
+      rid: 5362458267926921234
+  - _component:
+      rid: 5362458290326863878
+  references:
+    version: 2
+    RefIds:
+    - rid: 5362458267926921226
+      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _hasInitialTarget: 0
+        _target:
+          _entityList: {fileID: 0}
+          _key: 0
+    - rid: 5362458267926921227
+      type: {class: TargetSelectionComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458267926921228
+      type: {class: TargetMarkerComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458267926921229
+      type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _initialValue: 0
+        _maxValue: 0
+    - rid: 5362458267926921230
+      type: {class: ATBComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _initialValue: 0
+        _maxValue: 0
+    - rid: 5362458267926921231
+      type: {class: ATBPoolComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _maxCount: 0
+        _chargeTime: 0
+    - rid: 5362458267926921232
+      type: {class: DeckComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _maxCount: 0
+        _debugList: 0
+        _entities: []
+    - rid: 5362458267926921233
+      type: {class: HandComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _maxCount: 0
+        _debugList: 0
+        _entities: []
+    - rid: 5362458267926921234
+      type: {class: ElementComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _elements: []
+    - rid: 5362458290326863878
+      type: {class: DamageComponent, ns: , asm: Assembly-CSharp}

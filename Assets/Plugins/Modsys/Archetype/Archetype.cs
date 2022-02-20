@@ -12,11 +12,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Modsys/Archetype")]
 public class Archetype : ScriptableObject, ISerializationCallbackReceiver
 {
-    [SerializeField] [HideInInspector] private List<ModEntity> _entities;
-    [ListDrawerSettings(HideAddButton = true, CustomRemoveElementFunction = "RemoveComponent")]
+    [SerializeField] [ReadOnly] private List<ModEntity> _entities;
+    [ListDrawerSettings(HideAddButton = true)]
     [SerializeField][HideReferenceObjectPicker] protected List<ReadOnlyComponent> _components = new List<ReadOnlyComponent>();
     public IEnumerable<ComponentAuthoringBase> Components => _components.Select(x => x.Component);
-    private Entity _prefab;
 
     [Button]
     private void AddComponent()
@@ -31,10 +30,8 @@ public class Archetype : ScriptableObject, ISerializationCallbackReceiver
             var type = selection.FirstOrDefault();
             if (type == null)
                 return;
-            var instance = ScriptableObject.CreateInstance(type) as ComponentAuthoringBase;
-            AssetDatabase.AddObjectToAsset(instance, this);
-            AssetDatabase.Refresh();
-            _components.Add(instance);
+            var instance = Activator.CreateInstance(type);
+            _components.Add((ComponentAuthoringBase)instance);
         };
         var window = selector.ShowInPopup();
     }
@@ -44,25 +41,14 @@ public class Archetype : ScriptableObject, ISerializationCallbackReceiver
         if (_entities == null)
             return;
         if (!_entities.Contains(modEntity))
-            _entities.Add(modEntity);
-    }
-
-    private void RemoveComponent(ReadOnlyComponent component)
-    {
-        DestroyImmediate(component.Component, true);
-        _components.Remove(component);
-    }
-
-    public void OnBeforeSerialize()
-    {
-        //Remove all subassets that shouldn't exist (the custom remove should handle this for most cases)
-        foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(this)))
         {
-            if (asset == this)
-                continue;
-            if (asset == null || !_components.Select(x => x.Component.GetType()).Contains(asset.GetType()))
-                UnityEngine.Object.DestroyImmediate(asset, true);
+            _entities.Add(modEntity);
+            PushChanges();
         }
+    }
+
+    private void PushChanges()
+    {
         if (_entities == null)
             return;
         foreach (var entity in _entities.ToList())
@@ -72,6 +58,16 @@ public class Archetype : ScriptableObject, ISerializationCallbackReceiver
             else
                 entity.ValidateComponents();
         }
+    }
+
+    private void OnValidate()
+    {
+        PushChanges();
+    }
+
+    public void OnBeforeSerialize()
+    {
+        PushChanges();
     }
 
     public void OnAfterDeserialize()

@@ -13,49 +13,27 @@ MonoBehaviour:
   m_Name: Enemy
   m_EditorClassIdentifier: 
   _entities:
-  - {fileID: 11400000, guid: edf58d074734329408227d2ba2d49696, type: 2}
-  - {fileID: 11400000, guid: 20c2d1265565b8e4b93bb196a8937242, type: 2}
+  - {fileID: 11400000, guid: 27a4738d62c3f3a4b84b479ab3ba3673, type: 2}
+  - {fileID: 11400000, guid: ab7d77b66ed203b4c94afc4a65f3d79a, type: 2}
   _components:
-  - _component: {fileID: 3523001456635667060}
-  - _component: {fileID: 2140552893803282518}
-  - _component: {fileID: 5914958693629911308}
---- !u!114 &2140552893803282518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c630014449d3584fb7b14c6385920ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _initialValue: 0
-  _maxValue: 0
---- !u!114 &3523001456635667060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dde56348be9a104498d3b68acb87144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _position: {x: 0, y: 0, z: 0}
-  _scale: {x: 0, y: 0, z: 0}
---- !u!114 &5914958693629911308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7d03402c8a57554287714d6c3107998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  - _component:
+      rid: 5362458278158139392
+  - _component:
+      rid: 5362458278158139393
+  - _component:
+      rid: 5362458279391526912
+  references:
+    version: 2
+    RefIds:
+    - rid: 5362458278158139392
+      type: {class: HealthComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _initialValue: 0
+        _maxValue: 0
+    - rid: 5362458278158139393
+      type: {class: DamageComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458279391526912
+      type: {class: TargetableComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _position: {x: 0, y: 0, z: 0}
+        _scale: {x: 0, y: 0, z: 0}

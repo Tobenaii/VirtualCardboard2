@@ -10,10 +10,13 @@ using Unity.Entities;
 using UnityEditor;
 using UnityEngine;
 
-public abstract class ComponentAuthoringBase : ScriptableObject
+public abstract class ComponentAuthoringBase
 {
     public abstract ComponentType ComponentType { get; }
     public abstract void AuthorComponent(Entity entity, EntityManager dstManager);
+    public virtual void AuthorDependencies(Entity entity, EntityManager dstManager) { }
+    public virtual void ValidateComponent() { }
+    public abstract void UpdateComponent(Entity entity, EntityManager dstManager);
 }
 
 public abstract class ComponentAuthoring<T> : ComponentAuthoringBase where T : struct, IComponentData
@@ -24,16 +27,9 @@ public abstract class ComponentAuthoring<T> : ComponentAuthoringBase where T : s
         dstManager.AddComponentData(entity, AuthorComponent(dstManager.World));
         AuthorDependencies(entity, dstManager);
     }
-    public virtual void AuthorDependencies(Entity entity, EntityManager dstManager) { }
-    protected abstract T AuthorComponent(World world);
-}
-
-public abstract class ManagedComponentAuthoring<T> : ComponentAuthoringBase where T : IComponentData
-{
-    public override ComponentType ComponentType => new ComponentType(typeof(T));
-    public override void AuthorComponent(Entity entity, EntityManager dstManager)
+    public override void UpdateComponent(Entity entity, EntityManager dstManager)
     {
-        dstManager.AddComponentObject(entity, AuthorComponent(dstManager.World));
+        dstManager.SetComponentData(entity, AuthorComponent(dstManager.World));
     }
     protected abstract T AuthorComponent(World world);
 }
@@ -46,6 +42,13 @@ public abstract class BufferComponentAuthoring<T> : ComponentAuthoringBase where
         var components = AuthorComponent(dstManager.World);
         var buffer = dstManager.AddBuffer<T>(entity);
         buffer.AddRange(components);
+        AuthorDependencies(entity, dstManager);
+    }
+    public override void UpdateComponent(Entity entity, EntityManager dstManager)
+    {
+        var buffer = dstManager.GetBuffer<T>(entity);
+        buffer.Clear();
+        buffer.AddRange(AuthorComponent(dstManager.World));
     }
     protected abstract NativeArray<T> AuthorComponent(World world);
 }    
@@ -55,20 +58,69 @@ public abstract class BufferComponentAuthoring<T> : ComponentAuthoringBase where
 [InlineProperty]
 [HideLabel]
 [HideReferenceObjectPicker]
-public class ArchetypeReference
+public class ArchetypeAuthoring
 {
+    [ShowIf("@_archetype != null")]
+    [PropertyOrder(-1000)]
+    [HideLabel]
+    [ShowInInspector] public Archetype Archetype => _archetype;
     [ShowIf("@_archetype == null")]
     [SerializeField] private Archetype _archetype;
     [SerializeField]
     [ListDrawerSettings(IsReadOnly = true)]
     [HideReferenceObjectPicker]
     [ShowIf("@_archetype != null")]
-    private List<ReadWriteComponent> _components;
+    [LabelText("@_archetype.name")]
+    private List<ReadWriteComponent> _components = new List<ReadWriteComponent>();
     
     public List<ReadWriteComponent> Components => _components;
-    public Archetype Archetype => _archetype;
+    private Entity _prefab;
 
-    public void ValidateComponents(ScriptableObject entity)
+    public void Instantiate()
+    {
+        var ecb = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
+        ecb.Instantiate(GetPrefab(World.DefaultGameObjectInjectionWorld.EntityManager));
+    }
+
+    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+    {
+        foreach (var component in Components)
+            component.Component.AuthorComponent(entity, dstManager);
+    }
+
+    public void Update(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+    {
+        foreach (var component in Components)
+            component.Component.UpdateComponent(entity, dstManager);
+    }
+
+    public Entity GetPrefab(EntityManager manager)
+    {
+        //TODO: This causes lots of problems when domain reload is off
+        //Since this could reference another entity next play as it doesn't get reset.
+        if (manager.Exists(_prefab))
+            return _prefab;
+        _prefab = CreatePrefab(manager);
+        return _prefab;
+    }
+
+    private Entity CreatePrefab(EntityManager manager)
+    {
+        if (manager.Exists(_prefab))
+        {
+            Update(_prefab, manager, null);
+            return _prefab;
+        }
+        else
+        {
+            var entity = manager.CreateEntity();
+            Convert(entity, manager, null);
+            manager.AddComponent<Prefab>(entity);
+            return entity;
+        }
+    }
+
+    public void ValidateComponents()
     {
         if (_archetype == null)
             return;
@@ -77,13 +129,6 @@ public class ArchetypeReference
         //Clear all components if archetype is null
         if (_archetype == null && _components.Count > 0)
         {
-            foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(entity)))
-            {
-                if (asset == entity)
-                    continue;
-                _components.Remove(_components.FirstOrDefault(x => x.Component == asset));
-                UnityEngine.Object.DestroyImmediate(asset);
-            }
             _components.Clear();
         }
 
@@ -99,10 +144,8 @@ public class ArchetypeReference
             {
                 if (_components.Select(x => x.Component.GetType()).Where(x => x == component.GetType()).FirstOrDefault() == null)
                 {
-                    var newComponent = ScriptableObject.CreateInstance(component.GetType()) as ComponentAuthoringBase;
+                    var newComponent = Activator.CreateInstance(component.GetType()) as ComponentAuthoringBase;
                     _components.Add(newComponent);
-                    AssetDatabase.AddObjectToAsset(newComponent, entity);
-                    AssetDatabase.Refresh();
                 }
             }
 
@@ -113,19 +156,17 @@ public class ArchetypeReference
                     x => x.GetType()).Where(x => x == component.Component.GetType()).FirstOrDefault() == null)
                 {
                     _components.Remove(component);
-                    UnityEngine.Object.DestroyImmediate(component.Component, true);
-                    AssetDatabase.Refresh();
                 }
             }
+        }
+        foreach (var component in _components)
+            component.Component.ValidateComponent();
 
-            //Remove all subassets that shouldn't exist (the above should handle this in most cases)
-            foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(entity)))
-            {
-                if (asset == entity)
-                    continue;
-                if (asset == null || !_components.Select(x => x.Component.GetType()).Contains(asset.GetType()))
-                    UnityEngine.Object.DestroyImmediate(asset, true);
-            }
+        if (Application.isPlaying)
+        {
+            var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            if (manager.Exists(_prefab))
+                _prefab = CreatePrefab(manager);
         }
     }
 }
@@ -134,11 +175,9 @@ public class ArchetypeReference
 [System.Serializable]
 public class ReadOnlyComponent
 {
-    [HideReferenceObjectPicker]
     [Sirenix.OdinInspector.ReadOnly]
-    [HideLabel]
-    [InlineEditor]
-    [SerializeField] private ComponentAuthoringBase _component;
+    [LabelText("@_component.GetType()")]
+    [SerializeReference] private ComponentAuthoringBase _component;
     public ComponentAuthoringBase Component => _component;
     public static implicit operator ReadOnlyComponent(ComponentAuthoringBase component)
         => new ReadOnlyComponent() { _component = component };
@@ -148,8 +187,8 @@ public class ReadOnlyComponent
 public class ReadWriteComponent
 {
     [LabelText("@_component.GetType()")]
-    [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.CompletelyHidden, DrawHeader = true)]
-    [SerializeField] private ComponentAuthoringBase _component;
+    [HideReferenceObjectPicker]
+    [SerializeReference] private ComponentAuthoringBase _component;
     public ComponentAuthoringBase Component => _component;
     public static implicit operator ReadWriteComponent(ComponentAuthoringBase component)
         => new ReadWriteComponent() { _component = component };

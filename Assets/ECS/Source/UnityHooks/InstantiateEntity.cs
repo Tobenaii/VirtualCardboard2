@@ -12,10 +12,4 @@ public class InstantiateEntity : MonoBehaviour
         if (_onStart)
             _entity.Instantiate();
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            _entity.Instantiate();
-    }
 }

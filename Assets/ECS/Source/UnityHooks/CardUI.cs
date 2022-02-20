@@ -5,12 +5,11 @@ using Unity.Entities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IComponentListener<IActionStatus>
+public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IComponentListener<IPerformActions>
 {
-    [SerializeField] private ComponentEvent<IActionStatus> _actionError;
+    [SerializeField] private ComponentEvent<IPerformActions> _actionError;
     [SerializeField] private TMPro.TextMeshProUGUI _title;
     [SerializeField] private TMPro.TextMeshProUGUI _description;
-    [SerializeField] private Action _playCardAction;
 
     public bool IsHovering { get; private set; }
     public bool IsDead { get; private set; }
@@ -95,34 +94,20 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     {
         if (IsDead)
             return;
-        var actionData = new PlayCard() { Dealer = _player, Card = _card };
-        var entity = _playCardAction.Execute(actionData);
+        var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        var entity = manager.Instantiate(_card);
+        manager.SetComponentData(entity, new PerformActions() { Dealer = _player });
         _actionError.Register(entity, this);
     }
 
-    public void OnComponentChanged(IActionStatus value)
+    public void OnComponentChanged(IPerformActions value)
     {
-        IsDead = false;
+        if (IsDead)
+            return;
         StopAllCoroutines();
-        if (value.Status != IActionStatus.StatusType.Failed)
+        if (value.Status != IPerformActions.StatusType.Failed)
         {
             StartCoroutine(Die());
-        }
-        else
-        {
-            var error = value.Message;
-            string message = error.ConvertToString();
-            StartCoroutine(ErrorText(message));
-        }
-    }
-
-    private IEnumerator ErrorText(string error)
-    {
-        float timer = 0;
-        while (timer < 1)
-        {
-            timer += Time.deltaTime;
-            yield return null;
         }
     }
 }
