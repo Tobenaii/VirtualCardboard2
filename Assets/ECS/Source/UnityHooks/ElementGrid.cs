@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ElementGrid : MonoBehaviour, IComponentListener<IElementData>
+public class ElementGrid : MonoBehaviour, IComponentChangedListener<IElementData>
 {
     [System.Serializable]
     private class ElementData
@@ -34,7 +34,7 @@ public class ElementGrid : MonoBehaviour, IComponentListener<IElementData>
 
     private void Start()
     {
-        _event.Register(_entity.Entity, this);
+        _event.RegisterChanged(_entity.Entity, this);
     }
 
     public void OnComponentChanged(IElementData value)

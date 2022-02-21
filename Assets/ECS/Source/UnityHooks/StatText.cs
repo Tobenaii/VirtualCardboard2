@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatText : MonoBehaviour, IComponentListener<IStat>
+public class StatText : MonoBehaviour, IComponentChangedListener<IStat>
 {
     [SerializeField] private ComponentEvent<IStat> _statEvent;
     [SerializeField] private EntityRef _target;
@@ -18,6 +18,6 @@ public class StatText : MonoBehaviour, IComponentListener<IStat>
 
     private void Start()
     {
-        _statEvent.Register(_target.Entity, this);
+        _statEvent.RegisterChanged(_target.Entity, this);
     }
 }

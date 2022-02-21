@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PoolStatBars : MonoBehaviour, IComponentListener<IStat>, IComponentListener<IStatPool>
+public class PoolStatBars : MonoBehaviour, IComponentChangedListener<IStat>, IComponentChangedListener<IStatPool>
 {
     [Header("Events")]
     [SerializeField] private EntityRef _entity;
@@ -27,8 +27,8 @@ public class PoolStatBars : MonoBehaviour, IComponentListener<IStat>, IComponent
 
     private void Start()
     {
-        _statEvent.Register(_entity.Entity, this);
-        _poolEvent.Register(_entity.Entity, this);
+        _statEvent.RegisterChanged(_entity.Entity, this);
+        _poolEvent.RegisterChanged(_entity.Entity, this);
     }
 
     //I would've loved to make this not hold any state but alas the components are TOO decoupled :P

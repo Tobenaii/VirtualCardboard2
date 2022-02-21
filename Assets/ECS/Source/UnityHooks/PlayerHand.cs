@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public class PlayerHand : MonoBehaviour, IComponentListener<IPrefabCollection>
+public class PlayerHand : MonoBehaviour, IComponentAddedListener<IPrefabCollection>
 {
     [SerializeField] private EntityRef _entity;
     [SerializeField] private ComponentEvent<IPrefabCollection> _cardHandEvent;
@@ -19,7 +19,7 @@ public class PlayerHand : MonoBehaviour, IComponentListener<IPrefabCollection>
     private void Start()
     {
         if (Application.isPlaying)
-            _cardHandEvent.Register(_entity.Entity, this);
+            _cardHandEvent.RegisterAdded(_entity.Entity, this);
     }
 
     private void Update()
@@ -60,7 +60,7 @@ public class PlayerHand : MonoBehaviour, IComponentListener<IPrefabCollection>
         }
     }
 
-    public void OnComponentChanged(IPrefabCollection newValue)
+    public void OnComponentAdded(IPrefabCollection newValue)
     {
         for (int i = 0; i < transform.childCount; i++)
         {

@@ -22,14 +22,13 @@ public interface IPrefabCollectionContainer : ICollectionContainer
 
 public abstract class PrefabCollectionContainerAuthoring<T, V> : ComponentAuthoring<T> where T : struct, IComponentData, IPrefabCollectionContainer where V : struct, IPrefabCollection, IBufferElementData
 {
-    [SerializeField] private int _maxCount;
     [SerializeField] private bool _debugList;
     [ShowIf("@_debugList")]
     [SerializeField] private List<ModEntity> _entities = new List<ModEntity>();
 
     protected override T AuthorComponent(World world)
     {
-        return new T() { CurrentCount = _debugList ? _entities.Count : _maxCount, MaxCount = _maxCount };
+        return new T() { CurrentCount = _entities.Count, MaxCount = _entities.Count };
     }
 
     public override void AuthorDependencies(Entity entity, EntityManager dstManager)

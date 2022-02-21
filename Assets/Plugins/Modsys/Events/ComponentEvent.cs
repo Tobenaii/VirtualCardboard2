@@ -4,14 +4,26 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-public interface IComponentListener<T>
+public interface IBufferFlag
+{
+    public enum Flag { Added, Removed, None };
+    public Flag BufferFlag { get; set; }
+}
+
+public interface IComponentChangedListener<T>
 {
     public void OnComponentChanged(T value);
 }
 
-public interface IComponentEvent<T>
+public interface IComponentAddedListener<T>
+{
+    public void OnComponentAdded(T value);
+}
+
+public interface IComponentChangedEvent<T>
 {
     public void OnComponentChanged(T value, Entity entity);
+    public void OnComponentAdded(T value, Entity entity);
 }
 
 public abstract class ComponentEvent : ScriptableObject 
@@ -22,29 +34,41 @@ public abstract class ComponentEvent : ScriptableObject
 
 public abstract class ComponentEvent<U> : ComponentEvent
 {
-    protected Dictionary<Entity, List<IComponentListener<U>>> _listenerMap = new Dictionary<Entity, List<IComponentListener<U>>>();
-    protected List<IComponentListener<U>> _listeners = new List<IComponentListener<U>>();
+    protected Dictionary<Entity, List<IComponentChangedListener<U>>> _listenerChangedMap = new Dictionary<Entity, List<IComponentChangedListener<U>>>();
+    protected Dictionary<Entity, List<IComponentAddedListener<U>>> _listenerAddedMap = new Dictionary<Entity, List<IComponentAddedListener<U>>>();
 
-    public void Register(Entity entity, IComponentListener<U> listener)
+    protected List<IComponentChangedListener<U>> _listeners = new List<IComponentChangedListener<U>>();
+
+    public void RegisterChanged(Entity entity, IComponentChangedListener<U> listener)
     {
-        List<IComponentListener<U>> listeners;
-        if (_listenerMap.TryGetValue(entity, out listeners))
+        Register(entity, listener, _listenerChangedMap);
+    }
+
+    public void RegisterAdded(Entity entity, IComponentAddedListener<U> listener)
+    {
+        Register(entity, listener, _listenerAddedMap);
+    }
+
+    private void Register<V>(Entity entity, V listener, Dictionary<Entity, List<V>> map)
+    {
+        List<V> listeners;
+        if (map.TryGetValue(entity, out listeners))
             listeners.Add(listener);
         else
         {
-            listeners = new List<IComponentListener<U>>();
+            listeners = new List<V>();
             listeners.Add(listener);
-            _listenerMap.Add(entity, listeners);
+            map.Add(entity, listeners);
         }
     }
 
-    public void Register(IComponentListener<U> listener)
+    public void Register(IComponentChangedListener<U> listener)
     {
         _listeners.Add(listener);
     }
 }
 
-public abstract class ComponentEventBase<T, V, U> : ComponentEvent<U>, IComponentEvent<T> where T : unmanaged, U where V : ComponentEventSystemBase<T>
+public abstract class ComponentEventBase<T, V, U> : ComponentEvent<U>, IComponentChangedEvent<T> where T : unmanaged, U where V : ComponentEventSystemBase<T>
 {
     public override void Init()
     {
@@ -66,10 +90,37 @@ public abstract class ComponentEventBase<T, V, U> : ComponentEvent<U>, IComponen
         sim.RemoveSystemFromUpdateList(system);
     }
 
+    protected void ValidateMap()
+    {
+        ValidateMap(_listenerChangedMap);
+        ValidateMap(_listenerAddedMap);
+        _listeners.RemoveAll(x => x.Equals(null));
+    }
+
+    private void ValidateMap<m>(Dictionary<Entity, List<m>> map)
+    {
+        var remove = new List<Entity>();
+        foreach (var key in map.Keys)
+        {
+            var listeners = map[key];
+            listeners.RemoveAll(x => x.Equals(null));
+            if (listeners.Count == 0)
+                remove.Add(key);
+        }
+        foreach (var entity in remove)
+            map.Remove(entity);
+    }
+
+    public void Unregister(Entity entity)
+    {
+        _listenerChangedMap.Remove(entity);
+        _listenerAddedMap.Remove(entity);
+    }
+
     public void OnComponentChanged(T newValue, Entity entity)
     {
-        List<IComponentListener<U>> listeners;
-        if (_listenerMap.TryGetValue(entity, out listeners))
+        List<IComponentChangedListener<U>> listeners;
+        if (_listenerChangedMap.TryGetValue(entity, out listeners))
         {
             foreach (var listener in listeners)
             {
@@ -82,25 +133,16 @@ public abstract class ComponentEventBase<T, V, U> : ComponentEvent<U>, IComponen
         }
     }
 
-    protected void ValidateMap()
+    public void OnComponentAdded(T value, Entity entity)
     {
-        var remove = new List<Entity>();
-        foreach (var key in _listenerMap.Keys)
+        List<IComponentAddedListener<U>> listeners;
+        if (_listenerAddedMap.TryGetValue(entity, out listeners))
         {
-            var listeners = _listenerMap[key];
-            listeners.RemoveAll(x => x.Equals(null));
-            if (listeners.Count == 0)
-                remove.Add(key);
+            foreach (var listener in listeners)
+            {
+                listener.OnComponentAdded(value);
+            }
         }
-        foreach (var entity in remove)
-            _listenerMap.Remove(entity);
-        _listeners.RemoveAll(x => x.Equals(null));
-            
-    }
-
-    public void Unregister(Entity entity)
-    {
-        _listenerMap.Remove(entity);
     }
 }
 
@@ -109,6 +151,6 @@ public abstract class ComponentEvent<T, V, U> : ComponentEventBase<T, V, U> wher
 
 }
 
-public abstract class BufferEvent<T, V, U> : ComponentEventBase<T, V, U> where T : unmanaged, IBufferElementData, U where V : BufferEventSystem<T>
+public abstract class BufferEvent<T, V, U> : ComponentEventBase<T, V, U> where T : unmanaged, IBufferElementData, IBufferFlag, U where V : BufferEventSystem<T>
 {
 }

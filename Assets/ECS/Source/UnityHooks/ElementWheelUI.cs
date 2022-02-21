@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ElementWheelUI : MonoBehaviour, IComponentListener<IElementWheel>
+public class ElementWheelUI : MonoBehaviour, IComponentChangedListener<IElementWheel>
 {
     [System.Serializable]
     private struct ElementColour

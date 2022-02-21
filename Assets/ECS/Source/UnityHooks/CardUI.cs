@@ -5,7 +5,7 @@ using Unity.Entities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IComponentListener<IPerformActions>
+public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IComponentChangedListener<IPerformActions>
 {
     [SerializeField] private ComponentEvent<IPerformActions> _actionError;
     [SerializeField] private TMPro.TextMeshProUGUI _title;
@@ -97,7 +97,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
         var entity = manager.Instantiate(_card);
         manager.SetComponentData(entity, new PerformActions() { Dealer = _player });
-        _actionError.Register(entity, this);
+        _actionError.RegisterChanged(entity, this);
     }
 
     public void OnComponentChanged(IPerformActions value)

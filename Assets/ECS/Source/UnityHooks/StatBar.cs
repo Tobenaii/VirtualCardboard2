@@ -4,7 +4,7 @@ using Unity.Entities;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StatBar : MonoBehaviour, IComponentListener<IStat>
+public class StatBar : MonoBehaviour, IComponentChangedListener<IStat>
 {
     [SerializeField] private EntityRef _entity;
     [SerializeField] private ComponentEvent<IStat> _event;
@@ -16,7 +16,7 @@ public class StatBar : MonoBehaviour, IComponentListener<IStat>
 
     private void Start()
     {
-        _event.Register(_entity.Entity, this);
+        _event.RegisterChanged(_entity.Entity, this);
     }
 
     public void OnComponentChanged(IStat newStat)

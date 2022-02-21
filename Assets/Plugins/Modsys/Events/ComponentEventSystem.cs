@@ -9,11 +9,10 @@ using UnityEngine;
 public abstract class ComponentEventSystemBase<T> : SystemBase
 {
     protected EntityQuery _genericQuery;
-    public IComponentEvent<T> componentChangedEvent;
-
+    public IComponentChangedEvent<T> componentChangedEvent;
     protected override void OnCreate()
     {
-        _genericQuery = GetEntityQuery(ComponentType.ReadOnly<T>());
+        _genericQuery = GetEntityQuery(ComponentType.ReadWrite<T>());
         _genericQuery.SetChangedVersionFilter(new ComponentType(typeof(T)));
     }
 }
@@ -37,7 +36,7 @@ public abstract class ComponentEventSystem<T> : ComponentEventSystemBase<T, Comp
     {
         [ReadOnly] public ComponentTypeHandle<T> genericType;
         [ReadOnly] public EntityTypeHandle entityTypeHandle;
-        [ReadOnly] public IComponentEvent<T> eventTask;
+        [ReadOnly] public IComponentChangedEvent<T> eventTask;
 
         public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
         {
@@ -64,14 +63,13 @@ public abstract class ComponentEventSystem<T> : ComponentEventSystemBase<T, Comp
 
 }
 
-public abstract class BufferEventSystem<T> : ComponentEventSystemBase<T, BufferEventSystem<T>.GenericComponentEvent> where T : unmanaged, IBufferElementData
+public abstract class BufferEventSystem<T> : ComponentEventSystemBase<T, BufferEventSystem<T>.GenericComponentEvent> where T : unmanaged, IBufferElementData, IBufferFlag
 {
     public struct GenericComponentEvent : IJobChunk
     {
         [ReadOnly] public BufferTypeHandle<T> genericType;
         [ReadOnly] public EntityTypeHandle entityTypeHandle;
-        [ReadOnly] public IComponentEvent<T> eventTask;
-
+        [ReadOnly] public IComponentChangedEvent<T> changedEventTask;
         public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex)
         {
             BufferAccessor<T> generics = chunk.GetBufferAccessor(genericType);
@@ -79,7 +77,17 @@ public abstract class BufferEventSystem<T> : ComponentEventSystemBase<T, BufferE
             for (int i = 0; i < generics.Length; i++)
             {
                 for (int x = 0; x < generics[i].Length; x++)
-                    eventTask.OnComponentChanged(generics[i][x], entities[i]);
+                {
+                    var generic = generics[i][x];
+                    var buffer = generics[i];
+                    changedEventTask.OnComponentChanged(generic, entities[i]);
+                    if (generic.BufferFlag == IBufferFlag.Flag.Added)
+                    {
+                        changedEventTask.OnComponentAdded(generic, entities[i]);
+                        generic.BufferFlag = IBufferFlag.Flag.None;
+                        buffer[x] = generic;
+                    }
+                }
             }
         }
     }
@@ -88,9 +96,9 @@ public abstract class BufferEventSystem<T> : ComponentEventSystemBase<T, BufferE
     {
         GenericComponentEvent job = new GenericComponentEvent
         {
-            genericType = GetBufferTypeHandle<T>(true),
+            genericType = GetBufferTypeHandle<T>(false),
             entityTypeHandle = GetEntityTypeHandle(),
-            eventTask = componentChangedEvent,
+            changedEventTask = componentChangedEvent,
         };
         return job;
     }

@@ -42,11 +42,6 @@ MonoBehaviour:
     RefIds:
     - rid: 5362458284462964772
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
     - rid: 5362458284462964773
       type: {class: TargetSelectionComponent, ns: , asm: Assembly-CSharp}
     - rid: 5362458284462964774
@@ -69,14 +64,15 @@ MonoBehaviour:
     - rid: 5362458284462964778
       type: {class: DeckComponent, ns: , asm: Assembly-CSharp}
       data:
-        _maxCount: 5
+        _maxCount: 30
         _debugList: 1
         _entities:
+        - {fileID: 11400000, guid: 3bb2bc3d31c63ba4d90beb7f4d6adaec, type: 2}
         - {fileID: 11400000, guid: 30be4572ac5873e449b70d7c82a1e102, type: 2}
         - {fileID: 11400000, guid: 30be4572ac5873e449b70d7c82a1e102, type: 2}
         - {fileID: 11400000, guid: 30be4572ac5873e449b70d7c82a1e102, type: 2}
         - {fileID: 11400000, guid: 30be4572ac5873e449b70d7c82a1e102, type: 2}
-        - {fileID: 11400000, guid: 30be4572ac5873e449b70d7c82a1e102, type: 2}
+        - {fileID: 11400000, guid: 3bb2bc3d31c63ba4d90beb7f4d6adaec, type: 2}
     - rid: 5362458284462964779
       type: {class: HandComponent, ns: , asm: Assembly-CSharp}
       data:

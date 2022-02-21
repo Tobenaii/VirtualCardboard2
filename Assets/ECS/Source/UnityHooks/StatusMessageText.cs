@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public class StatusMessageText : MonoBehaviour, IComponentListener<IPerformActions>
+public class StatusMessageText : MonoBehaviour, IComponentChangedListener<IPerformActions>
 {
     [SerializeField] private ComponentEvent<IPerformActions> _statusEvent;
     [SerializeField] private TMPro.TextMeshProUGUI _text;

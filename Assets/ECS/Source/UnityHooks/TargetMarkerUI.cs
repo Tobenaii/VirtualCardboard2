@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public class TargetMarkerUI : MonoBehaviour, IComponentListener<ITargetMarker>
+public class TargetMarkerUI : MonoBehaviour, IComponentChangedListener<ITargetMarker>
 {
     [SerializeField] private ComponentEvent<ITargetMarker> _event;
     [SerializeField] private EntityRef _target;
@@ -20,7 +20,7 @@ public class TargetMarkerUI : MonoBehaviour, IComponentListener<ITargetMarker>
     private void Start()
     {
         _camera = Camera.main.transform;
-        _event.Register(_target.Entity, this);
+        _event.RegisterChanged(_target.Entity, this);
     }
 
     private void Update()

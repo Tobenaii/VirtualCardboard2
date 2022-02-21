@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public class NotificationRollInOut : MonoBehaviour, IComponentListener<INotification>
+public class NotificationRollInOut : MonoBehaviour, IComponentChangedListener<INotification>
 {
     //TODO: Change this to a notification interface
     [SerializeField] private ComponentEvent<INotification> _statusEvent;

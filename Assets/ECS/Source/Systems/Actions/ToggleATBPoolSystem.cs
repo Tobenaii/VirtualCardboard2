@@ -17,9 +17,9 @@ public class ToggleATBPoolSystem : SystemBase
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
         Entities.ForEach((int entityInQueryIndex, in ToggleATBPool toggle, in Target target) =>
         {
-            var atbPool = GetComponentDataFromEntity<ATBPool>(true)[target.TargetEntity];
+            var atbPool = GetComponentDataFromEntity<ATBPool>(true)[target.Dealer];
             atbPool.Enabled = toggle.Enable;
-            ecb.SetComponent(entityInQueryIndex, target.TargetEntity, atbPool);
+            ecb.SetComponent(entityInQueryIndex, target.Dealer, atbPool);
         }).ScheduleParallel();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }

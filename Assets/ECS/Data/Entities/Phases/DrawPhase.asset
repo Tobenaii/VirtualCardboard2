@@ -38,6 +38,11 @@ MonoBehaviour:
     - rid: 5362458288434184207
       type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
+        _dealer: 1
+        _entity:
+          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
+            type: 2}
+          _key: 0
         _actions:
         - _archetype: {fileID: 11400000, guid: fd6cb4add68f75642a23955ac2a09fbd, type: 2}
           _components:
@@ -53,12 +58,6 @@ MonoBehaviour:
               rid: 5362458288434184211
     - rid: 5362458288434184210
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 1
-        _target:
-          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
-            type: 2}
-          _key: 0
     - rid: 5362458288434184211
       type: {class: DrawCardsComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -69,9 +68,3 @@ MonoBehaviour:
         _enable: 1
     - rid: 5362458290326863875
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 1
-        _target:
-          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
-            type: 2}
-          _key: 0

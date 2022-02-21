@@ -6,7 +6,7 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-public interface IElementData : IBufferElementData
+public interface IElementData
 {
     public ElementType Type { get; set; }
     public int Count { get; set; }
@@ -16,11 +16,12 @@ public enum ElementType { Fire, Ice, Wind, Lightning, Water, Earth, Dark, Light,
 
 
 [InternalBufferCapacity(10)] [System.Serializable]
-public struct Element : IElementData
+public struct Element : IElementData, IBufferElementData, IBufferFlag
 {
     public ElementType Type { get; set; }
     public int Count { get; set; }
     public FixedString32 Name { get; set; }
+    public IBufferFlag.Flag BufferFlag { get; set; }
 }
 
 public class ElementComponent : BufferComponentAuthoring<Element>

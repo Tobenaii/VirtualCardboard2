@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContainerText : MonoBehaviour, IComponentListener<ICollectionContainer>
+public class ContainerText : MonoBehaviour, IComponentChangedListener<ICollectionContainer>
 {
     [SerializeField] private ComponentEvent<ICollectionContainer> _containerEvent;
     [SerializeField] private EntityRef _target;
@@ -18,6 +18,6 @@ public class ContainerText : MonoBehaviour, IComponentListener<ICollectionContai
 
     private void Start()
     {
-        _containerEvent.Register(_target.Entity, this);
+        _containerEvent.RegisterChanged(_target.Entity, this);
     }
 }
