@@ -21,6 +21,8 @@ MonoBehaviour:
         rid: 5362458279391526933
     - _component:
         rid: 5362458279391526934
+    - _component:
+        rid: 5362458352093233165
   references:
     version: 2
     RefIds:
@@ -36,3 +38,7 @@ MonoBehaviour:
       data:
         _position: {x: 0, y: 1.5, z: 0.75}
         _scale: {x: 0.25, y: 0.25, z: 0.25}
+    - rid: 5362458352093233165
+      type: {class: StatusEffectsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _group: {fileID: 11400000, guid: b2cf7416da088264b8bc3cd457cabb8e, type: 2}

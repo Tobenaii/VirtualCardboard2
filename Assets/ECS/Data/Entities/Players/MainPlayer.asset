@@ -37,6 +37,8 @@ MonoBehaviour:
         rid: 5362458300426223636
     - _component:
         rid: 5362458300426223616
+    - _component:
+        rid: 5362458352093233167
   references:
     version: 2
     RefIds:
@@ -91,3 +93,7 @@ MonoBehaviour:
         - {fileID: 6661411193986489966, guid: 0cf780832d896144e970b8a0962d14c7, type: 2}
         - {fileID: -1977672439803392578, guid: 0cf780832d896144e970b8a0962d14c7, type: 2}
         - {fileID: -7866630314811043484, guid: 0cf780832d896144e970b8a0962d14c7, type: 2}
+    - rid: 5362458352093233167
+      type: {class: StatusEffectsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _group: {fileID: 11400000, guid: b2cf7416da088264b8bc3cd457cabb8e, type: 2}

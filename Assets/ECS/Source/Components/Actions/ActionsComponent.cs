@@ -10,7 +10,9 @@ using UnityEngine.Serialization;
 public interface IPerformActions
 {
     public enum StatusType { Success, Failed }
-    public enum FailureType { NotEnough }
+    public enum FailureType { NotEnough,
+        NotFound
+    }
     public FixedString128 Message { get; set; }
     public StatusType Status { get; set; }
     public FailureType Failure { get; set; }
@@ -32,17 +34,11 @@ public struct Action : IBufferElementData
 
 public class ActionsComponent : BufferComponentAuthoring<Action>
 {
-    [SerializeField] private bool _dealer;
-    [ShowIf("@_dealer")]
-    [SerializeField] private EntityRef _entity;
     [SerializeField] private List<ArchetypeAuthoring> _actions;
 
     public override void AuthorDependencies(Entity entity, EntityManager dstManager)
     {
-        if (_dealer)
-            dstManager.AddComponentData<PerformActions>(entity, new PerformActions() { Dealer = _entity.Entity });
-        else
-            dstManager.AddComponent<PerformActions>(entity);
+        dstManager.AddComponent<PerformActions>(entity);
     }
 
     protected override NativeArray<Action> AuthorComponent(World world)

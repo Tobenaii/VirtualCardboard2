@@ -10,6 +10,6 @@ public struct ElementRequirement : IElementData, IBufferElementData
     public int Count { get; set; }
 }
 
-public class ElementRequirementComponent : ElementSelectionComponent<ElementRequirement>
+public class ElementRequirementComponent : ElementSelectionComponent<ElementRequirement, ElementData>
 {
 }

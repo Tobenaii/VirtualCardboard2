@@ -10,6 +10,6 @@ public struct ReceiveElement : IElementData, IBufferElementData
 }
 
 
-public class ReceiveElementComponent : ElementSelectionComponent<ReceiveElement>
+public class ReceiveElementComponent : ElementSelectionComponent<ReceiveElement, ElementData>
 {
 }

@@ -44,7 +44,7 @@ MonoBehaviour:
           - _component:
               rid: 5362458352093233152
           - _component:
-              rid: 5362458333766221825
+              rid: 5362458352093233153
         - _archetype: {fileID: 11400000, guid: 1e172d54df46f1f48a7cb55ef642f1e9, type: 2}
           _components:
           - _component:
@@ -57,6 +57,12 @@ MonoBehaviour:
               rid: 5362458300426223625
           - _component:
               rid: 5362458300426223626
+        - _archetype: {fileID: 11400000, guid: 56001e67c1c7ad44ba161da29e58776b, type: 2}
+          _components:
+          - _component:
+              rid: 5362458352093233159
+          - _component:
+              rid: 5362458352093233160
     - rid: 5362458290161451010
       type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -83,9 +89,22 @@ MonoBehaviour:
         - Type: {fileID: -1977672439803392578, guid: 0cf780832d896144e970b8a0962d14c7,
             type: 2}
           Amount: 1
-    - rid: 5362458333766221825
-      type: {class: ApplyElementalDamageBuffComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _buff: 0
     - rid: 5362458352093233152
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458352093233153
+      type: {class: ApplyStatusEffectComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _effect: {fileID: -2929838154084336839, guid: b2cf7416da088264b8bc3cd457cabb8e,
+          type: 2}
+    - rid: 5362458352093233159
+      type: {class: StatusEffectRequirementComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _type: {fileID: 0}
+    - rid: 5362458352093233160
+      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _dealer: 0
+        _entity:
+          _entityList: {fileID: 0}
+          _key: 0
+        _actions: []

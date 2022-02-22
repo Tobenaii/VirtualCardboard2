@@ -9,6 +9,6 @@ public struct ConsumeElement : IElementData, IBufferElementData
     public int Count { get; set; }
 }
 
-public class ConsumeElementComponent : ElementSelectionComponent<ConsumeElement>
+public class ConsumeElementComponent : ElementSelectionComponent<ConsumeElement, ElementData>
 {
 }

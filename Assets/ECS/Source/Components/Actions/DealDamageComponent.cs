@@ -14,7 +14,7 @@ public class DealDamageComponent : ComponentAuthoring<DealDamage>
     [System.Serializable]
     private struct DamageBuff
     {
-        public ElementalDamageBuff Buff;
+        [HideLabel]
         public int Amount;
     }
     [SerializeField] private int _amount;

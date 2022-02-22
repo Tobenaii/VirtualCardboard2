@@ -37,16 +37,13 @@ MonoBehaviour:
       rid: 5362458300426223635
   - _component:
       rid: 5362458290326863878
+  - _component:
+      rid: 5362458352093233166
   references:
     version: 2
     RefIds:
     - rid: 5362458267926921226
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
     - rid: 5362458267926921227
       type: {class: TargetSelectionComponent, ns: , asm: Assembly-CSharp}
     - rid: 5362458267926921228
@@ -69,22 +66,25 @@ MonoBehaviour:
     - rid: 5362458267926921232
       type: {class: DeckComponent, ns: , asm: Assembly-CSharp}
       data:
-        _maxCount: 0
         _debugList: 0
         _entities: []
     - rid: 5362458267926921233
       type: {class: HandComponent, ns: , asm: Assembly-CSharp}
       data:
-        _maxCount: 0
         _debugList: 0
         _entities: []
     - rid: 5362458267926921234
       type: {class: ElementComponent, ns: , asm: Assembly-CSharp}
       data:
+        _group: {fileID: 0}
         _elements: []
     - rid: 5362458290326863878
       type: {class: DamageComponent, ns: , asm: Assembly-CSharp}
     - rid: 5362458300426223635
       type: {class: ElementWheelComponent, ns: , asm: Assembly-CSharp}
       data:
-        _elements: 
+        _elements: []
+    - rid: 5362458352093233166
+      type: {class: StatusEffectsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _group: {fileID: 0}

@@ -58,13 +58,13 @@ public class ElementComponent : BufferComponentAuthoring<Element>
     }
 }
 
-public abstract class ElementSelectionComponent<T> : BufferComponentAuthoring<T> where T : unmanaged, IBufferElementData, IElementData
+public abstract class ElementSelectionComponent<T, V> : BufferComponentAuthoring<T> where T : unmanaged, IBufferElementData, IElementData where V : DataGroupElement
 {
     [System.Serializable]
     private struct Authoring
     {
         [HideLabel]
-        public ElementData Type;
+        public V Type;
         [HideLabel]
         public int Amount;
     }
