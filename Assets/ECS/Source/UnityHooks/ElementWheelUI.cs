@@ -6,17 +6,9 @@ using UnityEngine.UI;
 
 public class ElementWheelUI : MonoBehaviour, IComponentChangedListener<IElementWheel>
 {
-    [System.Serializable]
-    private struct ElementColour
-    {
-        public ElementType element;
-        public Color color;
-    }
-
     private class Element
     {
-        public ElementType element;
-        public Color color;
+        public ElementData element;
         public Image image;
         public int index;
         public float target;
@@ -28,13 +20,12 @@ public class ElementWheelUI : MonoBehaviour, IComponentChangedListener<IElementW
         }
     }
 
+    [SerializeField] private ElementDataGroup _elements;
     [SerializeField] private float _smoothTime;
     [SerializeField] private ComponentEvent<IElementWheel> _event;
     [SerializeField] private List<Image> _images;
-    [SerializeField] private List<ElementColour> _colours;
 
-    private Dictionary<ElementType, Color> _colourMap = new Dictionary<ElementType, Color>();
-    private Dictionary<ElementType, Element> _elementMap = new Dictionary<ElementType, Element>();
+    private Dictionary<int, Element> _elementMap = new Dictionary<int, Element>();
     private Stack<Image> _elementImagePool = new Stack<Image>();
 
 
@@ -42,9 +33,6 @@ public class ElementWheelUI : MonoBehaviour, IComponentChangedListener<IElementW
     {
         foreach (var element in _images)
             _elementImagePool.Push(element);
-
-        foreach (var colour in _colours)
-            _colourMap.Add(colour.element, colour.color);
     }
 
     private void Start()
@@ -64,7 +52,7 @@ public class ElementWheelUI : MonoBehaviour, IComponentChangedListener<IElementW
     {
         if (!_elementMap.ContainsKey(value.Type))
         {
-            _elementMap.Add(value.Type, new Element() { color = _colourMap[value.Type], element = value.Type, image = _elementImagePool.Pop(), index = _elementMap.Count });
+            _elementMap.Add(value.Type, new Element() { element = _elements[value.Type], image = _elementImagePool.Pop(), index = _elementMap.Count });
         }
         var element = _elementMap[value.Type];
         float start = 0;
@@ -73,6 +61,6 @@ public class ElementWheelUI : MonoBehaviour, IComponentChangedListener<IElementW
             start += _elementMap.Values.ElementAt(i).target;
         }
         element.target = start + value.Percentage / 100.0f;
-        element.image.color = element.color;
+        element.image.color = element.element.Color;
     }
 }

@@ -6,20 +6,20 @@ using UnityEngine;
 
 public interface IElementWheel
 {
-    public ElementType Type { get; set; }
+    public int Type { get; set; }
     public float Percentage { get; set; }
 }
 
 public struct ElementWheel : IElementWheel, IBufferElementData, IBufferFlag
 {
-    public ElementType Type { get; set; }
+    public int Type { get; set; }
     public float Percentage { get; set; }
     public IBufferFlag.Flag BufferFlag { get; set; }
 }
 
 public class ElementWheelComponent : BufferComponentAuthoring<ElementWheel>
 {
-    [SerializeField] private List<ElementType> _elements;
+    [SerializeField] private List<ElementData> _elements;
     protected override NativeArray<ElementWheel> AuthorComponent(World world)
     {
         var array = new NativeArray<ElementWheel>(_elements.Count, Allocator.Temp);
@@ -27,7 +27,7 @@ public class ElementWheelComponent : BufferComponentAuthoring<ElementWheel>
         int index = 0;
         foreach (var element in _elements)
         {
-            array[index] = new ElementWheel() { Type = element, Percentage = 100.0f / _elements.Count };
+            array[index] = new ElementWheel() { Type = element.Index, Percentage = 100.0f / _elements.Count };
             index++;
         }
         return array;

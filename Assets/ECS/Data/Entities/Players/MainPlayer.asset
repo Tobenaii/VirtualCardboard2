@@ -64,7 +64,6 @@ MonoBehaviour:
     - rid: 5362458284462964778
       type: {class: DeckComponent, ns: , asm: Assembly-CSharp}
       data:
-        _maxCount: 30
         _debugList: 1
         _entities:
         - {fileID: 11400000, guid: 3bb2bc3d31c63ba4d90beb7f4d6adaec, type: 2}
@@ -76,16 +75,19 @@ MonoBehaviour:
     - rid: 5362458284462964779
       type: {class: HandComponent, ns: , asm: Assembly-CSharp}
       data:
-        _maxCount: 5
         _debugList: 0
         _entities: []
     - rid: 5362458284462964780
       type: {class: ElementComponent, ns: , asm: Assembly-CSharp}
       data:
+        _group: {fileID: 11400000, guid: 0cf780832d896144e970b8a0962d14c7, type: 2}
         _elements: []
     - rid: 5362458300426223616
       type: {class: DamageComponent, ns: , asm: Assembly-CSharp}
     - rid: 5362458300426223636
       type: {class: ElementWheelComponent, ns: , asm: Assembly-CSharp}
       data:
-        _elements: 050000000200000000000000
+        _elements:
+        - {fileID: 6661411193986489966, guid: 0cf780832d896144e970b8a0962d14c7, type: 2}
+        - {fileID: -1977672439803392578, guid: 0cf780832d896144e970b8a0962d14c7, type: 2}
+        - {fileID: -7866630314811043484, guid: 0cf780832d896144e970b8a0962d14c7, type: 2}

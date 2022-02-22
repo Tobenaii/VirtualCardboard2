@@ -6,7 +6,7 @@ using UnityEngine;
 
 public struct ElementRequirement : IElementData, IBufferElementData
 {
-    public ElementType Type { get; set; }
+    public int Type { get; set; }
     public int Count { get; set; }
 }
 

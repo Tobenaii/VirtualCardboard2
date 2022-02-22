@@ -1245,33 +1245,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e79c27c14e68540b35b7566a41204e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elements: {fileID: 11400000, guid: 0cf780832d896144e970b8a0962d14c7, type: 2}
   _smoothTime: 0.25
   _event: {fileID: 11400000, guid: a5bebacc69a406048be38fd1c0d048f8, type: 2}
   _images:
   - {fileID: 429793827}
   - {fileID: 2123840967}
   - {fileID: 1246986959}
-  _colours:
-  - element: 0
-    color: {r: 1, g: 0.6156863, b: 0.33333334, a: 1}
-  - element: 1
-    color: {r: 0.45098042, g: 0.8117648, b: 0.7490196, a: 1}
-  - element: 2
-    color: {r: 0.56078434, g: 0.6627451, b: 0.8705883, a: 1}
-  - element: 3
-    color: {r: 0.9568628, g: 0.82745105, b: 0.23529413, a: 1}
-  - element: 4
-    color: {r: 0.3019608, g: 0.5686275, b: 0.83921576, a: 1}
-  - element: 5
-    color: {r: 0.77647066, g: 0.7176471, b: 0.54901963, a: 1}
-  - element: 6
-    color: {r: 0.3529412, g: 0.32941177, b: 0.39607847, a: 1}
-  - element: 7
-    color: {r: 0.92549026, g: 0.56078434, b: 0.9058824, a: 1}
-  - element: 8
-    color: {r: 0.9803922, g: 0.4431373, b: 0.46274513, a: 1}
-  - element: 9
-    color: {r: 0.3529412, g: 0.5568628, b: 0.64705884, a: 1}
 --- !u!1 &309739978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,7 +1452,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7770382, y: 1}
+    m_SensorSize: {x: 2.0050302, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1783,7 +1763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConversionMode: 1
+  ConversionMode: 0
 --- !u!1 &429793825
 GameObject:
   m_ObjectHideFlags: 0
@@ -5454,7 +5434,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413355603}
-  m_LocalRotation: {x: 0.004748497, y: 0.9444558, z: 0.013659666, w: -0.3283203}
+  m_LocalRotation: {x: 0.0047449805, y: 0.94454014, z: 0.013660876, w: -0.32807738}
   m_LocalPosition: {x: 0.030000001, y: 1.28, z: -7.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5988,7 +5968,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7770382, y: 1}
+    m_SensorSize: {x: 2.0050302, y: 1}
   m_Transitions:
     m_BlendHint: 1
     m_InheritPosition: 0
@@ -6004,7 +5984,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540971542}
-  m_LocalRotation: {x: 0.004748497, y: 0.9444558, z: 0.013659666, w: -0.3283203}
+  m_LocalRotation: {x: 0.0047449805, y: 0.94454014, z: 0.013660876, w: -0.32807738}
   m_LocalPosition: {x: 0.030000001, y: 1.28, z: -7.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8693,37 +8673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01f6577099d9fb43b712779fc2e73c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementIcons:
-  - <ElementType>k__BackingField: 0
-    <ElementIcon>k__BackingField: {fileID: 21300000, guid: baae7fe8b80e6bf45aca2d483868802a,
-      type: 3}
-  - <ElementType>k__BackingField: 1
-    <ElementIcon>k__BackingField: {fileID: 21300000, guid: bab9bea39c9392f49be812a1da124a94,
-      type: 3}
-  - <ElementType>k__BackingField: 2
-    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 059778036b8fef040bcee665e37553c3,
-      type: 3}
-  - <ElementType>k__BackingField: 3
-    <ElementIcon>k__BackingField: {fileID: 21300000, guid: bf527b859655e60449fdc0ec6c386939,
-      type: 3}
-  - <ElementType>k__BackingField: 4
-    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 5741ca48a03733e42b338fedf14a90e3,
-      type: 3}
-  - <ElementType>k__BackingField: 5
-    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 3524614b68a2c624ba3ed6e9cc60604f,
-      type: 3}
-  - <ElementType>k__BackingField: 6
-    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 22521e64532e1af42982e52eb0d9e141,
-      type: 3}
-  - <ElementType>k__BackingField: 7
-    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 3da5b0550e3eaad4c934721103faeaa5,
-      type: 3}
-  - <ElementType>k__BackingField: 8
-    <ElementIcon>k__BackingField: {fileID: 21300000, guid: 97a3d93222237e94fb5f4ae0fb7acda4,
-      type: 3}
-  - <ElementType>k__BackingField: 9
-    <ElementIcon>k__BackingField: {fileID: 21300000, guid: f3aff0dfb0e18cf439facae71990e68f,
-      type: 3}
+  _elementData: {fileID: 11400000, guid: 0cf780832d896144e970b8a0962d14c7, type: 2}
   _resourceHolder: {fileID: 519158478}
   _group: {fileID: 413807460}
   _event: {fileID: 11400000, guid: 7b17c1f21c8fcfe4a94ee7b3f883f864, type: 2}

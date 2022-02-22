@@ -34,6 +34,10 @@ MonoBehaviour:
     - rid: 5362458290161451008
       type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
+        _dealer: 0
+        _entity:
+          _entityList: {fileID: 0}
+          _key: 0
         _actions:
         - _archetype: {fileID: 11400000, guid: 62adb2bace5d16048a9ed4514dfcdbb5, type: 2}
           _components:
@@ -61,40 +65,28 @@ MonoBehaviour:
       type: {class: DealDamageComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 7
+        _buffs: []
     - rid: 5362458290326863877
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
     - rid: 5362458300426223618
       type: {class: ElementRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
         _elements:
-        - Type: 0
+        - Type: {fileID: -1977672439803392578, guid: 0cf780832d896144e970b8a0962d14c7,
+            type: 2}
           Amount: 1
     - rid: 5362458300426223621
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
     - rid: 5362458300426223622
       type: {class: ConsumeATBComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 1
     - rid: 5362458300426223625
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
     - rid: 5362458300426223626
       type: {class: ConsumeElementComponent, ns: , asm: Assembly-CSharp}
       data:
         _elements:
-        - Type: 0
+        - Type: {fileID: -1977672439803392578, guid: 0cf780832d896144e970b8a0962d14c7,
+            type: 2}
           Amount: 1

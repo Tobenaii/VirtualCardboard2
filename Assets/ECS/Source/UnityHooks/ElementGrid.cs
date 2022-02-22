@@ -6,28 +6,19 @@ using UnityEngine.UI;
 
 public class ElementGrid : MonoBehaviour, IComponentChangedListener<IElementData>
 {
-    [System.Serializable]
-    private class ElementData
-    {
-        [field: SerializeField] public ElementType ElementType { get; private set; }
-        [field: SerializeField] public Sprite ElementIcon { get; private set; }
-    }
-
-    [SerializeField] private List<ElementData> elementIcons = new List<ElementData>();
+    [SerializeField] private ElementDataGroup _elementData;
     [SerializeField] private Transform _resourceHolder;
     [SerializeField] private Transform _group;
     [SerializeField] private ElementEvent _event;
     [SerializeField] private EntityRef _entity;
 
-    private Dictionary<ElementType, Sprite> _sprites = new Dictionary<ElementType, Sprite>();
-    private Dictionary<ElementType, Transform> _groupMap = new Dictionary<ElementType, Transform>();
+    private Dictionary<int, Transform> _groupMap = new Dictionary<int, Transform>();
 
     private void Awake()
     {
-        foreach (var element in elementIcons)
+        foreach (var element in _elementData)
         {
-            _sprites.Add(element.ElementType, element.ElementIcon);
-            _groupMap.Add(element.ElementType, Instantiate(_group, _resourceHolder));
+            _groupMap.Add(element.Index, Instantiate(_group, _resourceHolder));
         }
         Destroy(_group.gameObject);
     }
@@ -44,7 +35,7 @@ public class ElementGrid : MonoBehaviour, IComponentChangedListener<IElementData
         {
             group.GetChild(i).gameObject.SetActive(true);
             //TODO: Cache the images;
-            group.GetChild(i).GetComponent<Image>().sprite = _sprites[value.Type];
+            group.GetChild(i).GetComponent<Image>().sprite = _elementData[value.Type].Icon;
         }
 
         for (int i = value.Count; i < group.childCount; i++)
