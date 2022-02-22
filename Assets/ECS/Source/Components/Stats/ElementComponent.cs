@@ -52,7 +52,7 @@ public class ElementComponent : BufferComponentAuthoring<Element>
                 index++;
             }
             else
-                array[i] = new Element() { Type = i };
+                array[i] = new Element() { Type = i, Name = _group[i].Name };
         }
         return array;
     }
