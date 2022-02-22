@@ -7,6 +7,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+[InlineEditor]
 public abstract class DataGroupElement : ScriptableObject
 {
     public int Index { get; private set; }

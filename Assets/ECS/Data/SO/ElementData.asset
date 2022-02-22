@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Dark
   _icon: {fileID: 21300000, guid: 22521e64532e1af42982e52eb0d9e141, type: 3}
-  _color: {r: 0.3529412, g: 0.32941177, b: 0.39607847, a: 0}
+  _color: {r: 0.3529412, g: 0.32941177, b: 0.39607847, a: 1}
 --- !u!114 &-6679252056145103304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Wind
   _icon: {fileID: 21300000, guid: 059778036b8fef040bcee665e37553c3, type: 3}
-  _color: {r: 0.56078434, g: 0.6627451, b: 0.8705883, a: 0}
+  _color: {r: 0.56078434, g: 0.6627451, b: 0.8705883, a: 1}
 --- !u!114 &-6087019332549561524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Ice
   _icon: {fileID: 21300000, guid: bab9bea39c9392f49be812a1da124a94, type: 3}
-  _color: {r: 0.45098042, g: 0.8117648, b: 0.75294125, a: 0}
+  _color: {r: 0.45098042, g: 0.8117648, b: 0.75294125, a: 1}
 --- !u!114 &-1977672439803392578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Fire
   _icon: {fileID: 21300000, guid: baae7fe8b80e6bf45aca2d483868802a, type: 3}
-  _color: {r: 0.9960785, g: 0.6156863, b: 0.33333334, a: 0}
+  _color: {r: 0.9960785, g: 0.6156863, b: 0.33333334, a: 1}
 --- !u!114 &-182971923841916675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Water
   _icon: {fileID: 21300000, guid: 5741ca48a03733e42b338fedf14a90e3, type: 3}
-  _color: {r: 0.3019608, g: 0.5686275, b: 0.83921576, a: 0}
+  _color: {r: 0.3019608, g: 0.5686275, b: 0.83921576, a: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Prismatic
   _icon: {fileID: 21300000, guid: f3aff0dfb0e18cf439facae71990e68f, type: 3}
-  _color: {r: 0.34901962, g: 0.5568628, b: 0.63529414, a: 0}
+  _color: {r: 0.34901962, g: 0.5568628, b: 0.63529414, a: 1}
 --- !u!114 &1655633212817866156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Light
   _icon: {fileID: 21300000, guid: 3da5b0550e3eaad4c934721103faeaa5, type: 3}
-  _color: {r: 0.92549026, g: 0.56078434, b: 0.9058824, a: 0}
+  _color: {r: 0.92549026, g: 0.56078434, b: 0.9058824, a: 1}
 --- !u!114 &6661411193986489966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Earth
   _icon: {fileID: 21300000, guid: 3524614b68a2c624ba3ed6e9cc60604f, type: 3}
-  _color: {r: 0.77647066, g: 0.7176471, b: 0.54901963, a: 0}
+  _color: {r: 0.77647066, g: 0.7176471, b: 0.54901963, a: 1}
 --- !u!114 &8129250651295438599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Lightning
   _icon: {fileID: 21300000, guid: bf527b859655e60449fdc0ec6c386939, type: 3}
-  _color: {r: 0.9568628, g: 0.82745105, b: 0.23529413, a: 0}
+  _color: {r: 0.9568628, g: 0.82745105, b: 0.23529413, a: 1}
 --- !u!114 &8597339091419342560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,4 +181,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Life
   _icon: {fileID: 21300000, guid: 97a3d93222237e94fb5f4ae0fb7acda4, type: 3}
-  _color: {r: 0.9725491, g: 0.4431373, b: 0.454902, a: 0}
+  _color: {r: 0.9725491, g: 0.4431373, b: 0.454902, a: 1}
