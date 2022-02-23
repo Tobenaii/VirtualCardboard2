@@ -17,13 +17,13 @@ MonoBehaviour:
   - _component:
       rid: 5362458333766221826
   - _component:
-      rid: 5362458333766221824
+      rid: 5362458379326062592
   references:
     version: 2
     RefIds:
-    - rid: 5362458333766221824
-      type: {class: ApplyElementalDamageBuffComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _buff: 0
     - rid: 5362458333766221826
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458379326062592
+      type: {class: ApplyStatusEffectComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _effect: {fileID: 0}

@@ -22,7 +22,7 @@ public class ApplyStatusEffectSystem : SystemBase
             status.Active = true;
             buffer[effect.Type] = status;
 
-        }).ScheduleParallel();
+        }).Schedule();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }
 }

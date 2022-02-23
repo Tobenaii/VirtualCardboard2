@@ -29,22 +29,18 @@ MonoBehaviour:
     - rid: 5362458279391526919
       type: {class: CardDataComponent, ns: , asm: Assembly-CSharp}
       data:
-        _name: Sear
-        _description: Deal 7
+        _name: Burn
+        _description: Do the burning
     - rid: 5362458290161451008
       type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
-        _dealer: 0
-        _entity:
-          _entityList: {fileID: 0}
-          _key: 0
         _actions:
         - _archetype: {fileID: 11400000, guid: 080007ed169cfe847829827aa8845681, type: 2}
           _components:
           - _component:
               rid: 5362458352093233152
           - _component:
-              rid: 5362458352093233153
+              rid: 5362458379326062593
         - _archetype: {fileID: 11400000, guid: 1e172d54df46f1f48a7cb55ef642f1e9, type: 2}
           _components:
           - _component:
@@ -57,12 +53,6 @@ MonoBehaviour:
               rid: 5362458300426223625
           - _component:
               rid: 5362458300426223626
-        - _archetype: {fileID: 11400000, guid: 56001e67c1c7ad44ba161da29e58776b, type: 2}
-          _components:
-          - _component:
-              rid: 5362458352093233159
-          - _component:
-              rid: 5362458352093233160
     - rid: 5362458290161451010
       type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -91,20 +81,8 @@ MonoBehaviour:
           Amount: 1
     - rid: 5362458352093233152
       type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-    - rid: 5362458352093233153
+    - rid: 5362458379326062593
       type: {class: ApplyStatusEffectComponent, ns: , asm: Assembly-CSharp}
       data:
         _effect: {fileID: -2929838154084336839, guid: b2cf7416da088264b8bc3cd457cabb8e,
           type: 2}
-    - rid: 5362458352093233159
-      type: {class: StatusEffectRequirementComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _type: {fileID: 0}
-    - rid: 5362458352093233160
-      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _dealer: 0
-        _entity:
-          _entityList: {fileID: 0}
-          _key: 0
-        _actions: []

@@ -149,6 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1845181479369028426}
+  - component: {fileID: 657592159}
   m_Layer: 5
   m_Name: StatusBar
   m_TagString: Untagged
@@ -178,6 +179,18 @@ RectTransform:
   m_AnchoredPosition: {x: -452, y: -165.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &657592159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845181479369028429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3f0b8320984a84d9c53bebc8b4e496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7270388031394788778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -295,7 +308,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5587301356920629526, guid: 6f1c48f4e6ec716409ff4bce2b44e149, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6f1c48f4e6ec716409ff4bce2b44e149, type: 3}
 --- !u!224 &1845181477947402707 stripped
 RectTransform:

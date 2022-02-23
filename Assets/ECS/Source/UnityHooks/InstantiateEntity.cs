@@ -27,6 +27,6 @@ public class InstantiateEntity : MonoBehaviour, IPointerClickHandler
     {
         var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
         var entity = manager.Instantiate(_entity.GetPrefab(manager));
-        manager.SetComponentData(entity, new PerformActions() { Dealer = _dealer.Entity });
+        manager.AddComponentData(entity, new PerformActions() { Dealer = _dealer.Entity });
     }
 }
