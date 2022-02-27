@@ -15,19 +15,10 @@ MonoBehaviour:
   _entities: []
   _components:
   - _component:
-      rid: 5362458300426223623
-  - _component:
       rid: 5362458300426223624
   references:
     version: 2
     RefIds:
-    - rid: 5362458300426223623
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
     - rid: 5362458300426223624
       type: {class: ConsumeElementComponent, ns: , asm: Assembly-CSharp}
       data:

@@ -46,6 +46,8 @@ public class ActionsComponent : BufferComponentAuthoring<Action>
         var array = new NativeArray<Action>(_actions.Count, Allocator.Temp);
         for (int i = 0; i < _actions.Count; i++)
         {
+            var actionEntity = _actions[i].GetPrefab(world.EntityManager);
+            world.EntityManager.AddComponent<Target>(actionEntity);
             array[i] = new Action() { Entity = _actions[i].GetPrefab(world.EntityManager) };
         }
         return array;

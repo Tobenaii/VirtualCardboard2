@@ -16,8 +16,6 @@ MonoBehaviour:
   _components:
   - _component:
       rid: 5362458352093233155
-  - _component:
-      rid: 5362458352093233156
   references:
     version: 2
     RefIds:
@@ -25,11 +23,4 @@ MonoBehaviour:
       type: {class: StatusEffectRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
         _type: {fileID: 0}
-    - rid: 5362458352093233156
-      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _dealer: 0
-        _entity:
-          _entityList: {fileID: 0}
-          _key: 0
-        _actions: []
+        _checkOn: 0

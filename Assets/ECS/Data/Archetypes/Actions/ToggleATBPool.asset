@@ -16,8 +16,6 @@ MonoBehaviour:
   _components:
   - _component:
       rid: 5362458290326863872
-  - _component:
-      rid: 5362458290326863874
   references:
     version: 2
     RefIds:
@@ -25,10 +23,3 @@ MonoBehaviour:
       type: {class: ToggleATBPoolComponent, ns: , asm: Assembly-CSharp}
       data:
         _enable: 0
-    - rid: 5362458290326863874
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0

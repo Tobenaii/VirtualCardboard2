@@ -16,17 +16,8 @@ MonoBehaviour:
   _components:
   - _component:
       rid: 5362458300426223640
-  - _component:
-      rid: 5362458300426223639
   references:
     version: 2
     RefIds:
-    - rid: 5362458300426223639
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
     - rid: 5362458300426223640
       type: {class: ReceiveElementFromWheelComponent, ns: , asm: Assembly-CSharp}

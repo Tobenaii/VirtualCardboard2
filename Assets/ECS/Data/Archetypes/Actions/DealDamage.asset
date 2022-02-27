@@ -15,8 +15,6 @@ MonoBehaviour:
   _entities: []
   _components:
   - _component:
-      rid: 5362458290326863876
-  - _component:
       rid: 5362458288434184212
   references:
     version: 2
@@ -24,11 +22,5 @@ MonoBehaviour:
     - rid: 5362458288434184212
       type: {class: DealDamageComponent, ns: , asm: Assembly-CSharp}
       data:
-        _damageAmount: 0
-    - rid: 5362458290326863876
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
+        _amount: 0
+        _buffs: []
