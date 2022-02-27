@@ -34,7 +34,7 @@ public struct Action : IBufferElementData
 
 public class ActionsComponent : BufferComponentAuthoring<Action>
 {
-    [SerializeField] private List<ArchetypeAuthoring> _actions;
+    [SerializeField] private List<EntityAuthoring> _actions;
 
     public override void AuthorDependencies(Entity entity, EntityManager dstManager)
     {

@@ -10,7 +10,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Modsys/Archetype")]
-public class Archetype : ScriptableObject, ISerializationCallbackReceiver
+public class ModArchetype : ScriptableObject, ISerializationCallbackReceiver
 {
     [SerializeField] [ReadOnly] private List<ModEntity> _entities;
     [ListDrawerSettings(HideAddButton = true)]
