@@ -69,6 +69,7 @@ public abstract class ElementSelectionComponent<T, V> : BufferComponentAuthoring
         public int Amount;
     }
 
+    [ListDrawerSettings(Expanded = true, ShowItemCount = false)]
     [SerializeField] private List<Authoring> _elements = new List<Authoring>();
 
     protected override NativeArray<T> AuthorComponent(World world)

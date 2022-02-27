@@ -78,7 +78,7 @@ public class EntityAuthoring
     [ShowIf("@_archetype == null")]
     [SerializeField] private ModArchetype _archetype;
     [SerializeField]
-    [ListDrawerSettings(IsReadOnly = true)]
+    [ListDrawerSettings(IsReadOnly = true, Expanded = true, ShowItemCount = false)]
     [HideReferenceObjectPicker]
     [ShowIf("@_archetype != null")]
     [LabelText("@_niceArchetypeName")]
