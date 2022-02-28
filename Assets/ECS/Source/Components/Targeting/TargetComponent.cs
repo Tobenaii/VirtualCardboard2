@@ -16,7 +16,6 @@ public struct Target : ITarget, IComponentData
 {
     public Entity Dealer { get; set; }
     public Entity TargetEntity { get; set; }
-    public bool HasTarget { get; set; }
 }
 
 public class TargetComponent : ComponentAuthoring<Target>

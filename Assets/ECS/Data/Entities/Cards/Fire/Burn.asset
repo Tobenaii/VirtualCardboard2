@@ -38,21 +38,17 @@ MonoBehaviour:
         - _archetype: {fileID: 11400000, guid: 080007ed169cfe847829827aa8845681, type: 2}
           _components:
           - _component:
-              rid: 5362458352093233152
-          - _component:
               rid: 5362458379326062593
         - _archetype: {fileID: 11400000, guid: 1e172d54df46f1f48a7cb55ef642f1e9, type: 2}
           _components:
-          - _component:
-              rid: 5362458300426223621
           - _component:
               rid: 5362458300426223622
         - _archetype: {fileID: 11400000, guid: 858d1fc56f41bf34ea5e4dbf0d149c0c, type: 2}
           _components:
           - _component:
-              rid: 5362458300426223625
-          - _component:
               rid: 5362458300426223626
+        _deferrals:
+        - rid: 5362458467546431488
     - rid: 5362458290161451010
       type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -64,14 +60,10 @@ MonoBehaviour:
         - Type: {fileID: -1977672439803392578, guid: 0cf780832d896144e970b8a0962d14c7,
             type: 2}
           Amount: 1
-    - rid: 5362458300426223621
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
     - rid: 5362458300426223622
       type: {class: ConsumeATBComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 1
-    - rid: 5362458300426223625
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
     - rid: 5362458300426223626
       type: {class: ConsumeElementComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -79,10 +71,12 @@ MonoBehaviour:
         - Type: {fileID: -1977672439803392578, guid: 0cf780832d896144e970b8a0962d14c7,
             type: 2}
           Amount: 1
-    - rid: 5362458352093233152
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
     - rid: 5362458379326062593
       type: {class: ApplyStatusEffectComponent, ns: , asm: Assembly-CSharp}
       data:
         _effect: {fileID: -2929838154084336839, guid: b2cf7416da088264b8bc3cd457cabb8e,
           type: 2}
+    - rid: 5362458467546431488
+      type: {class: DelayedActionDeferral, ns: , asm: Assembly-CSharp}
+      data:
+        _delay: 0

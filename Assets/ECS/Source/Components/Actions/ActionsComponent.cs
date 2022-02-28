@@ -16,6 +16,7 @@ public interface IPerformActions
     public FixedString128 Message { get; set; }
     public StatusType Status { get; set; }
     public FailureType Failure { get; set; }
+    public bool NotReady { get; set; }
 }
 
 public struct PerformActions : IPerformActions, IComponentData
@@ -24,16 +25,23 @@ public struct PerformActions : IPerformActions, IComponentData
     public IPerformActions.StatusType Status { get; set; }
     public IPerformActions.FailureType Failure { get; set; }
     public Entity Dealer { get; set; }
+    public bool NotReady { get; set; }
+}
+
+public interface IAction
+{
+    public Entity Entity { get; set; }
 }
 
 [InternalBufferCapacity(5)]
-public struct Action : IBufferElementData
+public struct Action : IAction, IBufferElementData
 {
     public Entity Entity { get; set; }
 }
 
 public class ActionsComponent : BufferComponentAuthoring<Action>
 {
+    [ListDrawerSettings(Expanded = true, ShowItemCount = false)]
     [SerializeField] private List<EntityAuthoring> _actions;
 
     public override void AuthorDependencies(Entity entity, EntityManager dstManager)

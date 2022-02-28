@@ -10,17 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
-  m_Name: Phase
+  m_Name: TimedActionDeferral
   m_EditorClassIdentifier: 
-  _entities:
-  - {fileID: 11400000, guid: d1b358713e8e8ae44a0dc0e5e1e5d285, type: 2}
+  _entities: []
   _components:
   - _component:
-      rid: 5362458288434184206
+      rid: 5362458487760355328
+  - _component:
+      rid: 5362458487760355329
   references:
     version: 2
     RefIds:
-    - rid: 5362458288434184206
+    - rid: 5362458487760355328
+      type: {class: TimedDeferralComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _delay: 0
+    - rid: 5362458487760355329
       type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions: []

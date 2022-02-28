@@ -15,28 +15,22 @@ public class PerformActionsSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.WithChangeFilter<Action>().ForEach((int entityInQueryIndex, Entity entity, ref PerformActions performer, ref DynamicBuffer<Action> actions) =>
+        Entities.ForEach((int entityInQueryIndex, Entity entity, ref DynamicBuffer<Action> actions, in PerformActions performer) =>
         {
+            if (performer.NotReady)
+                return;
             if (performer.Status == IPerformActions.StatusType.Success)
             {
                 for (int i = 0; i < actions.Length; i++)
                 {
                     var action = actions[i];
                     var actionInstance = ecb.Instantiate(entityInQueryIndex, actions[i].Entity);
-                    if (HasComponent<Target>(action.Entity))
-                    {
-                        var actionTarget = GetComponent<Target>(action.Entity);
-                        actionTarget.Dealer = performer.Dealer;
-                        if (!actionTarget.HasTarget)
-                        {
-                            var dealerTarget = GetComponent<Target>(performer.Dealer);
-                            if (dealerTarget.HasTarget)
-                            {
-                                actionTarget.TargetEntity = dealerTarget.TargetEntity;
-                            }
-                        }
-                        ecb.SetComponent(entityInQueryIndex, actionInstance, actionTarget);
-                    }
+                    var actionTarget = GetComponent<Target>(action.Entity);
+                    actionTarget.Dealer = performer.Dealer;
+                    var dealerTarget = GetComponent<Target>(performer.Dealer);
+                    actionTarget.TargetEntity = dealerTarget.TargetEntity;
+                    ecb.SetComponent(entityInQueryIndex, actionInstance, actionTarget);
+                    ecb.AddComponent<PerformActions>(entityInQueryIndex, actionInstance, new PerformActions() { Dealer = performer.Dealer });
                     actions.RemoveAt(i);
                     i--;
                 }
