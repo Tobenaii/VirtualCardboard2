@@ -10,11 +10,11 @@ public struct Deck : IPrefabCollectionContainer, IComponentData
 }
 
 [InternalBufferCapacity(30)]
-public struct DeckCards : IPrefabCollection, IBufferElementData
+public struct DeckCard : IPrefabCollection, IBufferElementData
 {
     public Entity Entity { get; set; }
 }
 
-public class DeckComponent : PrefabCollectionContainerAuthoring<Deck, DeckCards>
+public class DeckComponent : PrefabCollectionContainerAuthoring<Deck, DeckCard>
 {
 }

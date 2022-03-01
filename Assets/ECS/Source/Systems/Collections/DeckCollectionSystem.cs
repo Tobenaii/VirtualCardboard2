@@ -4,4 +4,4 @@ using Unity.Entities;
 using UnityEngine;
 
 [assembly: RegisterGenericJobType(typeof(DeckCollectionSystem.GenericContainerJob))]
-public class DeckCollectionSystem : CollectionContainerSystem<Deck, DeckCards> { }
+public class DeckCollectionSystem : CollectionContainerSystem<Deck, DeckCard> { }

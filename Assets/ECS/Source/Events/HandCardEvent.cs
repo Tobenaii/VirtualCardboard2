@@ -4,11 +4,11 @@ using Unity.Entities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "VC2/Events/Card Hand Event")]
-public class HandCardEvent : BufferEvent<HandCards, HandCardEventSystem, IPrefabCollection>
+public class HandCardEvent : BufferEvent<HandCard, HandCardEventSystem, IPrefabCollection>
 {
 }
 
 [DisableAutoCreation]
-public class HandCardEventSystem : BufferEventSystem<HandCards>
+public class HandCardEventSystem : BufferEventSystem<HandCard>
 {
 }

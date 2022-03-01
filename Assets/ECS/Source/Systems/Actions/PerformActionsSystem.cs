@@ -42,7 +42,7 @@ public class PerformActionsSystem : SystemBase
             if ((actions.Length == 0 || performer.Status == IPerformActions.StatusType.Failed) && !performer.IsContinuous)
                 ecb.DestroyEntity(entityInQueryIndex, entity);
             else
-                ecb.SetComponent(entityInQueryIndex, entity, new PerformActions() { Dealer = performer.Dealer});
+                ecb.SetComponent(entityInQueryIndex, entity, new PerformActions() { Dealer = performer.Dealer, IsContinuous = performer.IsContinuous });
         }).ScheduleParallel();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }
