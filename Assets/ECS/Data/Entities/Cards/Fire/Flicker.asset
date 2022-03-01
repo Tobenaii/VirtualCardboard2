@@ -34,27 +34,17 @@ MonoBehaviour:
     - rid: 5362458290161451008
       type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
-        _dealer: 0
-        _entity:
-          _entityList: {fileID: 0}
-          _key: 0
         _actions:
         - _archetype: {fileID: 11400000, guid: 1e172d54df46f1f48a7cb55ef642f1e9, type: 2}
           _components:
-          - _component:
-              rid: 5362458300426223621
           - _component:
               rid: 5362458300426223622
         - _archetype: {fileID: 11400000, guid: 858d1fc56f41bf34ea5e4dbf0d149c0c, type: 2}
           _components:
           - _component:
-              rid: 5362458300426223625
-          - _component:
               rid: 5362458300426223626
         - _archetype: {fileID: 11400000, guid: cc2a92df50328ee458b1735cbb75c4e2, type: 2}
           _components:
-          - _component:
-              rid: 8042698240993001472
           - _component:
               rid: 8042698240993001473
     - rid: 5362458290161451010
@@ -68,14 +58,10 @@ MonoBehaviour:
         - Type: {fileID: -1977672439803392578, guid: 0cf780832d896144e970b8a0962d14c7,
             type: 2}
           Amount: 1
-    - rid: 5362458300426223621
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
     - rid: 5362458300426223622
       type: {class: ConsumeATBComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 1
-    - rid: 5362458300426223625
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
     - rid: 5362458300426223626
       type: {class: ConsumeElementComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -83,9 +69,7 @@ MonoBehaviour:
         - Type: {fileID: -1977672439803392578, guid: 0cf780832d896144e970b8a0962d14c7,
             type: 2}
           Amount: 1
-    - rid: 8042698240993001472
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
     - rid: 8042698240993001473
       type: {class: DrawCardsComponent, ns: , asm: Assembly-CSharp}
       data:
-        _amount: 1
+        _amount: 2

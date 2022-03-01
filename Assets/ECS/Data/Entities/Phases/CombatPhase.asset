@@ -38,15 +38,9 @@ MonoBehaviour:
               rid: 5362458487760355358
           - _component:
               rid: 5362458487760355359
-          - _component:
-              rid: 5362458487760355360
     - rid: 5362458487760355358
       type: {class: DrawCardsComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 5
     - rid: 5362458487760355359
       type: {class: ResetATBPoolComponent, ns: , asm: Assembly-CSharp}
-    - rid: 5362458487760355360
-      type: {class: ToggleATBPoolComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _enable: 0
