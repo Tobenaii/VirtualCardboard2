@@ -75,7 +75,7 @@ public abstract class ComponentEventBase<T, V, U> : ComponentEvent<U>, IComponen
         ValidateMap();
         var world = World.DefaultGameObjectInjectionWorld;
         var system = world.GetOrCreateSystem<V>();
-        var sim = world.GetOrCreateSystem<PresentationSystemGroup>();
+        var sim = world.GetOrCreateSystem<EventSystemGroup>();
         sim.AddSystemToUpdateList(system);
         system.componentChangedEvent = this;
     }

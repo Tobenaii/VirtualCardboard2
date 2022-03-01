@@ -96,7 +96,9 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             return;
         var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
         var entity = manager.Instantiate(_card);
-        manager.SetComponentData(entity, new PerformActions() { Dealer = _player });
+                var performer = manager.GetComponentData<PerformActions>(entity);
+        performer.Dealer = _player;
+        manager.SetComponentData(entity, performer);
         _actionError.RegisterChanged(entity, this);
     }
 

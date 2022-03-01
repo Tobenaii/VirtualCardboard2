@@ -19,6 +19,6 @@ public abstract class StatPoolAuthoring<T> : ComponentAuthoring<T> where T : unm
 
     protected override T AuthorComponent(World world)
     {
-        return new T() { MaxCount = _maxCount, CurrentCount = _maxCount, ChargeTime = _chargeTime };
+        return new T() { MaxCount = _maxCount, CurrentCount = 0, ChargeTime = _chargeTime };
     }
 }

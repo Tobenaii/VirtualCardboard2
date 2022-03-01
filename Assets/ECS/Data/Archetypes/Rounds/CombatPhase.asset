@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
+  m_Name: CombatPhase
+  m_EditorClassIdentifier: 
+  _entities:
+  - {fileID: 11400000, guid: c92dda287be99be4cbd30102e9568aa7, type: 2}
+  _components:
+  - _component:
+      rid: 5362458487760355337
+  - _component:
+      rid: 5362458487760355346
+  - _component:
+      rid: 5362458487760355354
+  references:
+    version: 2
+    RefIds:
+    - rid: 5362458487760355337
+      type: {class: EmptyATBPoolRequirementComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458487760355346
+      type: {class: EmptyATBRequirementComponent, ns: , asm: Assembly-CSharp}
+    - rid: 5362458487760355354
+      type: {class: ContinuousActionsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _actions: []

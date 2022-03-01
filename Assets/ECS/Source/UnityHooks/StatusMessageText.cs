@@ -21,6 +21,8 @@ public class StatusMessageText : MonoBehaviour, IComponentChangedListener<IPerfo
         //There should be a None status to check against, since success might also want a message
         if (value.Status == IPerformActions.StatusType.Success) 
             return;
+        if ((int)value.Failure >= _prepends.Length)
+            return;
         var prepend = _prepends[(int)value.Failure];
         var message = value.Message;
         StopAllCoroutines();

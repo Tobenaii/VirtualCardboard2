@@ -14,9 +14,9 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
     [PropertyOrder(10000)]
     [SerializeField] private EntityAuthoring _authoring;
 
-    public void Instantiate()
+    public void Instantiate(string name)
     {
-        _authoring.Instantiate();
+        _authoring.Instantiate(name);
     }
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
@@ -24,17 +24,17 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
         _authoring.Convert(entity, dstManager, conversionSystem);
     }
 
-    public Entity GetPrefab(EntityManager manager)
+    public Entity GetPrefab(EntityManager manager, string name)
     {
         var ecb = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
-        return _authoring.GetPrefab(manager);
+        return _authoring.GetPrefab(manager, name);
     }
 
     [ShowIf("@UnityEngine.Application.isPlaying")] [PropertyOrder(100000)]
     [Button("Test")]
     private void DebugInstantiate()
     {
-        Instantiate();
+        Instantiate(this.name);
     }
 
     private void Register()
@@ -81,17 +81,17 @@ public class EntityAuthoring
     [ListDrawerSettings(IsReadOnly = true, Expanded = true, ShowItemCount = false)]
     [HideReferenceObjectPicker]
     [ShowIf("@_archetype != null")]
-    [LabelText("@_niceArchetypeName")]
+    [LabelText("@NiceArchetypeName")]
     private List<ReadWriteComponent> _components = new List<ReadWriteComponent>();
-    private string _niceArchetypeName => ObjectNames.NicifyVariableName(_archetype.name);
+    public string NiceArchetypeName => ObjectNames.NicifyVariableName(_archetype.name);
 
     public List<ReadWriteComponent> Components => _components;
     private Entity _prefab;
 
-    public void Instantiate()
+    public void Instantiate(string name)
     {
         var ecb = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
-        ecb.Instantiate(GetPrefab(World.DefaultGameObjectInjectionWorld.EntityManager));
+        ecb.Instantiate(GetPrefab(World.DefaultGameObjectInjectionWorld.EntityManager, name));
     }
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
@@ -106,17 +106,22 @@ public class EntityAuthoring
             component.Component.UpdateComponent(entity, dstManager);
     }
 
-    public Entity GetPrefab(EntityManager manager)
+    public Entity GetPrefab(EntityManager manager, string name)
     {
         //TODO: This causes lots of problems when domain reload is off
         //Since this could reference another entity next play as it doesn't get reset.
         if (manager.Exists(_prefab))
             return _prefab;
-        _prefab = CreatePrefab(manager);
+        _prefab = CreatePrefab(manager, name);
         return _prefab;
     }
 
-    private Entity CreatePrefab(EntityManager manager)
+    public void UpdatePrefab(EntityManager manager)
+    {
+        Update(_prefab, manager, null);
+    }
+
+    private Entity CreatePrefab(EntityManager manager, string name)
     {
         if (manager.Exists(_prefab))
         {
@@ -128,6 +133,7 @@ public class EntityAuthoring
             var entity = manager.CreateEntity();
             Convert(entity, manager, null);
             manager.AddComponent<Prefab>(entity);
+            manager.SetName(entity, name);
             return entity;
         }
     }
@@ -187,7 +193,7 @@ public class EntityAuthoring
         {
             var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
             if (manager.Exists(_prefab))
-                _prefab = CreatePrefab(manager);
+                UpdatePrefab(manager);
         }
     }
 }

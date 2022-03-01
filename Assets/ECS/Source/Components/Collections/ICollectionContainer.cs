@@ -40,7 +40,7 @@ public abstract class PrefabCollectionContainerAuthoring<T, V> : ComponentAuthor
             foreach (var modEntity in _entities)
             {
                 var instance = new V();
-                instance.Entity = modEntity.GetPrefab(dstManager);
+                instance.Entity = modEntity.GetPrefab(dstManager, modEntity.name);
                 instances[i] = instance;
                 i++;
             }

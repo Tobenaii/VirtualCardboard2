@@ -28,7 +28,7 @@ public class PhaseComponent : ComponentAuthoring<Phase>
     protected override Phase AuthorComponent(World world)
     {
         if (_nextPhase != null)
-            return new Phase() { Time = _time, HasNextPhase = true, NextPhase = _nextPhase.GetPrefab(world.EntityManager) };
+            return new Phase() { Time = _time, HasNextPhase = true, NextPhase = _nextPhase.GetPrefab(world.EntityManager, _nextPhase.name) };
         else
             return new Phase() { Time = _time, HasNextPhase = false };
     }

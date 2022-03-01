@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public class PerformActionStatusEffectRequirementSystem : SystemBase
+[UpdateInGroup(typeof(RequirementSystemGroup))]
+public class StatusEffectRequirementSystem : SystemBase
 {
     protected override void OnUpdate()
     {

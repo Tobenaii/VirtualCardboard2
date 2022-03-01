@@ -1,17 +1,17 @@
 using Unity.Entities;
 
-[UpdateBefore(typeof(PerformActionsSystem))]
-public class PerformActionATBRequirementSystem : SystemBase
+[UpdateInGroup(typeof(RequirementSystemGroup))]
+public class EmptyATBRequirementSystem : SystemBase
 {
     protected override void OnUpdate()
     {
-        Entities.ForEach((ref PerformActions performer, in ATBRequirement requirement) =>
+        Entities.ForEach((ref PerformActions performer, in EmptyATBRequirement requirement) =>
         {
             var atb = GetComponentDataFromEntity<ATB>(true)[performer.Dealer];
-            if (atb.CurrentValue < requirement.Amount)
+            if (atb.CurrentValue != 0)
             {
                 performer.Status = IPerformActions.StatusType.Failed;
-                performer.Failure = IPerformActions.FailureType.NotEnough;
+                performer.Failure = IPerformActions.FailureType.TooMany;
                 performer.Message = "ATB";
             }
         }).ScheduleParallel();

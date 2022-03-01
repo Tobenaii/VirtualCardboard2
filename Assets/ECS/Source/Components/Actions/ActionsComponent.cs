@@ -11,12 +11,14 @@ public interface IPerformActions
 {
     public enum StatusType { Success, Failed }
     public enum FailureType { NotEnough,
-        NotFound
+        NotFound,
+        TooMany
     }
     public FixedString128 Message { get; set; }
     public StatusType Status { get; set; }
     public FailureType Failure { get; set; }
     public bool NotReady { get; set; }
+    public bool IsContinuous { get; set; }
 }
 
 public struct PerformActions : IPerformActions, IComponentData
@@ -26,6 +28,7 @@ public struct PerformActions : IPerformActions, IComponentData
     public IPerformActions.FailureType Failure { get; set; }
     public Entity Dealer { get; set; }
     public bool NotReady { get; set; }
+    public bool IsContinuous { get; set; }
 }
 
 public interface IAction
@@ -37,6 +40,15 @@ public interface IAction
 public struct Action : IAction, IBufferElementData
 {
     public Entity Entity { get; set; }
+}
+
+public class ContinuousActionsComponent : ActionsComponent
+{
+    public override void AuthorDependencies(Entity entity, EntityManager dstManager)
+    {
+        var performer = new PerformActions() { IsContinuous = true };
+        dstManager.AddComponentData(entity, performer);
+    }
 }
 
 public class ActionsComponent : BufferComponentAuthoring<Action>
@@ -54,9 +66,9 @@ public class ActionsComponent : BufferComponentAuthoring<Action>
         var array = new NativeArray<Action>(_actions.Count, Allocator.Temp);
         for (int i = 0; i < _actions.Count; i++)
         {
-            var actionEntity = _actions[i].GetPrefab(world.EntityManager);
+            var actionEntity = _actions[i].GetPrefab(world.EntityManager, _actions[i].NiceArchetypeName);
             world.EntityManager.AddComponent<Target>(actionEntity);
-            array[i] = new Action() { Entity = _actions[i].GetPrefab(world.EntityManager) };
+            array[i] = new Action() { Entity = _actions[i].GetPrefab(world.EntityManager, _actions[i].NiceArchetypeName) };
         }
         return array;
     }

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
+[UpdateInGroup(typeof(ActionSystemGroup))]
 public class ToggleATBPoolSystem : SystemBase
 {
-    private EndSimulationEntityCommandBufferSystem _commandBuffer;
+    private EndInitializationEntityCommandBufferSystem _commandBuffer;
 
     protected override void OnCreate()
     {
-        _commandBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+        _commandBuffer = World.GetOrCreateSystem<EndInitializationEntityCommandBufferSystem>();
     }
 
     protected override void OnUpdate()

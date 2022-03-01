@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 [UpdateInGroup(typeof(ActionSystemGroup))]
-public class ApplyStatusEffectSystem : SystemBase
+public class ResetATBPoolSystem : SystemBase
 {
     private EndInitializationEntityCommandBufferSystem _commandBuffer;
 
@@ -16,13 +17,14 @@ public class ApplyStatusEffectSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((ref ApplyStatusEffect effect, in Target target) =>
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in Target target, in ResetATBPool reset) =>
         {
-            var buffer = GetBufferFromEntity<StatusEffect>(false)[target.TargetEntity];
-            var status = buffer[effect.Type];
-            status.Active = true;
-            buffer[effect.Type] = status;
-
+            var targetPool = GetComponentDataFromEntity<ATBPool>(true)[target.Dealer];
+            targetPool.CurrentCount = targetPool.MaxCount;
+            targetPool.ChargeTimer = 0;
+            targetPool.Enabled = true;
+            ecb.SetComponent(entityInQueryIndex, target.Dealer, targetPool);
+            ecb.DestroyEntity(entityInQueryIndex, entity);
         }).Schedule();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }

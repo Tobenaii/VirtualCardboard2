@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
+[UpdateInGroup(typeof(ActionSystemGroup))]
 public class DealDamageSystem : SystemBase
 {
-    private EndSimulationEntityCommandBufferSystem _commandBuffer;
+    private EndInitializationEntityCommandBufferSystem _commandBuffer;
 
     protected override void OnCreate()
     {
-        _commandBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+        _commandBuffer = World.GetExistingSystem<EndInitializationEntityCommandBufferSystem>();
     }
 
     protected override void OnUpdate()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
+[UpdateInGroup(typeof(PresentationSystemGroup))]
 public class PerformActionsSystem : SystemBase
 {
     private BeginInitializationEntityCommandBufferSystem _commandBuffer;
@@ -15,7 +16,7 @@ public class PerformActionsSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, ref DynamicBuffer<Action> actions, in PerformActions performer) =>
+        Entities.ForEach((int entityInQueryIndex, Entity entity, ref DynamicBuffer<Action> actions, ref PerformActions performer) =>
         {
             if (performer.NotReady)
                 return;
@@ -30,13 +31,17 @@ public class PerformActionsSystem : SystemBase
                     var dealerTarget = GetComponent<Target>(performer.Dealer);
                     actionTarget.TargetEntity = dealerTarget.TargetEntity;
                     ecb.SetComponent(entityInQueryIndex, actionInstance, actionTarget);
-                    ecb.AddComponent<PerformActions>(entityInQueryIndex, actionInstance, new PerformActions() { Dealer = performer.Dealer });
-                    actions.RemoveAt(i);
-                    i--;
+                    ecb.AddComponent(entityInQueryIndex, actionInstance, new PerformActions() { Dealer = performer.Dealer });
+                    if (!performer.IsContinuous)
+                    {
+                        actions.RemoveAt(i);
+                        i--;
+                    }
                 }
             }
-            if (actions.Length == 0 || performer.Status == IPerformActions.StatusType.Failed)
+            if ((actions.Length == 0 || performer.Status == IPerformActions.StatusType.Failed) && !performer.IsContinuous)
                 ecb.DestroyEntity(entityInQueryIndex, entity);
+            performer.Status = IPerformActions.StatusType.Success;
         }).ScheduleParallel();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }

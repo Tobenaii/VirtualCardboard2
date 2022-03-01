@@ -1329,7 +1329,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9246119, y: 1}
+    m_SensorSize: {x: 2.1895573, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1345,7 +1345,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378454985}
-  m_LocalRotation: {x: 0.19461863, y: 0.22463785, z: -0.045840744, w: 0.9537086}
+  m_LocalRotation: {x: 0.19461863, y: 0.22463784, z: -0.045840744, w: 0.9537086}
   m_LocalPosition: {x: -2.947, y: 3.64, z: -10.852}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1535,7 +1535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 212, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &413807461
@@ -5185,7 +5185,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413355603}
-  m_LocalRotation: {x: 0.004746222, y: 0.9445104, z: 0.013660451, w: -0.3281631}
+  m_LocalRotation: {x: 0.0047421437, y: 0.94460845, z: 0.013661877, w: -0.32788095}
   m_LocalPosition: {x: 0.030000001, y: 1.28, z: -7.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5719,7 +5719,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9246119, y: 1}
+    m_SensorSize: {x: 2.1895573, y: 1}
   m_Transitions:
     m_BlendHint: 1
     m_InheritPosition: 0
@@ -5735,7 +5735,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540971542}
-  m_LocalRotation: {x: 0.004746222, y: 0.9445104, z: 0.013660451, w: -0.3281631}
+  m_LocalRotation: {x: 0.0047421437, y: 0.94460845, z: 0.013661877, w: -0.32788095}
   m_LocalPosition: {x: 0.030000001, y: 1.28, z: -7.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6315,7 +6315,7 @@ MonoBehaviour:
   _dealer:
     _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
     _key: 0
-  _entity: {fileID: 11400000, guid: d1b358713e8e8ae44a0dc0e5e1e5d285, type: 2}
+  _entity: {fileID: 11400000, guid: c92dda287be99be4cbd30102e9568aa7, type: 2}
   _onStart: 1
   _onClick: 0
 --- !u!1001 &1736255195
@@ -9411,6 +9411,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BigOrcUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509225503666234977, guid: d07bd1947821e7c4da622f62a3ef7f4a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509225503666234977, guid: d07bd1947821e7c4da622f62a3ef7f4a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509225503666234977, guid: d07bd1947821e7c4da622f62a3ef7f4a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746363415248201925, guid: d07bd1947821e7c4da622f62a3ef7f4a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746363415248201925, guid: d07bd1947821e7c4da622f62a3ef7f4a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746363415248201925, guid: d07bd1947821e7c4da622f62a3ef7f4a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d07bd1947821e7c4da622f62a3ef7f4a, type: 3}

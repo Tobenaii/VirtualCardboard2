@@ -4,13 +4,14 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
+[UpdateInGroup(typeof(ActionSystemGroup))]
 public class ConsumeATBSystem : SystemBase
 {
-    private EndSimulationEntityCommandBufferSystem _commandBuffer;
+    private EndInitializationEntityCommandBufferSystem _commandBuffer;
 
     protected override void OnCreate()
     {
-        _commandBuffer = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+        _commandBuffer = World.GetOrCreateSystem<EndInitializationEntityCommandBufferSystem>();
     }
 
     protected override void OnUpdate()

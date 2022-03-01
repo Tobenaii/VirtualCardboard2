@@ -4,14 +4,16 @@ using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
 
+[UpdateInGroup(typeof(ActionSystemGroup))]
 public class DrawCardsSystem : SystemBase
 {
-    private EndSimulationEntityCommandBufferSystem _endSimulationEcbSystem;
+    private EndInitializationEntityCommandBufferSystem _endSimulationEcbSystem;
 
     protected override void OnCreate()
     {
-        _endSimulationEcbSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+        _endSimulationEcbSystem = World.GetOrCreateSystem<EndInitializationEntityCommandBufferSystem>();
     }
 
     protected override void OnUpdate()
@@ -23,8 +25,10 @@ public class DrawCardsSystem : SystemBase
             var drawAmount = draw.Amount;
             if (deck.Length < drawAmount)
                 drawAmount = deck.Length;
+            Debug.Log("Drawing");
             for (int i = 0; i < drawAmount; i++)
             {
+                Debug.Log("Draw");
                 cardHand.Add(new HandCards() { Entity = deck[i].Entity });
             }
             if (drawAmount != 0)
