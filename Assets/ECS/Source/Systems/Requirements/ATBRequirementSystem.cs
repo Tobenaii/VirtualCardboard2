@@ -3,17 +3,24 @@ using Unity.Entities;
 [UpdateInGroup(typeof(RequirementSystemGroup))]
 public class ATBRequirementSystem : SystemBase
 {
+    private EndSimulationEntityCommandBufferSystem _commandBuffer;
+
+    protected override void OnCreate()
+    {
+        _commandBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+    }
+
     protected override void OnUpdate()
     {
-        Entities.ForEach((ref PerformActions performer, in ATBRequirement requirement) =>
+        var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in Dealer dealer, in ATBRequirement requirement) =>
         {
-            var atb = GetComponentDataFromEntity<ATB>(true)[performer.Dealer];
+            var atb = GetComponentDataFromEntity<ATB>(true)[dealer.Entity];
             if (atb.CurrentValue < requirement.Amount)
             {
-                performer.Status = IPerformActions.StatusType.Failed;
-                performer.Failure = IPerformActions.FailureType.NotEnough;
-                performer.Message = "ATB";
+                ecb.DestroyEntity(entityInQueryIndex, entity);
             }
         }).ScheduleParallel();
+        _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }
 }

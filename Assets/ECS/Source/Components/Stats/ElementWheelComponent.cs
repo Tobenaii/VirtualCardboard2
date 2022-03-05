@@ -10,11 +10,10 @@ public interface IElementWheel
     public float Percentage { get; set; }
 }
 
-public struct ElementWheel : IElementWheel, IBufferElementData, IBufferFlag
+public struct ElementWheel : IElementWheel, IBufferElementData
 {
     public int Type { get; set; }
     public float Percentage { get; set; }
-    public IBufferFlag.Flag BufferFlag { get; set; }
 }
 
 public class ElementWheelComponent : BufferComponentAuthoring<ElementWheel>

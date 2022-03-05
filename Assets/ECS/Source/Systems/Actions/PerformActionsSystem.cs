@@ -16,33 +16,18 @@ public class PerformActionsSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, ref DynamicBuffer<Action> actions, in PerformActions performer) =>
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in DynamicBuffer<Action> actions, in Dealer dealer) =>
         {
-            if (performer.NotReady)
-                return;
-            if (performer.Status == IPerformActions.StatusType.Success)
+            for (int i = 0; i < actions.Length; i++)
             {
-                for (int i = 0; i < actions.Length; i++)
-                {
-                    var action = actions[i];
-                    var actionInstance = ecb.Instantiate(entityInQueryIndex, actions[i].Entity);
-                    var actionTarget = GetComponent<Target>(action.Entity);
-                    actionTarget.Dealer = performer.Dealer;
-                    var dealerTarget = GetComponent<Target>(performer.Dealer);
-                    actionTarget.TargetEntity = dealerTarget.TargetEntity;
-                    ecb.SetComponent(entityInQueryIndex, actionInstance, actionTarget);
-                    ecb.AddComponent(entityInQueryIndex, actionInstance, new PerformActions() { Dealer = performer.Dealer });
-                    if (!performer.IsContinuous)
-                    {
-                        actions.RemoveAt(i);
-                        i--;
-                    }
-                }
+                var action = actions[i];
+                var actionInstance = ecb.Instantiate(entityInQueryIndex, actions[i].Entity);
+
+                var target = GetComponentDataFromEntity<Target>(true)[dealer.Entity];
+                ecb.AddComponent(entityInQueryIndex, actionInstance, target);
+                ecb.AddComponent(entityInQueryIndex, actionInstance, dealer);
             }
-            if ((actions.Length == 0 || performer.Status == IPerformActions.StatusType.Failed) && !performer.IsContinuous)
-                ecb.DestroyEntity(entityInQueryIndex, entity);
-            else
-                ecb.SetComponent(entityInQueryIndex, entity, new PerformActions() { Dealer = performer.Dealer, IsContinuous = performer.IsContinuous });
+            ecb.DestroyEntity(entityInQueryIndex, entity);
         }).ScheduleParallel();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }

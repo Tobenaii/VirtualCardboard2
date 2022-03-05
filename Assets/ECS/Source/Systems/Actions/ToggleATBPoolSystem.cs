@@ -16,11 +16,11 @@ public class ToggleATBPoolSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, in ToggleATBPool toggle, in Target target) =>
+        Entities.ForEach((int entityInQueryIndex, in ToggleATBPool toggle, in Dealer dealer) =>
         {
-            var atbPool = GetComponentDataFromEntity<ATBPool>(true)[target.Dealer];
+            var atbPool = GetComponentDataFromEntity<ATBPool>(true)[dealer.Entity];
             atbPool.Enabled = toggle.Enable;
-            ecb.SetComponent(entityInQueryIndex, target.Dealer, atbPool);
+            ecb.SetComponent(entityInQueryIndex, dealer.Entity, atbPool);
         }).ScheduleParallel();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }

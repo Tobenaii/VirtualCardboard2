@@ -17,13 +17,13 @@ public class ResetATBPoolSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, in Target target, in ResetATBPool reset) =>
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in Dealer dealer, in ResetATBPool reset) =>
         {
-            var targetPool = GetComponentDataFromEntity<ATBPool>(true)[target.Dealer];
+            var targetPool = GetComponentDataFromEntity<ATBPool>(true)[dealer.Entity];
             targetPool.CurrentCount = targetPool.MaxCount;
             targetPool.ChargeTimer = 0;
             targetPool.Enabled = true;
-            ecb.SetComponent(entityInQueryIndex, target.Dealer, targetPool);
+            ecb.SetComponent(entityInQueryIndex, dealer.Entity, targetPool);
             ecb.DestroyEntity(entityInQueryIndex, entity);
         }).Schedule();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);

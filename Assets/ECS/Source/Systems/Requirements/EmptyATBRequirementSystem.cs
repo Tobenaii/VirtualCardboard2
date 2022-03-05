@@ -1,19 +1,27 @@
 using Unity.Entities;
+using UnityEngine;
 
 [UpdateInGroup(typeof(RequirementSystemGroup))]
 public class EmptyATBRequirementSystem : SystemBase
 {
+    private EndSimulationEntityCommandBufferSystem _commandBuffer;
+
+    protected override void OnCreate()
+    {
+        _commandBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+    }
+
     protected override void OnUpdate()
     {
-        Entities.ForEach((ref PerformActions performer, in EmptyATBRequirement requirement) =>
+        var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in Dealer dealer, in EmptyATBRequirement requirement) =>
         {
-            var atb = GetComponentDataFromEntity<ATB>(true)[performer.Dealer];
+            var atb = GetComponentDataFromEntity<ATB>(true)[dealer.Entity];
             if (atb.CurrentValue != 0)
             {
-                performer.Status = IPerformActions.StatusType.Failed;
-                performer.Failure = IPerformActions.FailureType.TooMany;
-                performer.Message = "ATB";
+                ecb.DestroyEntity(entityInQueryIndex, entity);
             }
         }).ScheduleParallel();
+        _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }
 }

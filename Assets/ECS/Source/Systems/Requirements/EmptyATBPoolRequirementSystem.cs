@@ -3,17 +3,24 @@ using Unity.Entities;
 [UpdateInGroup(typeof(RequirementSystemGroup))]
 public class EmptyATBPoolRequirementSystem : SystemBase
 {
+    private EndSimulationEntityCommandBufferSystem _commandBuffer;
+
+    protected override void OnCreate()
+    {
+        _commandBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
+    }
+
     protected override void OnUpdate()
     {
-        Entities.ForEach((ref PerformActions performer, in EmptyATBPoolRequirement requirement) =>
+        var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in Dealer dealer, in EmptyATBPoolRequirement requirement) =>
         {
-            var atb = GetComponentDataFromEntity<ATBPool>(true)[performer.Dealer];
+            var atb = GetComponentDataFromEntity<ATBPool>(true)[dealer.Entity];
             if (atb.CurrentCount != 0)
             {
-                performer.Status = IPerformActions.StatusType.Failed;
-                performer.Failure = IPerformActions.FailureType.TooMany;
-                performer.Message = "ATBPool";
+                ecb.DestroyEntity(entityInQueryIndex, entity);
             }
         }).ScheduleParallel();
+        _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }
 }

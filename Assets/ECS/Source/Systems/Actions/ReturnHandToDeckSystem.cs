@@ -17,9 +17,9 @@ public class ReturnHandToDeckSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, in ReturnHandToDeck returnHand, in Target target) => {
-            var deck = GetBufferFromEntity<DeckCard>(false)[target.Dealer];
-            var cardHand = GetBufferFromEntity<HandCard>(false)[target.Dealer];
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in ReturnHandToDeck returnHand, in Dealer dealer) => {
+            var deck = GetBufferFromEntity<DeckCard>(false)[dealer.Entity];
+            var cardHand = GetBufferFromEntity<HandCard>(false)[dealer.Entity];
             for (int i = 0; i < cardHand.Length; i++)
             {
                 Debug.Log("Returning Card");

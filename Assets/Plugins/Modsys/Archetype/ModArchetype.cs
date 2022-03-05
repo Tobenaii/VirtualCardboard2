@@ -20,8 +20,7 @@ public class ModArchetype : ScriptableObject, ISerializationCallbackReceiver
     [Button]
     private void AddComponent()
     {
-        IEnumerable<Type> list = TypeCache.GetTypesDerivedFrom(typeof(ComponentAuthoring<>));
-        list = list.Concat(TypeCache.GetTypesDerivedFrom(typeof(BufferComponentAuthoring<>)));
+        IEnumerable<Type> list = TypeCache.GetTypesDerivedFrom(typeof(ComponentAuthoringBase));
         list = list.Where(x => !x.IsAbstract);
         var selector = new GenericSelector<Type>("Component Selector", list);
 
@@ -51,6 +50,11 @@ public class ModArchetype : ScriptableObject, ISerializationCallbackReceiver
     {
         if (_entities == null)
             return;
+        foreach (var component in _components.ToList())
+        {
+            if (component.Component == null)
+                _components.Remove(component);
+        }
         foreach (var entity in _entities.ToList())
         {
             if (entity == null)

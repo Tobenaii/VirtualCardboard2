@@ -11,10 +11,9 @@ public struct Hand : IPrefabCollectionContainer, IComponentData
 }
 
 [InternalBufferCapacity(5)]
-public struct HandCard : IPrefabCollection, IBufferElementData, IBufferFlag
+public struct HandCard : IPrefabCollection, IBufferElementData
 {
     public Entity Entity { get; set; }
-    public IBufferFlag.Flag BufferFlag { get; set; }
 }
 
 public class HandComponent : PrefabCollectionContainerAuthoring<Hand, HandCard>

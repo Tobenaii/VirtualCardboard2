@@ -17,12 +17,12 @@ public class ConsumeATBSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, in Target target, in ConsumeATB consume) =>
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in Dealer dealer, in ConsumeATB consume) =>
         {
-            var targetATB = GetComponentDataFromEntity<ATB>(true)[target.Dealer];
+            var targetATB = GetComponentDataFromEntity<ATB>(true)[dealer.Entity];
             targetATB.CurrentValue -= consume.Amount;
             targetATB.CurrentValue = math.max(targetATB.CurrentValue, 0);
-            ecb.SetComponent(entityInQueryIndex, target.Dealer, targetATB);
+            ecb.SetComponent(entityInQueryIndex, dealer.Entity, targetATB);
             ecb.DestroyEntity(entityInQueryIndex, entity);
         }).ScheduleParallel();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);

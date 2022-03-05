@@ -19,9 +19,9 @@ public class DrawCardsSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, in DrawCards draw, in Target target) => {
-            var deck = GetBufferFromEntity<DeckCard>(false)[target.Dealer];
-            var cardHand = GetBufferFromEntity<HandCard>(false)[target.Dealer];
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in DrawCards draw, in Dealer dealer) => {
+            var deck = GetBufferFromEntity<DeckCard>(false)[dealer.Entity];
+            var cardHand = GetBufferFromEntity<HandCard>(false)[dealer.Entity];
             var drawAmount = draw.Amount;
             if (deck.Length < drawAmount)
                 drawAmount = deck.Length;

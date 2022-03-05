@@ -19,7 +19,7 @@ PrefabInstance:
     - target: {fileID: 7535242674004034875, guid: 4337d9f4e249b584ebc809b803070888,
         type: 3}
       propertyPath: m_Name
-      value: BigOrcUI
+      value: BigOrcUI Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7535242674004034887, guid: 4337d9f4e249b584ebc809b803070888,
         type: 3}
@@ -79,7 +79,7 @@ PrefabInstance:
     - target: {fileID: 7535242674004034887, guid: 4337d9f4e249b584ebc809b803070888,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.83
+      value: -5.246
       objectReference: {fileID: 0}
     - target: {fileID: 7535242674004034887, guid: 4337d9f4e249b584ebc809b803070888,
         type: 3}
@@ -104,7 +104,7 @@ PrefabInstance:
     - target: {fileID: 7535242674004034887, guid: 4337d9f4e249b584ebc809b803070888,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 4.55
+      value: 3.964
       objectReference: {fileID: 0}
     - target: {fileID: 7535242674004034887, guid: 4337d9f4e249b584ebc809b803070888,
         type: 3}
@@ -126,5 +126,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7535242674004034880, guid: 4337d9f4e249b584ebc809b803070888, type: 3}
+    - {fileID: 1448578530, guid: 4337d9f4e249b584ebc809b803070888, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4337d9f4e249b584ebc809b803070888, type: 3}

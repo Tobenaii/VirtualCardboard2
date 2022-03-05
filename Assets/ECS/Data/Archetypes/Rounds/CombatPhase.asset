@@ -16,19 +16,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c92dda287be99be4cbd30102e9568aa7, type: 2}
   _components:
   - _component:
-      rid: 5362458487760355337
+      rid: 8471835072163479556
   - _component:
-      rid: 5362458487760355346
+      rid: 8471835072163479557
   - _component:
-      rid: 5362458487760355354
+      rid: 8471835072163479552
   references:
     version: 2
     RefIds:
-    - rid: 5362458487760355337
-      type: {class: EmptyATBPoolRequirementComponent, ns: , asm: Assembly-CSharp}
-    - rid: 5362458487760355346
-      type: {class: EmptyATBRequirementComponent, ns: , asm: Assembly-CSharp}
-    - rid: 5362458487760355354
-      type: {class: ContinuousActionsComponent, ns: , asm: Assembly-CSharp}
+    - rid: 8471835072163479552
+      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions: []
+    - rid: 8471835072163479556
+      type: {class: EmptyATBRequirementComponent, ns: , asm: Assembly-CSharp}
+    - rid: 8471835072163479557
+      type: {class: EmptyATBPoolRequirementComponent, ns: , asm: Assembly-CSharp}

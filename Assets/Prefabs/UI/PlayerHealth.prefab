@@ -372,8 +372,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3996170139395060521}
-  - component: {fileID: 3996170139395060522}
-  - component: {fileID: 3996170139395060523}
+  - component: {fileID: 1604810287}
+  - component: {fileID: 1604810290}
   m_Layer: 5
   m_Name: PlayerHealth
   m_TagString: Untagged
@@ -403,7 +403,7 @@ RectTransform:
   m_AnchoredPosition: {x: 180, y: 137.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3996170139395060522
+--- !u!114 &1604810287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -412,16 +412,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 3996170139395060520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847c812c88a9e18498ecc08a6a03e046, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d681de67868049498de1a4082fc969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statEvent: {fileID: 11400000, guid: 351e6a9827961fe48bc13f71804e6580, type: 2}
-  _target:
-    _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
-    _key: 0
-  _text: {fileID: 3996170138678558475}
-  _format: '{Current}/{Max}'
---- !u!114 &3996170139395060523
+  _authoring:
+  - _archetype: {fileID: 11400000, guid: e6c86387cb6ab9e479bd1b6080047f63, type: 2}
+    _components:
+    - _component:
+        rid: 8471835026600755203
+  - _archetype: {fileID: 11400000, guid: 88fba77cb3f4ce24eaf579e7bad6bee7, type: 2}
+    _components:
+    - _component:
+        rid: 8471835026600755205
+  references:
+    version: 2
+    RefIds:
+    - rid: 8471835026600755203
+      type: {class: HealthBarUIComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _target:
+          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
+            type: 2}
+          _key: 0
+        _healthBar: {fileID: 3996170140079474813}
+        _smoothTime: 0.1
+    - rid: 8471835026600755205
+      type: {class: HealthTextUIComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _target:
+          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
+            type: 2}
+          _key: 0
+        _textMesh: {fileID: 3996170138678558475}
+--- !u!114 &1604810290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -430,14 +453,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3996170139395060520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 396f68d34bf69ec4e8ea9ee6a97b3acb, type: 3}
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entity:
-    _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
-    _key: 0
-  _event: {fileID: 11400000, guid: 351e6a9827961fe48bc13f71804e6580, type: 2}
-  _bar: {fileID: 3996170140079474813}
+  ConversionMode: 1
 --- !u!1 &3996170140079474811
 GameObject:
   m_ObjectHideFlags: 0

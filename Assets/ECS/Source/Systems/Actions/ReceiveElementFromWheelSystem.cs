@@ -18,10 +18,10 @@ public class ReceiveElementFromWheelSystem : SystemBase
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
         int randomElement = UnityEngine.Random.Range(0, 100);
-        Entities.ForEach((int entityInQueryIndex, Entity entity, in Target target, in ReceiveElementFromWheel action) =>
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in Dealer dealer, in ReceiveElementFromWheel action) =>
         {
-            var wheelBuffer = GetBufferFromEntity<ElementWheel>(false)[target.Dealer];
-            var elementBuffer = GetBufferFromEntity<Element>(false)[target.Dealer];
+            var wheelBuffer = GetBufferFromEntity<ElementWheel>(false)[dealer.Entity];
+            var elementBuffer = GetBufferFromEntity<Element>(false)[dealer.Entity];
 
             ElementWheel winningElement = wheelBuffer[0];
             float distribution = 0;

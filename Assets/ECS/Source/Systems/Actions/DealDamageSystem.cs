@@ -18,9 +18,9 @@ public class DealDamageSystem : SystemBase
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
         Entities.ForEach((int entityInQueryIndex, Entity entity, in DealDamage dealDamage, in Target target) =>
         {
-            var damage = GetComponentDataFromEntity<Damage>(true)[target.TargetEntity];
+            var damage = GetComponentDataFromEntity<Damage>(true)[target.Entity];
             damage.Amount += dealDamage.Amount;
-            ecb.SetComponent(entityInQueryIndex, target.TargetEntity, damage);
+            ecb.SetComponent(entityInQueryIndex, target.Entity, damage);
             ecb.DestroyEntity(entityInQueryIndex, entity);
         }).Schedule();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);

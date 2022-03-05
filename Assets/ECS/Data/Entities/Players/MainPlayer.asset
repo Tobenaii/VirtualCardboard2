@@ -68,6 +68,7 @@ MonoBehaviour:
       data:
         _debugList: 1
         _entities:
+        - {fileID: 11400000, guid: 30be4572ac5873e449b70d7c82a1e102, type: 2}
         - {fileID: 11400000, guid: 3bb2bc3d31c63ba4d90beb7f4d6adaec, type: 2}
         - {fileID: 11400000, guid: 3bb2bc3d31c63ba4d90beb7f4d6adaec, type: 2}
         - {fileID: 11400000, guid: 3bb2bc3d31c63ba4d90beb7f4d6adaec, type: 2}
@@ -94,7 +95,6 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 3bb2bc3d31c63ba4d90beb7f4d6adaec, type: 2}
         - {fileID: 11400000, guid: 3bb2bc3d31c63ba4d90beb7f4d6adaec, type: 2}
         - {fileID: 11400000, guid: b52a1b910c569ee47887beaadfdc9daa, type: 2}
-        - {fileID: 11400000, guid: 30be4572ac5873e449b70d7c82a1e102, type: 2}
         - {fileID: 11400000, guid: b52a1b910c569ee47887beaadfdc9daa, type: 2}
         - {fileID: 11400000, guid: 30be4572ac5873e449b70d7c82a1e102, type: 2}
         - {fileID: 11400000, guid: 3bb2bc3d31c63ba4d90beb7f4d6adaec, type: 2}

@@ -26,7 +26,7 @@ public class TargetSelectionSystem : SystemBase
                     switching.Index = 0;
             }
             var targetableEntity = targetableArray[switching.Index];
-            target.TargetEntity = targetableEntity;
+            target.Entity = targetableEntity;
         }).WithDisposeOnCompletion(targetableArray).Schedule();
     }
 }

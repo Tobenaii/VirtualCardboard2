@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
+  m_Name: HandCardUI
+  m_EditorClassIdentifier: 
+  _entities: []
+  _components:
+  - _component:
+      rid: 8471835026600755207
+  - _component:
+      rid: 8471835064285265921
+  - _component:
+      rid: 8471835072163479563
+  references:
+    version: 2
+    RefIds:
+    - rid: 8471835026600755207
+      type: {class: HandCardPositionUIComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _target:
+          _entityList: {fileID: 0}
+          _key: 0
+        _transform: {fileID: 0}
+        _radius: 0.06
+        _circularOffset: 4.7
+        _horizontalOffset: 0.61
+        _rotationalOffset: -1.92
+        _smoothTime: 0.05
+    - rid: 8471835064285265921
+      type: {class: HandCardDataUIComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _target:
+          _entityList: {fileID: 0}
+          _key: 0
+        _title: {fileID: 0}
+        _description: {fileID: 0}
+    - rid: 8471835072163479563
+      type: {class: HandCardClickUIComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _cardClickEvent: {fileID: 0}

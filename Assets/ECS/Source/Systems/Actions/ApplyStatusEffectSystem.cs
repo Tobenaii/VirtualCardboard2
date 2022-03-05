@@ -18,7 +18,7 @@ public class ApplyStatusEffectSystem : SystemBase
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
         Entities.ForEach((ref ApplyStatusEffect effect, in Target target) =>
         {
-            var buffer = GetBufferFromEntity<StatusEffect>(false)[target.TargetEntity];
+            var buffer = GetBufferFromEntity<StatusEffect>(false)[target.Entity];
             var status = buffer[effect.Type];
             status.Active = true;
             buffer[effect.Type] = status;

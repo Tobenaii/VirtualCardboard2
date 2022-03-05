@@ -13,11 +13,11 @@ public interface IStatusEffectData
 
 [InternalBufferCapacity(10)]
 [System.Serializable]
-public struct StatusEffect : IStatusEffectData, IBufferElementData, IBufferFlag
+public struct StatusEffect : IStatusEffectData, IBufferElementData
 {
     public int Type { get; set; }
+    //TODO: Change this to count so that we could have multiple of the same status effect on the same target
     public bool Active { get; set; }
-    public IBufferFlag.Flag BufferFlag { get; set; }
 }
 
 public class StatusEffectsComponent : BufferComponentAuthoring<StatusEffect>
@@ -27,7 +27,6 @@ public class StatusEffectsComponent : BufferComponentAuthoring<StatusEffect>
     protected override NativeArray<StatusEffect> AuthorComponent(World world)
     {
         var array = new NativeArray<StatusEffect>(_group.Count, Allocator.Temp);
-        int index = 0;
         for (int i = 0; i < array.Length; i++)
         {
             array[i] = new StatusEffect() { Type = i, Active = false };

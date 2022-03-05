@@ -12,8 +12,8 @@ public class TargetMarkerSystem : SystemBase
     {
         Entities.ForEach((ref TargetMarker marker, in Target target) =>
         {
-            var localToWorld = GetComponentDataFromEntity<LocalToWorld>(true)[target.TargetEntity];
-            var targetable = GetComponentDataFromEntity<Targetable>(true)[target.TargetEntity];
+            var localToWorld = GetComponentDataFromEntity<LocalToWorld>(true)[target.Entity];
+            var targetable = GetComponentDataFromEntity<Targetable>(true)[target.Entity];
             float3 newWorldPos = math.mul(localToWorld.Value, new float4(targetable.Position, 1)).xyz;
             marker.Position = newWorldPos;
             marker.Scale = targetable.Scale;

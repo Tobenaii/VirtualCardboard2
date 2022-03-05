@@ -6,16 +6,9 @@ using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-public interface ITarget
+public struct Target : IComponentData
 {
-    public Entity Dealer { get; set; }
-    public Entity TargetEntity { get; set; }
-}
-
-public struct Target : ITarget, IComponentData
-{
-    public Entity Dealer { get; set; }
-    public Entity TargetEntity { get; set; }
+    public Entity Entity { get; set; }
 }
 
 public class TargetComponent : ComponentAuthoring<Target>

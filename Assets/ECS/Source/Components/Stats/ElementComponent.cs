@@ -14,12 +14,11 @@ public interface IElementData
 }
 
 [InternalBufferCapacity(10)] [System.Serializable]
-public struct Element : IElementData, IBufferElementData, IBufferFlag
+public struct Element : IElementData, IBufferElementData
 {
     public int Type { get; set; }
     public int Count { get; set; }
     public FixedString32 Name { get; set; }
-    public IBufferFlag.Flag BufferFlag { get; set; }
 }
 
 public class ElementComponent : BufferComponentAuthoring<Element>

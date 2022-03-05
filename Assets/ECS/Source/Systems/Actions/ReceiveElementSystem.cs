@@ -19,7 +19,7 @@ public class ReceiveElementSystem : SystemBase
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
         Entities.ForEach((int entityInQueryIndex, Entity entity, in Target target, in DynamicBuffer<ReceiveElement> elements) =>
         {
-            var targetBuffer = GetBufferFromEntity<Element>(false)[target.Dealer];
+            var targetBuffer = GetBufferFromEntity<Element>(false)[target.Entity];
             foreach (var element in elements)
             {
                 var targetElement = targetBuffer[(int)element.Type];

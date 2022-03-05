@@ -189,7 +189,7 @@ public class EntityAuthoring
         foreach (var component in _components)
             component.Component.ValidateComponent();
 
-        if (Application.isPlaying)
+        if (Application.isPlaying && World.DefaultGameObjectInjectionWorld != null)
         {
             var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
             if (manager.Exists(_prefab))
