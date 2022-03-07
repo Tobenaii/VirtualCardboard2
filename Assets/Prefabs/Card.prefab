@@ -470,9 +470,11 @@ MonoBehaviour:
             type: 2}
           _key: 0
         _transform: {fileID: 3116995817731940279}
-        _radius: 0.06
+        _cardEvents: {fileID: 271079652408642792}
+        _hoverOffset: 0.1
+        _radius: 0.5
         _circularOffset: 4.7
-        _horizontalOffset: 0.61
+        _horizontalOffset: 0.7
         _rotationalOffset: -1.92
         _smoothTime: 0.05
     - rid: 8471835064285265932

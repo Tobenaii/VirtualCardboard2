@@ -20,6 +20,8 @@ MonoBehaviour:
       rid: 8471835064285265921
   - _component:
       rid: 8471835072163479563
+  - _component:
+      rid: 8471835095567433728
   references:
     version: 2
     RefIds:
@@ -30,6 +32,8 @@ MonoBehaviour:
           _entityList: {fileID: 0}
           _key: 0
         _transform: {fileID: 0}
+        _cardEvents: {fileID: 0}
+        _hoverOffset: 0
         _radius: 0.06
         _circularOffset: 4.7
         _horizontalOffset: 0.61
@@ -46,4 +50,13 @@ MonoBehaviour:
     - rid: 8471835072163479563
       type: {class: HandCardClickUIComponent, ns: , asm: Assembly-CSharp}
       data:
+        _target:
+          _entityList: {fileID: 0}
+          _key: 0
         _cardClickEvent: {fileID: 0}
+    - rid: 8471835095567433728
+      type: {class: HandCardDestroyOnUseUIComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _target:
+          _entityList: {fileID: 0}
+          _key: 0

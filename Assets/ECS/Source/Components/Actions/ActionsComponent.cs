@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
@@ -40,8 +41,10 @@ public class ActionsComponent : BufferComponentAuthoring<Action>
     {
         if (_actions == null)
             return;
-        foreach (var action in _actions)
+        foreach (var action in _actions.ToList())
         {
+            if (action == null)
+                _actions.Remove(action);
             action.ValidateComponents();
         }
     }

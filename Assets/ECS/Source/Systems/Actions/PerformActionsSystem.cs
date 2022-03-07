@@ -16,8 +16,10 @@ public class PerformActionsSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, in DynamicBuffer<Action> actions, in Dealer dealer) =>
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in RequirementStatus status, in DynamicBuffer<Action> actions, in Dealer dealer) =>
         {
+            if (status.Failed)
+                return;
             for (int i = 0; i < actions.Length; i++)
             {
                 var action = actions[i];
@@ -27,7 +29,6 @@ public class PerformActionsSystem : SystemBase
                 ecb.AddComponent(entityInQueryIndex, actionInstance, target);
                 ecb.AddComponent(entityInQueryIndex, actionInstance, dealer);
             }
-            ecb.DestroyEntity(entityInQueryIndex, entity);
         }).ScheduleParallel();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }

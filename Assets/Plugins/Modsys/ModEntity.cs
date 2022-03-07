@@ -14,9 +14,9 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
     [PropertyOrder(10000)]
     [SerializeField] private EntityAuthoring _authoring;
 
-    public void Instantiate(string name)
+    public Entity Instantiate(string name)
     {
-        _authoring.Instantiate(name);
+        return _authoring.Instantiate(name);
     }
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
@@ -88,10 +88,10 @@ public class EntityAuthoring
     public List<ReadWriteComponent> Components => _components;
     private Entity _prefab;
 
-    public void Instantiate(string name)
+    public Entity Instantiate(string name)
     {
-        var ecb = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>().CreateCommandBuffer();
-        ecb.Instantiate(GetPrefab(World.DefaultGameObjectInjectionWorld.EntityManager, name));
+        var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        return manager.Instantiate(GetPrefab(World.DefaultGameObjectInjectionWorld.EntityManager, name));
     }
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)

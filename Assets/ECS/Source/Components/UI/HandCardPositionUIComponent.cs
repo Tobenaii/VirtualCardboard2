@@ -8,12 +8,13 @@ public class HandCardPositionUI : IComponentData, ISmoothDamp<Vector2>
 {
     public Entity Target { get; set; }
     public RectTransform Transform { get; set; }
+    public CardEvents CardEvents { get; set; }
     public float Radius { get; set; }
     public float CircularOffset { get; set; }
     public float HorizontalOffset { get; set; }
     public float RotationalOffset { get; set; }
     public float SmoothTime { get; set; }
-
+    public float HoverOffset { get; set; }
     private Vector2 _velocity;
 
     public Vector2 SmoothDamp(Vector2 current, Vector2 target)
@@ -27,6 +28,8 @@ public class HandCardPositionUIComponent : ManagedComponentAuthoring<HandCardPos
 {
     [SerializeField] private EntityRef _target;
     [SerializeField] private RectTransform _transform;
+    [SerializeField] private CardEvents _cardEvents;
+    [SerializeField] private float _hoverOffset;
     [SerializeField] private float _radius = 0.06f;
     [SerializeField] private float _circularOffset = 4.7f;
     [SerializeField] private float _horizontalOffset = 0.61f;
@@ -36,7 +39,7 @@ public class HandCardPositionUIComponent : ManagedComponentAuthoring<HandCardPos
     protected override HandCardPositionUI AuthorComponent(World world)
     {
         return new HandCardPositionUI() { Target = _target.Entity, Transform = _transform, Radius = _radius, CircularOffset = _circularOffset, HorizontalOffset = _horizontalOffset,
-            RotationalOffset = _rotationalOffset, SmoothTime = _smoothTime
+            RotationalOffset = _rotationalOffset, SmoothTime = _smoothTime, CardEvents = _cardEvents, HoverOffset = _hoverOffset
         };
     }
 }
