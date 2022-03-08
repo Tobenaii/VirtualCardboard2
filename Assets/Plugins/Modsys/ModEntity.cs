@@ -74,9 +74,9 @@ public class EntityAuthoring
     [ShowIf("@_archetype != null")]
     [PropertyOrder(-1000)]
     [HideLabel]
-    [ShowInInspector] public ModArchetype Archetype => _archetype;
+    [ShowInInspector] public EntityTemplate Archetype => _archetype;
     [ShowIf("@_archetype == null")]
-    [SerializeField] private ModArchetype _archetype;
+    [SerializeField] private EntityTemplate _archetype;
     [SerializeField]
     [ListDrawerSettings(IsReadOnly = true, Expanded = true, ShowItemCount = false)]
     [HideReferenceObjectPicker]

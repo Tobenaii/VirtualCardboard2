@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
-public class MonoEntity : MonoBehaviour, ISerializationCallbackReceiver
+public class UIEntityMono : MonoBehaviour, ISerializationCallbackReceiver
 {
     [PropertyOrder(10000)]
     [SerializeField] private List<EntityAuthoring> _authoring;
@@ -15,8 +15,10 @@ public class MonoEntity : MonoBehaviour, ISerializationCallbackReceiver
 
     private void Start()
     {
-        var entity = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntity();
-        Convert(entity, World.DefaultGameObjectInjectionWorld.EntityManager);
+        var mng = World.DefaultGameObjectInjectionWorld.EntityManager;
+        var entity = mng.CreateEntity();
+        mng.SetName(entity, gameObject.name);
+        Convert(entity, mng);
         _entity = entity;
         _initialized = true;
     }

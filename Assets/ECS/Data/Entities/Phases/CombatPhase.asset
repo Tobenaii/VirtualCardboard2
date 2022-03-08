@@ -16,9 +16,9 @@ MonoBehaviour:
     _archetype: {fileID: 11400000, guid: fb9f478266293a946b219618e3af906a, type: 2}
     _components:
     - _component:
-        rid: 5362458487760355339
-    - _component:
         rid: 5362458487760355347
+    - _component:
+        rid: 5362458487760355339
     - _component:
         rid: 8471835072163479553
   references:
@@ -32,17 +32,13 @@ MonoBehaviour:
       type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions:
-        - _archetype: {fileID: 11400000, guid: 5a20abb59760bba40b44a1d0c5dba5a7, type: 2}
-          _components:
-          - _component:
-              rid: 8471835072163479554
-        - _archetype: {fileID: 11400000, guid: cc2a92df50328ee458b1735cbb75c4e2, type: 2}
-          _components:
-          - _component:
-              rid: 8471835072163479555
-    - rid: 8471835072163479554
+        - _component:
+            rid: 8471835135291424778
+        - _component:
+            rid: 8471835135291424788
+    - rid: 8471835135291424778
       type: {class: ResetATBPoolComponent, ns: , asm: Assembly-CSharp}
-    - rid: 8471835072163479555
+    - rid: 8471835135291424788
       type: {class: DrawCardsComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 5

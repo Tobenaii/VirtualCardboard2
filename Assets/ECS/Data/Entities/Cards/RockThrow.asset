@@ -16,74 +16,52 @@ MonoBehaviour:
     _archetype: {fileID: 11400000, guid: 288f182877c880d40b89591814799897, type: 2}
     _components:
     - _component:
-        rid: 5362458279391526919
+        rid: 8471835135291424779
     - _component:
-        rid: 5362458290161451010
+        rid: 8471835135291424780
     - _component:
-        rid: 5362458300426223618
+        rid: 8471835135291424781
     - _component:
-        rid: 5362458290161451008
+        rid: 8471835135291424782
   references:
     version: 2
     RefIds:
-    - rid: 5362458279391526919
+    - rid: 8471835135291424779
       type: {class: CardDataComponent, ns: , asm: Assembly-CSharp}
       data:
-        _name: Rock Throw
-        _description: Performs a throw of the rock
-    - rid: 5362458290161451008
-      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _dealer: 0
-        _entity:
-          _entityList: {fileID: 0}
-          _key: 0
-        _actions:
-        - _archetype: {fileID: 11400000, guid: 62adb2bace5d16048a9ed4514dfcdbb5, type: 2}
-          _components:
-          - _component:
-              rid: 5362458290326863877
-          - _component:
-              rid: 5362458290161451011
-        - _archetype: {fileID: 11400000, guid: 1e172d54df46f1f48a7cb55ef642f1e9, type: 2}
-          _components:
-          - _component:
-              rid: 5362458300426223621
-          - _component:
-              rid: 5362458300426223622
-        - _archetype: {fileID: 11400000, guid: 858d1fc56f41bf34ea5e4dbf0d149c0c, type: 2}
-          _components:
-          - _component:
-              rid: 5362458300426223625
-          - _component:
-              rid: 5362458300426223626
-    - rid: 5362458290161451010
+        _name: 
+        _description: 
+    - rid: 8471835135291424780
       type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
-        _amount: 1
-    - rid: 5362458290161451011
-      type: {class: DealDamageComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _amount: 50
-        _buffs: []
-    - rid: 5362458290326863877
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-    - rid: 5362458300426223618
+        _amount: 0
+    - rid: 8471835135291424781
       type: {class: ElementRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
         _elements:
         - Type: {fileID: 6661411193986489966, guid: 0cf780832d896144e970b8a0962d14c7,
             type: 2}
           Amount: 1
-    - rid: 5362458300426223621
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-    - rid: 5362458300426223622
+    - rid: 8471835135291424782
+      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _actions:
+        - _component:
+            rid: 8471835135291424783
+        - _component:
+            rid: 8471835135291424784
+        - _component:
+            rid: 8471835135291424785
+    - rid: 8471835135291424783
+      type: {class: DealDamageComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _amount: 1
+        _buffs: []
+    - rid: 8471835135291424784
       type: {class: ConsumeATBComponent, ns: , asm: Assembly-CSharp}
       data:
-        _amount: 5
-    - rid: 5362458300426223625
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-    - rid: 5362458300426223626
+        _amount: 1
+    - rid: 8471835135291424785
       type: {class: ConsumeElementComponent, ns: , asm: Assembly-CSharp}
       data:
         _elements:

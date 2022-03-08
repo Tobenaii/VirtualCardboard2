@@ -21,8 +21,6 @@ MonoBehaviour:
   - _component:
       rid: 5362458279391526918
   - _component:
-      rid: 8471835095567433740
-  - _component:
       rid: 5362458290161451009
   - _component:
       rid: 5362458300426223617
@@ -48,5 +46,3 @@ MonoBehaviour:
       type: {class: ElementRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
         _elements: []
-    - rid: 8471835095567433740
-      type: {class: RequirementStatusComponent, ns: , asm: Assembly-CSharp}

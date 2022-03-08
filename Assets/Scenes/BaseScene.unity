@@ -506,6 +506,8 @@ GameObject:
   - component: {fileID: 192105377}
   - component: {fileID: 192105376}
   - component: {fileID: 192105375}
+  - component: {fileID: 192105378}
+  - component: {fileID: 192105379}
   m_Layer: 5
   m_Name: FillerAttack
   m_TagString: Untagged
@@ -616,6 +618,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192105373}
   m_CullTransparentMesh: 1
+--- !u!114 &192105378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192105373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d681de67868049498de1a4082fc969f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _authoring:
+  - _archetype: {fileID: 11400000, guid: b8177e419b21f1746b2a8f628e18ca27, type: 2}
+    _components:
+    - _component:
+        rid: 8471835135291424787
+  references:
+    version: 2
+    RefIds:
+    - rid: 8471835135291424787
+      type: {class: InstantiateOnClickUIComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _dealer:
+          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
+            type: 2}
+          _key: 0
+        _clickEvent: {fileID: 192105379}
+        _entities:
+        - {fileID: 11400000, guid: 2f5feb86c6fb096479280253a94efab4, type: 2}
+--- !u!114 &192105379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192105373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a352b5eeee30a664b943f3dc42d3b7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &206526849 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4888273974121222652, guid: 7182f08b5fa5db343863304c0d1c74a7,
@@ -1468,7 +1512,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0460386, y: 1}
+    m_SensorSize: {x: 2.0416667, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1484,7 +1528,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378454985}
-  m_LocalRotation: {x: 0.19461863, y: 0.22463785, z: -0.045840744, w: 0.9537086}
+  m_LocalRotation: {x: 0.19461863, y: 0.22463784, z: -0.045840744, w: 0.9537086}
   m_LocalPosition: {x: -2.947, y: 3.64, z: -10.852}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5994,8 +6038,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413355603}
-  m_LocalRotation: {x: 0.19461863, y: 0.22463785, z: -0.045840744, w: 0.9537086}
-  m_LocalPosition: {x: -2.947, y: 3.64, z: -10.852}
+  m_LocalRotation: {x: 0.0047444184, y: 0.94455373, z: 0.013661077, w: -0.32803842}
+  m_LocalPosition: {x: 0.030000001, y: 1.28, z: -7.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6523,7 +6567,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0460386, y: 1}
+    m_SensorSize: {x: 2.0416667, y: 1}
   m_Transitions:
     m_BlendHint: 1
     m_InheritPosition: 0
@@ -6539,7 +6583,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540971542}
-  m_LocalRotation: {x: 0.0047443444, y: 0.94455534, z: 0.013661081, w: -0.32803378}
+  m_LocalRotation: {x: 0.0047444184, y: 0.94455373, z: 0.013661077, w: -0.32803842}
   m_LocalPosition: {x: 0.030000001, y: 1.28, z: -7.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

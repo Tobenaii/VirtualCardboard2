@@ -43,52 +43,20 @@ MonoBehaviour:
       type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions:
-        - _archetype: {fileID: 11400000, guid: 145df041decc23c459148b55f3e3544d, type: 2}
-          _components:
-          - _component:
-              rid: 5362458300426223641
-          - _component:
-              rid: 5362458300426223642
-        - _archetype: {fileID: 11400000, guid: 1e172d54df46f1f48a7cb55ef642f1e9, type: 2}
-          _components:
-          - _component:
-              rid: 5362458300426223643
-          - _component:
-              rid: 5362458300426223644
-        - _archetype: {fileID: 11400000, guid: 62adb2bace5d16048a9ed4514dfcdbb5, type: 2}
-          _components:
-          - _component:
-              rid: 5362458300426223645
-          - _component:
-              rid: 5362458300426223646
-    - rid: 5362458300426223641
-      type: {class: ReceiveElementFromWheelComponent, ns: , asm: Assembly-CSharp}
-    - rid: 5362458300426223642
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
-    - rid: 5362458300426223643
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
-    - rid: 5362458300426223644
+        - _component:
+            rid: 8471835135291424775
+        - _component:
+            rid: 8471835135291424776
+        - _component:
+            rid: 8471835135291424777
+    - rid: 8471835135291424775
       type: {class: ConsumeATBComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 1
-    - rid: 5362458300426223645
-      type: {class: TargetComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _hasInitialTarget: 0
-        _target:
-          _entityList: {fileID: 0}
-          _key: 0
-    - rid: 5362458300426223646
+    - rid: 8471835135291424776
       type: {class: DealDamageComponent, ns: , asm: Assembly-CSharp}
       data:
-        _amount: 10
+        _amount: 5
+        _buffs: []
+    - rid: 8471835135291424777
+      type: {class: ReceiveElementFromWheelComponent, ns: , asm: Assembly-CSharp}

@@ -8,7 +8,7 @@ using Unity.Entities;
 using UnityEditor;
 using UnityEngine;
 
-public class ArchetypeAuthoringMono : MonoBehaviour, IConvertGameObjectToEntity
+public class ModEntityMono : MonoBehaviour, IConvertGameObjectToEntity
 {
     [InlineEditor]
     [SerializeField] private ModEntity _entity;

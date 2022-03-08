@@ -7,18 +7,9 @@ using UnityEngine;
 [UpdateInGroup(typeof(RequirementSystemGroup))]
 public class ElementRequirementSystem : SystemBase
 {
-    private EndSimulationEntityCommandBufferSystem _commandBuffer;
-
-    protected override void OnCreate()
-    {
-        _commandBuffer = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
-    }
-
     protected override void OnUpdate()
     {
-        var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((Entity entity, int entityInQueryIndex, in Dealer dealer,
-                            in DynamicBuffer<ElementRequirement> requirements) =>
+        Entities.ForEach((ref RequirementStatus status, in Dealer dealer, in DynamicBuffer<ElementRequirement> requirements) =>
         {
             var elementBuffer = GetBufferFromEntity<Element>(true)[dealer.Entity];
             foreach (var requirement in requirements)
@@ -26,10 +17,9 @@ public class ElementRequirementSystem : SystemBase
                 var element = elementBuffer[(int)requirement.Type];
                 if (element.Count < requirement.Count)
                 {
-                    ecb.DestroyEntity(entityInQueryIndex, entity);
+                    status.Failed = true;
                 }
             }
         }).Schedule();
-        _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }
 }

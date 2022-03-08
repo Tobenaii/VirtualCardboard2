@@ -444,6 +444,7 @@ MonoBehaviour:
             type: 2}
           _key: 0
         _textMesh: {fileID: 3996170138678558475}
+        _format: '{Current}/{Max}'
 --- !u!114 &1604810290
 MonoBehaviour:
   m_ObjectHideFlags: 0

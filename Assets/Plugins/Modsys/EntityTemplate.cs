@@ -9,8 +9,8 @@ using Unity.Entities;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Modsys/Archetype")]
-public class ModArchetype : ScriptableObject, ISerializationCallbackReceiver
+[CreateAssetMenu(menuName = "Modsys/Entity Template")]
+public class EntityTemplate : ScriptableObject, ISerializationCallbackReceiver
 {
     [SerializeField] [ReadOnly] private List<ModEntity> _entities;
     [ListDrawerSettings(HideAddButton = true)]
@@ -20,19 +20,8 @@ public class ModArchetype : ScriptableObject, ISerializationCallbackReceiver
     [Button]
     private void AddComponent()
     {
-        IEnumerable<Type> list = TypeCache.GetTypesDerivedFrom(typeof(ComponentAuthoringBase));
-        list = list.Where(x => !x.IsAbstract);
-        var selector = new GenericSelector<Type>("Component Selector", list);
-
-        selector.SelectionConfirmed += selection =>
-        {
-            var type = selection.FirstOrDefault();
-            if (type == null)
-                return;
-            var instance = Activator.CreateInstance(type);
-            _components.Add((ComponentAuthoringBase)instance);
-        };
-        var window = selector.ShowInPopup();
+        var picker = new ComponentPicker();
+        picker.OpenAndGetInstance((instance) => _components.Add(instance));
     }
 
     public void Register(ModEntity modEntity)

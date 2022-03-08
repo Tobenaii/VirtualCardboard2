@@ -15,37 +15,37 @@ public struct Dealer : IComponentData
 
 
 [InternalBufferCapacity(5)]
-public struct Action : IBufferElementData
+public struct Action : IComponentData
 {
     public Entity Entity { get; set; }
 }
 
-public class ActionsComponent : BufferComponentAuthoring<Action>
+public class ActionsComponent : ComponentAuthoring<Action>
 {
-    [ListDrawerSettings(Expanded = true, ShowItemCount = false)]
-    [SerializeField] private List<EntityAuthoring> _actions;
+    [ListDrawerSettings(Expanded = true, ShowItemCount = false, HideAddButton = true)]
+    [SerializeField] private List<ReadWriteComponent> _actions;
 
-    protected override NativeArray<Action> AuthorComponent(World world)
+    [Button]
+    private void AddAction()
     {
-        var array = new NativeArray<Action>(_actions.Count, Allocator.Temp);
-        for (int i = 0; i < _actions.Count; i++)
-        {
-            var actionEntity = _actions[i].GetPrefab(world.EntityManager, _actions[i].NiceArchetypeName);
-            world.EntityManager.AddComponent<Target>(actionEntity);
-            array[i] = new Action() { Entity = _actions[i].GetPrefab(world.EntityManager, _actions[i].NiceArchetypeName) };
-        }
-        return array;
+        var picker = new ComponentPicker();
+        picker.OpenAndGetInstance((instance) => _actions.Add(instance));
     }
 
-    public override void ValidateComponent()
+    public override void AuthorDependencies(Entity entity, EntityManager dstManager)
     {
-        if (_actions == null)
-            return;
-        foreach (var action in _actions.ToList())
+        dstManager.AddComponent<RequirementStatus>(entity);
+    }
+
+    protected override Action AuthorComponent(World world)
+    {
+        var entity = world.EntityManager.CreateEntity();
+        world.EntityManager.AddComponent<Prefab>(entity);
+        for (int i = 0; i < _actions.Count; i++)
         {
-            if (action == null)
-                _actions.Remove(action);
-            action.ValidateComponents();
+            var action = _actions[i];
+            action.Component.AuthorComponent(entity, world.EntityManager);
         }
+        return new Action() { Entity = entity };
     }
 }
