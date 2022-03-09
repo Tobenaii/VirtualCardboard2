@@ -17,9 +17,9 @@ public class ReceiveElementSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, in Target target, in DynamicBuffer<ReceiveElement> elements) =>
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in Dealer dealer, in DynamicBuffer<ReceiveElement> elements) =>
         {
-            var targetBuffer = GetBufferFromEntity<Element>(false)[target.Entity];
+            var targetBuffer = GetBufferFromEntity<Element>(false)[dealer.Entity];
             foreach (var element in elements)
             {
                 var targetElement = targetBuffer[(int)element.Type];

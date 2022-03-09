@@ -1,26 +1,16 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
-using UnityEngine.Serialization;
 
-public struct Dealer : IComponentData
-{
-    public Entity Entity { get; set; }
-}
-
-
-public struct Action : IComponentData
+[InternalBufferCapacity(5)]
+public struct Requirement : IComponentData
 {
     public Entity Prefab { get; set; }
 }
 
-[MovedFrom(true, sourceClassName: "CardActionsComponent")]
-public class ActionsComponent : ComponentAuthoring<Action>
+public class RequirementsComponent : ComponentAuthoring<Requirement>
 {
     [ListDrawerSettings(Expanded = true, ShowItemCount = false, HideAddButton = true)]
     [SerializeField] private List<ReadWriteComponent> _actions;
@@ -32,16 +22,16 @@ public class ActionsComponent : ComponentAuthoring<Action>
         picker.OpenAndGetInstance((instance) => _actions.Add(instance));
     }
 
-    protected override Action AuthorComponent(World world)
+    protected override Requirement AuthorComponent(World world)
     {
         var entity = world.EntityManager.CreateEntity();
-        world.EntityManager.AddComponent<Dealer>(entity);
+        world.EntityManager.AddComponent<RequirementStatus>(entity);
         world.EntityManager.AddComponent<Prefab>(entity);
         for (int i = 0; i < _actions.Count; i++)
         {
             var action = _actions[i];
             action.Component.AuthorComponent(entity, world.EntityManager);
         }
-        return new Action() { Prefab = entity };
+        return new Requirement() { Prefab = entity };
     }
 }

@@ -34,7 +34,6 @@ public class DeckComponent : ComponentAuthoring<Deck>
         {
             var instance = new DeckCard();
             instance.Entity = modEntity.GetPrefab(dstManager, modEntity.name);
-            dstManager.AddComponentData<Dealer>(instance.Entity, new Dealer() { Entity = entity });
             instances[i] = instance;
             i++;
         }

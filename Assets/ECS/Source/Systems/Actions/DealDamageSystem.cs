@@ -16,8 +16,9 @@ public class DealDamageSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((int entityInQueryIndex, Entity entity, in DealDamage dealDamage, in Target target) =>
+        Entities.ForEach((int entityInQueryIndex, Entity entity, in DealDamage dealDamage, in Dealer dealer) =>
         {
+            var target = GetComponentDataFromEntity<Target>(true)[dealer.Entity];
             var damage = GetComponentDataFromEntity<Damage>(true)[target.Entity];
             damage.Amount += dealDamage.Amount;
             ecb.SetComponent(entityInQueryIndex, target.Entity, damage);

@@ -16,8 +16,9 @@ public class ApplyStatusEffectSystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
-        Entities.ForEach((ref ApplyStatusEffect effect, in Target target) =>
+        Entities.ForEach((in ApplyStatusEffect effect, in Dealer dealer) =>
         {
+            var target = GetComponentDataFromEntity<Target>(true)[dealer.Entity];
             var buffer = GetBufferFromEntity<StatusEffect>(false)[target.Entity];
             var status = buffer[effect.Type];
             status.Active = true;
