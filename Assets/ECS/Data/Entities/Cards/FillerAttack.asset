@@ -13,16 +13,14 @@ MonoBehaviour:
   m_Name: FillerAttack
   m_EditorClassIdentifier: 
   _authoring:
-    _archetype: {fileID: 11400000, guid: 288f182877c880d40b89591814799897, type: 2}
+    _template: {fileID: 11400000, guid: 288f182877c880d40b89591814799897, type: 2}
     _components:
     - _component:
         rid: 5362458300426223627
     - _component:
-        rid: 5362458300426223628
-    - _component:
-        rid: 5362458300426223629
-    - _component:
         rid: 5362458300426223630
+    - _component:
+        rid: 8471835160421335045
   references:
     version: 2
     RefIds:
@@ -31,14 +29,6 @@ MonoBehaviour:
       data:
         _name: Filler Attack
         _description: Generates an element.
-    - rid: 5362458300426223628
-      type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _amount: 1
-    - rid: 5362458300426223629
-      type: {class: ElementRequirementComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _elements: []
     - rid: 5362458300426223630
       type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
@@ -60,3 +50,13 @@ MonoBehaviour:
         _buffs: []
     - rid: 8471835135291424777
       type: {class: ReceiveElementFromWheelComponent, ns: , asm: Assembly-CSharp}
+    - rid: 8471835160421335045
+      type: {class: RequirementsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _actions:
+        - _component:
+            rid: 8471835160421335046
+    - rid: 8471835160421335046
+      type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _amount: 1

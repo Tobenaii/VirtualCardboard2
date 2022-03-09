@@ -15,17 +15,13 @@ MonoBehaviour:
   _entities:
   - {fileID: 11400000, guid: 30be4572ac5873e449b70d7c82a1e102, type: 2}
   - {fileID: 11400000, guid: 2f5feb86c6fb096479280253a94efab4, type: 2}
-  - {fileID: 11400000, guid: 3bb2bc3d31c63ba4d90beb7f4d6adaec, type: 2}
-  - {fileID: 11400000, guid: b52a1b910c569ee47887beaadfdc9daa, type: 2}
   _components:
   - _component:
       rid: 5362458279391526918
   - _component:
-      rid: 5362458290161451009
-  - _component:
-      rid: 5362458300426223617
-  - _component:
       rid: 5362458288434184208
+  - _component:
+      rid: 8471835160421335043
   references:
     version: 2
     RefIds:
@@ -38,11 +34,7 @@ MonoBehaviour:
       type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions: []
-    - rid: 5362458290161451009
-      type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
+    - rid: 8471835160421335043
+      type: {class: RequirementsComponent, ns: , asm: Assembly-CSharp}
       data:
-        _amount: 0
-    - rid: 5362458300426223617
-      type: {class: ElementRequirementComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _elements: []
+        _actions: []
