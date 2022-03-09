@@ -7,6 +7,7 @@ using System.Linq;
 using Unity.Entities;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Modsys/Entity")]
 public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
@@ -14,14 +15,9 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
     [PropertyOrder(10000)]
     [SerializeField] private EntityAuthoring _authoring;
 
-    public Entity Instantiate(string name)
-    {
-        return _authoring.Instantiate(name);
-    }
-
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        _authoring.Convert(entity, dstManager, conversionSystem);
+        _authoring.Convert(entity, dstManager);
     }
 
     public Entity GetPrefab(EntityManager manager, string name)
@@ -30,17 +26,10 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
         return _authoring.GetPrefab(manager, name);
     }
 
-    [ShowIf("@UnityEngine.Application.isPlaying")] [PropertyOrder(100000)]
-    [Button("Test")]
-    private void DebugInstantiate()
-    {
-        Instantiate(this.name);
-    }
-
     private void Register()
     {
         if (_authoring != null)
-            _authoring.Archetype?.Register(this);
+            _authoring.Template?.Register(this);
     }
 
     private void OnValidate()
@@ -51,7 +40,7 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
 
     public void ValidateComponents()
     {
-        if (_authoring.Archetype != null)
+        if (_authoring.Template != null)
             _authoring.ValidateComponents();
     }
 
@@ -71,39 +60,30 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
 [HideReferenceObjectPicker]
 public class EntityAuthoring
 {
-    [ShowIf("@_archetype != null")]
-    [PropertyOrder(-1000)]
-    [HideLabel]
-    [ShowInInspector] public EntityTemplate Archetype => _archetype;
-    [ShowIf("@_archetype == null")]
-    [SerializeField] private EntityTemplate _archetype;
-    [SerializeField]
-    [ListDrawerSettings(IsReadOnly = true, Expanded = true, ShowItemCount = false)]
-    [HideReferenceObjectPicker]
-    [ShowIf("@_archetype != null")]
-    [LabelText("@NiceArchetypeName")]
-    private List<ReadWriteComponent> _components = new List<ReadWriteComponent>();
-    public string NiceArchetypeName => ObjectNames.NicifyVariableName(_archetype.name);
-
     public List<ReadWriteComponent> Components => _components;
+
+    [ShowIf("@_template != null"), PropertyOrder(-1000), HideLabel, ShowInInspector]
+    public EntityTemplate Template => _template;
+
+    [ShowIf("@_template == null"), SerializeField, FormerlySerializedAs("_archetype")]
+    private EntityTemplate _template;
+
+    [SerializeField, HideReferenceObjectPicker, ListDrawerSettings(IsReadOnly = true, Expanded = true, ShowItemCount = false), ShowIf("@_template != null"), LabelText("@_niceArchetypeName")]
+    private List<ReadWriteComponent> _components = new List<ReadWriteComponent>();
+
+    private string _niceArchetypeName => ObjectNames.NicifyVariableName(_template.name);
     private Entity _prefab;
 
-    public Entity Instantiate(string name)
-    {
-        var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        return manager.Instantiate(GetPrefab(World.DefaultGameObjectInjectionWorld.EntityManager, name));
-    }
-
-    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+    public void Convert(Entity entity, EntityManager dstManager)
     {
         foreach (var component in Components)
             component.Component.AuthorComponent(entity, dstManager);
     }
 
-    public void Update(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+    public void Update(EntityManager dstManager)
     {
         foreach (var component in Components)
-            component.Component.UpdateComponent(entity, dstManager);
+            component.Component.UpdateComponent(_prefab, dstManager);
     }
 
     public Entity GetPrefab(EntityManager manager, string name)
@@ -116,22 +96,17 @@ public class EntityAuthoring
         return _prefab;
     }
 
-    public void UpdatePrefab(EntityManager manager)
-    {
-        Update(_prefab, manager, null);
-    }
-
     private Entity CreatePrefab(EntityManager manager, string name)
     {
         if (manager.Exists(_prefab))
         {
-            Update(_prefab, manager, null);
+            Update(manager);
             return _prefab;
         }
         else
         {
             var entity = manager.CreateEntity();
-            Convert(entity, manager, null);
+            Convert(entity, manager);
             manager.AddComponent<Prefab>(entity);
             manager.SetName(entity, name);
             return entity;
@@ -140,52 +115,30 @@ public class EntityAuthoring
 
     public void ValidateComponents()
     {
-        if (_archetype == null)
+        if (_template == null)
             return;
-        if (_components == null)
-            _components = new List<ReadWriteComponent>();
-        //Clear all components if archetype is null
-        if (_archetype == null && _components.Count > 0)
-        {
-            _components.Clear();
-        }
 
-        if (_archetype != null && _components != null)
-        {
-            foreach (var component in _components.ToList())
-            {
-                //Remove null components
-                if (component.Component == null)
-                    _components.Remove(component);
-            }
-            //Add components that should exist
-            foreach (var component in _archetype.Components)
-            {
-                if (_components.Select(x => x.Component.GetType()).Where(x => x == component.GetType()).FirstOrDefault() == null)
-                {
-                    var newComponent = Activator.CreateInstance(component.GetType()) as ComponentAuthoringBase;
-                    _components.Add(newComponent);
-                }
-            }
+        var templateTypes = _template.Components.Select(x => x.GetType());
+        var entityTypes = _components.Select(x => x.Component.GetType());
 
-            //Remove components that shouldn't exist
-            foreach (var component in _components.ToList())
-            {
-                if (_archetype.Components.Select(
-                    x => x.GetType()).Where(x => x == component.Component.GetType()).FirstOrDefault() == null)
-                {
-                    _components.Remove(component);
-                }
-            }
-            for (int i = 0; i < _components.Count; i++)
-            {
-                int newIndex = _archetype.Components.Select(x => x.GetType()).ToList().IndexOf(
-                    _components.Select(x => x.Component.GetType()).Where(x => x == _components[i].Component.GetType()).First());
-                var temp = _components[newIndex];
-                _components[newIndex] = _components[i];
-                _components[i] = temp;
-            }
-        }
+        //Remove all null components
+        _components.RemoveAll(x => x.Component == null);
+
+        //Add components from template
+        _components.AddRange(
+            templateTypes.Where(x => !entityTypes.Contains(x))
+            .Select(newType => (ComponentAuthoringBase)Activator.CreateInstance(newType))
+            .Select(comp => (ReadWriteComponent)comp));
+
+        //Remove components not in template anymore
+        _components.RemoveAll(x =>
+            !templateTypes.Contains(x.Component.GetType())
+            );
+
+        //Order components based on template
+        Dictionary<Type, ReadWriteComponent> sorter = _components.ToDictionary(x => x.Component.GetType());
+        _components = templateTypes.Select(x => sorter[x]).ToList();
+
         foreach (var component in _components)
             component.Component.ValidateComponent();
 
@@ -193,7 +146,7 @@ public class EntityAuthoring
         {
             var manager = World.DefaultGameObjectInjectionWorld.EntityManager;
             if (manager.Exists(_prefab))
-                UpdatePrefab(manager);
+                Update(manager);
         }
     }
 }
