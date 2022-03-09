@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Modsys/Entity")]
-public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
+public class ModEntity : ScriptableObject
 {
     [PropertyOrder(10000)]
     [SerializeField] private EntityAuthoring _authoring;
@@ -35,22 +35,12 @@ public class ModEntity : ScriptableObject, ISerializationCallbackReceiver
     private void OnValidate()
     {
         Register();
-        ValidateComponents();
     }
 
     public void ValidateComponents()
     {
         if (_authoring.Template != null)
             _authoring.ValidateComponents();
-    }
-
-    void ISerializationCallbackReceiver.OnBeforeSerialize()
-    {
-        Register();
-    }
-
-    public void OnAfterDeserialize()
-    {
     }
 }
 
