@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
-public class UIEntityMono : MonoBehaviour, ISerializationCallbackReceiver
+public class SceneEntityMono : MonoBehaviour, ISerializationCallbackReceiver
 {
     [PropertyOrder(10000)]
     [SerializeField] private List<EntityAuthoring> _authoring;
@@ -26,13 +26,13 @@ public class UIEntityMono : MonoBehaviour, ISerializationCallbackReceiver
     private void UpdateEntity(Entity entity, EntityManager dstManager)
     {
         foreach (var authoring in _authoring)
-            authoring.Update(entity, dstManager, null);
+            authoring.Update(dstManager);
     }
 
     private void Convert(Entity entity, EntityManager dstManager)
     {
         foreach (var authoring in _authoring)
-            authoring.Convert(entity, dstManager, null);
+            authoring.Convert(entity, dstManager);
     }
 
     private void OnValidate()
@@ -51,7 +51,7 @@ public class UIEntityMono : MonoBehaviour, ISerializationCallbackReceiver
         {
             if (authoring == null)
                 _authoring.Remove(authoring);
-            if (authoring != null && authoring.Archetype != null)
+            if (authoring != null && authoring.Template != null)
                 authoring.ValidateComponents();
         }
     }
