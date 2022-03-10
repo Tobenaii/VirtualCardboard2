@@ -8,9 +8,9 @@ public class HealthBarUISystem : SystemBase
 {
     protected override void OnUpdate()
     {
-        Entities.ForEach((HealthBarUI ui) =>
+        Entities.ForEach((HealthBarUI ui, in Dealer dealer) =>
         {
-            var health = GetComponentDataFromEntity<Health>(true)[ui.Target];
+            var health = GetComponentDataFromEntity<Health>(true)[dealer.Entity];
             
             var target = (float)health.CurrentValue / health.MaxValue;
             var bar = ui.HealthBar;

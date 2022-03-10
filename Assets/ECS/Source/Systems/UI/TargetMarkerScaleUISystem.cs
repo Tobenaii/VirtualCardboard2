@@ -9,11 +9,11 @@ public class TargetMarkerScaleUISystem : SystemBase
     {
         var camera = Camera.main.transform;
         var deltaTime = Time.DeltaTime;
-        Entities.ForEach((TargetMarkerScaleUI ui) =>
+        Entities.ForEach((TargetMarkerScaleUI ui, in Dealer dealer) =>
         {
             var transform = ui.Transform;
 
-            var target = GetComponentDataFromEntity<TargetMarker>(true)[ui.Target];
+            var target = GetComponentDataFromEntity<TargetMarker>(true)[dealer.Entity];
 
             transform.localScale = ui.SmoothDamp(transform.localScale, target.Scale);
         }).WithoutBurst().Run();

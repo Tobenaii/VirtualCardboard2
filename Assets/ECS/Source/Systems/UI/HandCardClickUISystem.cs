@@ -15,11 +15,11 @@ public class HandCardClickUISystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer();
-        Entities.ForEach((int entityInQueryIndex, HandCardClickUI ui) =>
+        Entities.ForEach((int entityInQueryIndex, HandCardClickUI ui, in Dealer dealer) =>
         {
             if (!ui.CardClickEvent.HasClicked)
                 return;
-            var handCards = GetBufferFromEntity<HandCard>(true)[ui.Target];
+            var handCards = GetBufferFromEntity<HandCard>(true)[dealer.Entity];
             if (entityInQueryIndex >= handCards.Length)
                 return;
             var card = handCards[entityInQueryIndex];

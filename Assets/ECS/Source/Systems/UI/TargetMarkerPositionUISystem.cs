@@ -9,11 +9,11 @@ public class TargetMarkerPositionUISystem : SystemBase
     {
         var camera = Camera.main.transform;
         var deltaTime = Time.DeltaTime;
-        Entities.ForEach((TargetMarkerPositionUI ui) =>
+        Entities.ForEach((TargetMarkerPositionUI ui, in Dealer dealer) =>
         {
             var transform = ui.Transform;
 
-            var target = GetComponentDataFromEntity<TargetMarker>(true)[ui.Target];
+            var target = GetComponentDataFromEntity<TargetMarker>(true)[dealer.Entity];
 
             transform.position = ui.SmoothDamp(transform.position, target.Position);
             float prevZ = transform.eulerAngles.z;

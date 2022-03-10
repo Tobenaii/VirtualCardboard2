@@ -9,11 +9,11 @@ public class StatusEffectGaugeUISystem : SystemBase
 {
     protected override void OnUpdate()
     {
-        Entities.ForEach((StatusEffectGaugeUI ui) =>
+        Entities.ForEach((StatusEffectGaugeUI ui, in Dealer dealer) =>
         {
-            if (!EntityManager.GetChunk(ui.Target).DidChange(GetBufferTypeHandle<StatusEffect>(true), LastSystemVersion))
+            if (!EntityManager.GetChunk(dealer.Entity).DidChange(GetBufferTypeHandle<StatusEffect>(true), LastSystemVersion))
                 return;
-            var elements = GetBufferFromEntity<StatusEffect>(true)[ui.Target];
+            var elements = GetBufferFromEntity<StatusEffect>(true)[dealer.Entity];
             Transform group = ui.ResourceHolder;
             int resourceIndex = 0;
             foreach (var element in elements)

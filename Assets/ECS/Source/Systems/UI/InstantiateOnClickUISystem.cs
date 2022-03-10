@@ -15,15 +15,14 @@ public class InstantiateOnClickUISystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer();
-        Entities.ForEach((InstantiateOnClickUI ui) =>
+        Entities.ForEach((InstantiateOnClickUI ui, in Dealer dealer) =>
         {
             if (ui.ClickEvent.HasClicked)
             {
                 foreach (var action in ui.Entities)
                 {
-                    ecb.Instantiate(action);
-                    ecb.AddComponent<Dealer>(action);
-                    ecb.SetComponent<Dealer>(action, new Dealer() { Entity = ui.Dealer });
+                    var actionInstance = ecb.Instantiate(action);
+                    ecb.SetComponent<Dealer>(actionInstance, new Dealer() { Entity = dealer.Entity });
                 }
             }
         }).WithoutBurst().Run();

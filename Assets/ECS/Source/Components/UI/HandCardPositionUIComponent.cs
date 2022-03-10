@@ -6,7 +6,6 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class HandCardPositionUI : IComponentData, ISmoothDamp<Vector2>
 {
-    public Entity Target { get; set; }
     public RectTransform Transform { get; set; }
     public UIEvents CardEvents { get; set; }
     public float Radius { get; set; }
@@ -26,7 +25,6 @@ public class HandCardPositionUI : IComponentData, ISmoothDamp<Vector2>
 [MovedFrom(true, sourceClassName: "HandCardUIComponent")]
 public class HandCardPositionUIComponent : ManagedComponentAuthoring<HandCardPositionUI>
 {
-    [SerializeField] private EntityRef _target;
     [SerializeField] private RectTransform _transform;
     [SerializeField] private UIEvents _cardEvents;
     [SerializeField] private float _hoverOffset;
@@ -38,7 +36,7 @@ public class HandCardPositionUIComponent : ManagedComponentAuthoring<HandCardPos
 
     protected override HandCardPositionUI AuthorComponent(World world)
     {
-        return new HandCardPositionUI() { Target = _target.Entity, Transform = _transform, Radius = _radius, CircularOffset = _circularOffset, HorizontalOffset = _horizontalOffset,
+        return new HandCardPositionUI() { Transform = _transform, Radius = _radius, CircularOffset = _circularOffset, HorizontalOffset = _horizontalOffset,
             RotationalOffset = _rotationalOffset, SmoothTime = _smoothTime, CardEvents = _cardEvents, HoverOffset = _hoverOffset
         };
     }

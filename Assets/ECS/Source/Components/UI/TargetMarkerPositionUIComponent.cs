@@ -6,7 +6,6 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class TargetMarkerPositionUI : IComponentData, ISmoothDamp<Vector3>
 {
-    public Entity Target { get; set; }
     public Transform Transform { get; set; }
     public float SmoothTime { get; set; }
 
@@ -21,12 +20,11 @@ public class TargetMarkerPositionUI : IComponentData, ISmoothDamp<Vector3>
 [MovedFrom(true, sourceClassName: "TargetMarkerUIComponent")]
 public class TargetMarkerPositionUIComponent : ManagedComponentAuthoring<TargetMarkerPositionUI>
 {
-    [SerializeField] private EntityRef _target;
     [SerializeField] private Transform _transform;
     [SerializeField] private float _smoothTime;
 
     protected override TargetMarkerPositionUI AuthorComponent(World world)
     {
-        return new TargetMarkerPositionUI() { Target = _target.Entity, SmoothTime = _smoothTime, Transform = _transform };
+        return new TargetMarkerPositionUI() { SmoothTime = _smoothTime, Transform = _transform };
     }
 }

@@ -8,11 +8,11 @@ public class HandCardDataUISystem : SystemBase
 {
     protected override void OnUpdate()
     {
-        Entities.ForEach((int entityInQueryIndex, HandCardDataUI ui) =>
+        Entities.ForEach((int entityInQueryIndex, HandCardDataUI ui, in Dealer dealer) =>
         {
-            if (!EntityManager.GetChunk(ui.Target).DidChange(GetBufferTypeHandle<HandCard>(true), LastSystemVersion))
+            if (!EntityManager.GetChunk(dealer.Entity).DidChange(GetBufferTypeHandle<HandCard>(true), LastSystemVersion))
                 return;
-            var handCards = GetBufferFromEntity<HandCard>(true)[ui.Target];
+            var handCards = GetBufferFromEntity<HandCard>(true)[dealer.Entity];
             if (entityInQueryIndex >= handCards.Length)
                 return;
             var card = handCards[entityInQueryIndex];

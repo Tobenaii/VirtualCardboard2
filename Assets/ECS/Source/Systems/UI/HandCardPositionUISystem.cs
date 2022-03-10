@@ -8,9 +8,9 @@ public class HandCardPositionUISystem : SystemBase
 {
     protected override void OnUpdate()
     {
-        Entities.ForEach((int entityInQueryIndex, HandCardPositionUI ui) =>
+        Entities.ForEach((int entityInQueryIndex, HandCardPositionUI ui, in Dealer dealer) =>
         {
-            var handCards = GetBufferFromEntity<HandCard>(true)[ui.Target];
+            var handCards = GetBufferFromEntity<HandCard>(true)[dealer.Entity];
             if (entityInQueryIndex >= handCards.Length)
             {
                 ui.Transform.gameObject.SetActive(false);

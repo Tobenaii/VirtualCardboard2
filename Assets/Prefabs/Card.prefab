@@ -450,8 +450,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d681de67868049498de1a4082fc969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dealer:
+    _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
+    _key: 0
   _authoring:
-  - _archetype: {fileID: 11400000, guid: 7c8433f37cb3242419195683aeff0c34, type: 2}
+  - _template: {fileID: 11400000, guid: 7c8433f37cb3242419195683aeff0c34, type: 2}
     _components:
     - _component:
         rid: 8471835026600755208
@@ -465,10 +468,6 @@ MonoBehaviour:
     - rid: 8471835026600755208
       type: {class: HandCardPositionUIComponent, ns: , asm: Assembly-CSharp}
       data:
-        _target:
-          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
-            type: 2}
-          _key: 0
         _transform: {fileID: 3116995817731940279}
         _cardEvents: {fileID: 271079652408642792}
         _hoverOffset: 0.1
@@ -480,19 +479,11 @@ MonoBehaviour:
     - rid: 8471835064285265932
       type: {class: HandCardDataUIComponent, ns: , asm: Assembly-CSharp}
       data:
-        _target:
-          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
-            type: 2}
-          _key: 0
         _title: {fileID: 3116995818492242477}
         _description: {fileID: 4255893099448857109}
     - rid: 8471835072163479564
       type: {class: HandCardClickUIComponent, ns: , asm: Assembly-CSharp}
       data:
-        _target:
-          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
-            type: 2}
-          _key: 0
         _cardClickEvent: {fileID: 271079652408642792}
 --- !u!114 &271079652408642792
 MonoBehaviour:
@@ -506,9 +497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a352b5eeee30a664b943f3dc42d3b7d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dealer:
-    _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
-    _key: 0
 --- !u!1 &3116995817856080919
 GameObject:
   m_ObjectHideFlags: 0

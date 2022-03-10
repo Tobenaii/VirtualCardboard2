@@ -10,11 +10,11 @@ public class ElementGaugeUISystem : SystemBase
     protected override void OnUpdate()
     {
         //TODO: Make ElementGaugeUI a buffer with an element for each element type
-        Entities.ForEach((ElementGaugeUI ui) =>
+        Entities.ForEach((ElementGaugeUI ui, in Dealer dealer) =>
         {
-            if (!EntityManager.GetChunk(ui.Target).DidChange(GetBufferTypeHandle<Element>(true), LastSystemVersion))
+            if (!EntityManager.GetChunk(dealer.Entity).DidChange(GetBufferTypeHandle<Element>(true), LastSystemVersion))
                 return;
-            var elements = GetBufferFromEntity<Element>(true)[ui.Target];
+            var elements = GetBufferFromEntity<Element>(true)[dealer.Entity];
             Transform group = ui.ResourceHolder;
             int resourceIndex = 0;
             foreach (var element in elements)

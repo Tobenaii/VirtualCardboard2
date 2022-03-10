@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class ElementWheelUI : IComponentData
 {
-    public Entity Target { get; set; }
     public ElementDataGroup ElementData { get; set; }
     public List<Image> Images { get; set; }
     public List<SmoothDamperooski> SmoothDamperooskis { get; set; }
@@ -25,7 +24,6 @@ public class ElementWheelUI : IComponentData
 
 public class ElementWheelUIComponent : ManagedComponentAuthoring<ElementWheelUI>
 {
-    [SerializeField] private EntityRef _target;
     [SerializeField] private ElementDataGroup _elements;
     [SerializeField] private List<Image> _images;
     [SerializeField] private float _smoothTime;
@@ -36,6 +34,6 @@ public class ElementWheelUIComponent : ManagedComponentAuthoring<ElementWheelUI>
         for (int i = 0; i < _images.Count; i++)
             damperooskis.Add(new ElementWheelUI.SmoothDamperooski() { SmoothTime = _smoothTime });
 
-        return new ElementWheelUI() { Target = _target.Entity, Images = _images, SmoothDamperooskis = damperooskis, ElementData = _elements };
+        return new ElementWheelUI() { Images = _images, SmoothDamperooskis = damperooskis, ElementData = _elements };
     }
 }

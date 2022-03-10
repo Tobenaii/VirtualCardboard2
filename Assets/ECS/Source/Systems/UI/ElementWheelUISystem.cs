@@ -8,9 +8,9 @@ public class ElementWheelUISystem : SystemBase
 {
     protected override void OnUpdate()
     {
-        Entities.ForEach((ElementWheelUI ui) =>
+        Entities.ForEach((ElementWheelUI ui, in Dealer dealer) =>
         {
-            var elements = GetBufferFromEntity<ElementWheel>(true)[ui.Target];
+            var elements = GetBufferFromEntity<ElementWheel>(true)[dealer.Entity];
             var start = 0.0f;
             for (int i = 0; i < elements.Length; i++)
             {

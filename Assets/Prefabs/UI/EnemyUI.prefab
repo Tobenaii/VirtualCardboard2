@@ -567,7 +567,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7535242674004034887}
-  - component: {fileID: 8766034710140555197}
   - component: {fileID: 6307018628449135226}
   m_Layer: 5
   m_Name: EnemyUI
@@ -599,22 +598,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8766034710140555197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7535242674004034875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d681de67868049498de1a4082fc969f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _authoring: []
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &6307018628449135226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,12 +610,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d681de67868049498de1a4082fc969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dealer:
+    _entityList: {fileID: 0}
+    _key: 0
   _authoring:
-  - _archetype: {fileID: 11400000, guid: e6c86387cb6ab9e479bd1b6080047f63, type: 2}
+  - _template: {fileID: 11400000, guid: e6c86387cb6ab9e479bd1b6080047f63, type: 2}
     _components:
     - _component:
         rid: 8471835026600755206
-  - _archetype: {fileID: 11400000, guid: e73a09de513cf5a4e8a8a29f3f08ab44, type: 2}
+  - _template: {fileID: 11400000, guid: e73a09de513cf5a4e8a8a29f3f08ab44, type: 2}
     _components:
     - _component:
         rid: 8471835072163479562
@@ -642,19 +628,11 @@ MonoBehaviour:
     - rid: 8471835026600755206
       type: {class: HealthBarUIComponent, ns: , asm: Assembly-CSharp}
       data:
-        _target:
-          _entityList: {fileID: 11400000, guid: 28a6a4a2c1a536041aab9fd9d3891dfa,
-            type: 2}
-          _key: 0
         _healthBar: {fileID: 7740126286183273666}
         _smoothTime: 0.1
     - rid: 8471835072163479562
       type: {class: StatusEffectGaugeUIComponent, ns: , asm: Assembly-CSharp}
       data:
-        _target:
-          _entityList: {fileID: 11400000, guid: 28a6a4a2c1a536041aab9fd9d3891dfa,
-            type: 2}
-          _key: 0
         _elementData: {fileID: 11400000, guid: 0cf780832d896144e970b8a0962d14c7, type: 2}
         _resourceHolder: {fileID: 8242988691619554432}
 --- !u!1 &7545154388655417791

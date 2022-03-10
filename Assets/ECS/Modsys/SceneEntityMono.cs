@@ -32,6 +32,7 @@ public class SceneEntityMono : MonoBehaviour, ISerializationCallbackReceiver
 
     private void Convert(Entity entity, EntityManager dstManager)
     {
+        dstManager.AddComponentData(entity, new Dealer() { Entity = _dealer.Entity });
         foreach (var authoring in _authoring)
             authoring.Convert(entity, dstManager);
     }

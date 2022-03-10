@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class TargetMarkerScaleUI : IComponentData, ISmoothDamp<Vector3>
 {
-    public Entity Target { get; set; }
     public Transform Transform { get; set; }
     public float SmoothTime { get; set; }
 
@@ -19,12 +18,11 @@ public class TargetMarkerScaleUI : IComponentData, ISmoothDamp<Vector3>
 
 public class TargetMarkerScaleUIComponent : ManagedComponentAuthoring<TargetMarkerScaleUI>
 {
-    [SerializeField] private EntityRef _target;
     [SerializeField] private Transform _transform;
     [SerializeField] private float _smoothTime;
     
     protected override TargetMarkerScaleUI AuthorComponent(World world)
     {
-        return new TargetMarkerScaleUI() { Target = _target.Entity, SmoothTime = _smoothTime, Transform = _transform };
+        return new TargetMarkerScaleUI() { SmoothTime = _smoothTime, Transform = _transform };
     }
 }
