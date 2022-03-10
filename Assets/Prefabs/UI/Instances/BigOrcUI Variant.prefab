@@ -11,6 +11,12 @@ PrefabInstance:
       propertyPath: _target._key
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6307018628449135226, guid: 4337d9f4e249b584ebc809b803070888,
+        type: 3}
+      propertyPath: _dealer._entityList
+      value: 
+      objectReference: {fileID: 11400000, guid: 28a6a4a2c1a536041aab9fd9d3891dfa,
+        type: 2}
     - target: {fileID: 7535242672895447811, guid: 4337d9f4e249b584ebc809b803070888,
         type: 3}
       propertyPath: m_text
