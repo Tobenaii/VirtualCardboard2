@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class SceneEntityMono : MonoBehaviour, ISerializationCallbackReceiver
 {
+    [SerializeField] private EntityRef _dealer;
     [PropertyOrder(10000)]
     [SerializeField] private List<EntityAuthoring> _authoring;
 
