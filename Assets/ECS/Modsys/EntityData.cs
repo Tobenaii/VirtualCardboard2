@@ -48,12 +48,21 @@ public class EntityData : ScriptableObject
     public Entity GetPrefab(EntityManager dstManager)
     {
         Entity prefab;
-       _prefabs.TryGetValue(this, out prefab);
-        if (prefab != default)
+        if (_prefabs.TryGetValue(this, out prefab))
+        {
+            if (prefab == default)
+            {
+                prefab = _authoring.CreatePrefab(dstManager, this.name);
+                _prefabs[this] = prefab;
+            }
             return _prefabs[this];
-        prefab = _authoring.CreatePrefab(dstManager, this.name);
-        _prefabs.Add(this, prefab);
-        return prefab;
+        }
+        else
+        {
+            prefab = _authoring.CreatePrefab(dstManager, this.name);
+            _prefabs.Add(this, prefab);
+            return prefab;
+        }
     }
 
     //TODO: yeah idk about this lmao
