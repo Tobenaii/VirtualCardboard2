@@ -72,7 +72,7 @@ public class EntityData : ScriptableObject
         {
             if (state == PlayModeStateChange.ExitingPlayMode)
             {
-                foreach (var key in _prefabs.Keys)
+                foreach (var key in _prefabs.Keys.ToList())
                     _prefabs[key] = default;
             }
         }
