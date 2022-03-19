@@ -20,10 +20,10 @@ public class EntityData : ScriptableObject
         return _authoring.Convert(entity, dstManager);
     }
 
-    //public void Update(Entity entity, EntityManager dstManager)
-    //{
-    //    _authoring.Update(entity, dstManager);
-    //}
+    private void Update(Entity prefab, EntityManager dstManager)
+    {
+        _authoring.Update(prefab, dstManager);
+    }
 
     public void ValidateComponents()
     {
@@ -35,10 +35,46 @@ public class EntityData : ScriptableObject
     {
         if (_authoring != null)
             _authoring.Template?.Register(this);
+
+        if (!Application.isPlaying)
+            return;
+        var dstManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        Entity prefab;
+        _prefabs.TryGetValue(this, out prefab);
+        if (prefab != default)
+            Update(prefab, dstManager);
     }
 
     public Entity GetPrefab(EntityManager dstManager)
     {
-        return default(Entity);
+        Entity prefab;
+       _prefabs.TryGetValue(this, out prefab);
+        if (prefab != default)
+            return _prefabs[this];
+        prefab = _authoring.CreatePrefab(dstManager, this.name);
+        _prefabs.Add(this, prefab);
+        return prefab;
+    }
+
+    //TODO: yeah idk about this lmao
+
+    private static Dictionary<EntityData, Entity> _prefabs = new Dictionary<EntityData, Entity>();
+
+    [InitializeOnLoadAttribute]
+    public static class PlayModeStateChangedExample
+    {
+        static PlayModeStateChangedExample()
+        {
+            EditorApplication.playModeStateChanged += ModeStateChanged;
+        }
+
+        private static void ModeStateChanged(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.ExitingPlayMode)
+            {
+                foreach (var key in _prefabs.Keys)
+                    _prefabs[key] = default;
+            }
+        }
     }
 }
