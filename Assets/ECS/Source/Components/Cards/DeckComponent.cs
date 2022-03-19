@@ -19,7 +19,7 @@ public struct DeckCard : IBufferElementData
 
 public class DeckComponent : ComponentAuthoring<Deck>
 {
-    [SerializeField] private List<ModEntity> _entities = new List<ModEntity>();
+    [SerializeField] private List<EntityData> _entities = new List<EntityData>();
 
     protected override Deck AuthorComponent(World world)
     {
@@ -33,7 +33,7 @@ public class DeckComponent : ComponentAuthoring<Deck>
         foreach (var modEntity in _entities)
         {
             var instance = new DeckCard();
-            instance.Entity = modEntity.GetPrefab(dstManager, modEntity.name);
+            instance.Entity = modEntity.GetPrefab(dstManager);
             instances[i] = instance;
             i++;
         }

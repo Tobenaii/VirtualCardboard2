@@ -7,27 +7,20 @@ using System.Linq;
 using Unity.Entities;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ModEntityMono : MonoBehaviour, IConvertGameObjectToEntity
+public class GameObjectToEntity : MonoBehaviour, IConvertGameObjectToEntity
 {
     [InlineEditor]
-    [SerializeField] private ModEntity _entity;
+    [SerializeField] private EntityData _entityData;
     [InlineProperty]
     [SerializeField] private EntityRef _group;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
-        if (_entity == null)
+        if (_entityData == null)
             return;
         _group.Entity = entity;
-        _entity.Convert(entity, dstManager, conversionSystem);
-    }
-
-    public Entity GetEntity(World world)
-    {
-        using (var blob = new BlobAssetStore())
-        {
-            return GameObjectConversionUtility.ConvertGameObjectHierarchy(gameObject, GameObjectConversionSettings.FromWorld(world, blob));
-        }
+        _entityData.Convert(entity, dstManager);
     }
 }

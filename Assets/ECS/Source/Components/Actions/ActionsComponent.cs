@@ -13,14 +13,13 @@ public struct Dealer : IComponentData
     public Entity Entity { get; set; }
 }
 
-
 public struct Action : IComponentData
 {
     public Entity Prefab { get; set; }
 }
 
-[MovedFrom(true, sourceClassName: "CardActionsComponent")]
-public class ActionsComponent : ComponentAuthoring<Action>
+[MovedFrom(true, sourceClassName: "ActionsComponent")]
+public class ActionComponent : ComponentAuthoring<Action>
 {
     [ListDrawerSettings(Expanded = true, ShowItemCount = false, HideAddButton = true)]
     [SerializeField] private List<ReadWriteComponent> _actions;
@@ -30,6 +29,11 @@ public class ActionsComponent : ComponentAuthoring<Action>
     {
         var picker = new ComponentPicker();
         picker.OpenAndGetInstance((instance) => _actions.Add(instance));
+    }
+
+    public override void AuthorDependencies(Entity entity, EntityManager dstManager)
+    {
+        dstManager.AddComponent<Dealer>(entity);
     }
 
     protected override Action AuthorComponent(World world)

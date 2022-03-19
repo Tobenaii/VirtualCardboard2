@@ -34,7 +34,6 @@ public class EntityRef
 [CreateAssetMenu(menuName = "Modsys/Entity Group")]
 public class EntityGroup : ScriptableObject
 {
-    [SerializeField] private int _initialCapacity;
     [ShowInInspector][ReadOnly] private Dictionary<int, Entity> _entities = new Dictionary<int, Entity>();
 
     public Entity this[int key]

@@ -12,6 +12,8 @@ public class TargetMarkerSystem : SystemBase
     {
         Entities.ForEach((ref TargetMarker marker, in Target target) =>
         {
+            if (target.Entity == default)
+                return;
             var localToWorld = GetComponentDataFromEntity<LocalToWorld>(true)[target.Entity];
             var targetable = GetComponentDataFromEntity<Targetable>(true)[target.Entity];
             float3 newWorldPos = math.mul(localToWorld.Value, new float4(targetable.Position, 1)).xyz;

@@ -4,7 +4,7 @@ using Unity.Entities;
 using UnityEngine;
 
 [UpdateInGroup(typeof(UISystemGroup))]
-public class InstantiateOnClickUISystem : SystemBase
+public class RequirementCheckUISystem : SystemBase
 {
     private BeginInitializationEntityCommandBufferSystem _commandBuffer;
 
@@ -12,18 +12,15 @@ public class InstantiateOnClickUISystem : SystemBase
     {
         _commandBuffer = World.GetExistingSystem<BeginInitializationEntityCommandBufferSystem>();
     }
-
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer();
-        Entities.ForEach((InstantiateOnClickUI ui, in Dealer dealer) =>
+        Entities.WithStructuralChanges().ForEach((RequirementCheckUI ui, in Dealer dealer) =>
         {
-            if (ui.ClickEvent.HasClicked)
-            {
-                var actionInstance = ecb.Instantiate(ui.Action);
-                ecb.SetComponent<Dealer>(actionInstance, new Dealer() { Entity = dealer.Entity });
-                return;
-            }
+            //if (!EntityManager.Exists(ui.Requirement))
+            //    ui.Requirement = EntityManager.Instantiate(GetComponentDataFromEntity<Requirement>(true)[ui.Prefab].Prefab);
+            //var requirementStatus = GetComponentDataFromEntity<RequirementStatus>(true)[ui.Requirement];
+            //ui.BlockingGroup.interactable = !requirementStatus.Failed;
         }).WithoutBurst().Run();
     }
 }

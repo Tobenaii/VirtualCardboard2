@@ -12,9 +12,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Modsys/Entity Template")]
 public class EntityTemplate : ScriptableObject, ISerializationCallbackReceiver
 {
-    [SerializeField] [ReadOnly] private List<ModEntity> _entities = new List<ModEntity>();
+    [SerializeField, ReadOnly]
+    private List<EntityData> _entities = new List<EntityData>();
 
-    [ListDrawerSettings(HideAddButton = true)]
+    [ListDrawerSettings(HideAddButton = true, Expanded = true)]
     [SerializeField][HideReferenceObjectPicker] protected List<ReadOnlyComponent> _components = new List<ReadOnlyComponent>();
     public IEnumerable<ComponentAuthoringBase> Components => _components.Select(x => x.Component);
 
@@ -25,7 +26,7 @@ public class EntityTemplate : ScriptableObject, ISerializationCallbackReceiver
         picker.OpenAndGetInstance((instance) => _components.Add(instance));
     }
 
-    public void Register(ModEntity modEntity)
+    public void Register(EntityData modEntity)
     {
         if (!_entities.Contains(modEntity))
         {

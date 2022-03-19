@@ -16,6 +16,8 @@ MonoBehaviour:
   _components:
   - _component:
       rid: 8471835135291424786
+  - _component:
+      rid: 8471835184921051137
   references:
     version: 2
     RefIds:
@@ -26,3 +28,8 @@ MonoBehaviour:
           _entityList: {fileID: 0}
           _key: 0
         _clickEvent: {fileID: 0}
+        _entities: []
+    - rid: 8471835184921051137
+      type: {class: RequirementCheckUIComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _blockingGroup: {fileID: 0}

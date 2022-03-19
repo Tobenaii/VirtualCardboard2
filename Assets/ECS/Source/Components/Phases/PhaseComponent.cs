@@ -24,11 +24,11 @@ public struct Phase : IPhase, IComponentData
 public class PhaseComponent : ComponentAuthoring<Phase>
 {
     [SerializeField] private float _time;
-    [SerializeField] private ModEntity _nextPhase;
+    [SerializeField] private EntityData _nextPhase;
     protected override Phase AuthorComponent(World world)
     {
         if (_nextPhase != null)
-            return new Phase() { Time = _time, HasNextPhase = true, NextPhase = _nextPhase.GetPrefab(world.EntityManager, _nextPhase.name) };
+            return new Phase() { Time = _time, HasNextPhase = true, NextPhase = _nextPhase.GetPrefab(world.EntityManager) };
         else
             return new Phase() { Time = _time, HasNextPhase = false };
     }

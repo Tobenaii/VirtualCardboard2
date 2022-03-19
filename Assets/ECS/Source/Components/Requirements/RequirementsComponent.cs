@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-[InternalBufferCapacity(5)]
 public struct Requirement : IComponentData
 {
     public Entity Prefab { get; set; }
+}
+
+public struct RequirementStatus : IComponentData
+{
+    public bool Failed { get; set; }
 }
 
 public class RequirementsComponent : ComponentAuthoring<Requirement>

@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class MonoStartEvent : MonoEvent
 {
-    [SerializeField] private ModEntity _entity;
+    [SerializeField] private EntityData _entity;
 
     private void Start()
     {
-        Instantiate(_entity.GetPrefab(World.DefaultGameObjectInjectionWorld.EntityManager, _entity.name));
+        Instantiate(_entity.GetPrefab(World.DefaultGameObjectInjectionWorld.EntityManager));
     }
 }
