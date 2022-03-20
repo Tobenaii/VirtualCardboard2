@@ -9,12 +9,12 @@ public struct ApplyStatusEffect : IComponentData
     public int Type { get; set; }
 }
 
-public class ApplyStatusEffectComponent : ComponentAuthoring<ApplyStatusEffect>
+public class ApplyStatusEffectComponent : ComponentAuthoringBase
 {
     [SerializeField] private StatusEffectData _effect;
 
-    protected override ApplyStatusEffect AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new ApplyStatusEffect() { Type = _effect.Index };
+        dstManager.AddComponentData(entity, new ApplyStatusEffect() { Type = _effect.Index });
     }
 }

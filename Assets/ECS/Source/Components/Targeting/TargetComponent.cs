@@ -11,11 +11,11 @@ public struct Target : IComponentData
     public Entity Entity { get; set; }
 }
 
-public class TargetComponent : ComponentAuthoring<Target>
+public class TargetComponent : ComponentAuthoringBase
 {
 
-    protected override Target AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new Target();
+        dstManager.AddComponent<Target>(entity);
     }
 }

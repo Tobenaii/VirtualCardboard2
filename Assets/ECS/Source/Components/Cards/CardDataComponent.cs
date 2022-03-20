@@ -11,13 +11,13 @@ public struct CardData : IComponentData
     public FixedString512 description;
 }
 
-public class CardDataComponent : ComponentAuthoring<CardData>
+public class CardDataComponent : ComponentAuthoringBase
 {
     [SerializeField] private string _name;
     [TextArea]
     [SerializeField] private string _description;
-    protected override CardData AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new CardData() { name = _name, description = _description };
+        dstManager.AddComponentData(entity, new CardData() { name = _name, description = _description });
     }
 }

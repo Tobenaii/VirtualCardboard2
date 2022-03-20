@@ -8,11 +8,11 @@ public struct DrawCards : IComponentData
     public int Amount { get; set; }
 }
 
-public class DrawCardsComponent : ComponentAuthoring<DrawCards>
+public class DrawCardsComponent : ComponentAuthoringBase
 {
     [SerializeField] private int _amount;
-    protected override DrawCards AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new DrawCards() { Amount = _amount };
+        dstManager.AddComponentData(entity, new DrawCards() { Amount = _amount });
     }
 }

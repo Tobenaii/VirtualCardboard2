@@ -14,7 +14,7 @@ public struct RequirementStatus : IComponentData
     public bool Failed { get; set; }
 }
 
-public class RequirementsComponent : ComponentAuthoring<Requirement>
+public class RequirementsComponent : ComponentAuthoringBase
 {
     [ListDrawerSettings(Expanded = true, ShowItemCount = false, HideAddButton = true)]
     [SerializeField] private List<ReadWriteComponent> _actions;
@@ -26,16 +26,16 @@ public class RequirementsComponent : ComponentAuthoring<Requirement>
         picker.OpenAndGetInstance((instance) => _actions.Add(instance));
     }
 
-    protected override Requirement AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        var entity = world.EntityManager.CreateEntity();
-        world.EntityManager.AddComponent<RequirementStatus>(entity);
-        world.EntityManager.AddComponent<Prefab>(entity);
+        var reqEntity = dstManager.CreateEntity();
+        dstManager.AddComponent<RequirementStatus>(reqEntity);
+        dstManager.AddComponent<Prefab>(reqEntity);
         for (int i = 0; i < _actions.Count; i++)
         {
             var action = _actions[i];
-            action.Component.AuthorComponent(entity, world.EntityManager);
+            action.Component.AuthorComponent(reqEntity, dstManager);
         }
-        return new Requirement() { Prefab = entity };
+        dstManager.AddComponentData(entity, new Requirement() { Prefab = entity });
     }
 }

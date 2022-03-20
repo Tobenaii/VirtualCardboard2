@@ -9,12 +9,12 @@ public struct ATBRequirement : IComponentData
     public int Amount { get; set; }
 }
 
-public class ATBRequirementComponent : ComponentAuthoring<ATBRequirement>
+public class ATBRequirementComponent : ComponentAuthoringBase
 {
     [SerializeField] private int _amount;
 
-    protected override ATBRequirement AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new ATBRequirement() { Amount = _amount };
+        dstManager.AddComponentData(entity, new ATBRequirement() { Amount = _amount });
     }
 }

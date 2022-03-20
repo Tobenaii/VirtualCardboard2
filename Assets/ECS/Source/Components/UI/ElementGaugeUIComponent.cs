@@ -9,12 +9,12 @@ public class ElementGaugeUI : IComponentData
     public RectTransform ResourceHolder { get; set; }
 }
 
-public class ElementGaugeUIComponent : ManagedComponentAuthoring<ElementGaugeUI>
+public class ElementGaugeUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private ElementDataGroup _elementData;
     [SerializeField] private RectTransform _resourceHolder;
-    protected override ElementGaugeUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new ElementGaugeUI() { ElementData = _elementData, ResourceHolder = _resourceHolder };
+        dstManager.AddComponentData(entity, new ElementGaugeUI() { ElementData = _elementData, ResourceHolder = _resourceHolder });
     }
 }

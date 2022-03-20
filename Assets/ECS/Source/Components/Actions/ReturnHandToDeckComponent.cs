@@ -7,10 +7,14 @@ public struct ReturnHandToDeck : IComponentData
 {
 }
 
-public class ReturnHandToDeckComponent : ComponentAuthoring<ReturnHandToDeck>
+public class ReturnHandToDeckComponent : ComponentAuthoringBase
 {
-    protected override ReturnHandToDeck AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new ReturnHandToDeck();
+        dstManager.AddComponent<ReturnHandToDeck>(entity);
+    }
+
+    public override void UpdateComponent(Entity entity, EntityManager dstManager)
+    {
     }
 }

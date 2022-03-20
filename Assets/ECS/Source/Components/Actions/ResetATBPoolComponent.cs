@@ -5,10 +5,14 @@ using UnityEngine;
 
 public struct ResetATBPool : IComponentData { }
 
-public class ResetATBPoolComponent : ComponentAuthoring<ResetATBPool>
+public class ResetATBPoolComponent : ComponentAuthoringBase
 {
-    protected override ResetATBPool AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new ResetATBPool();
+        dstManager.AddComponent<ResetATBPool>(entity);
+    }
+
+    public override void UpdateComponent(Entity entity, EntityManager dstManager)
+    {
     }
 }

@@ -16,19 +16,17 @@ public struct ElementWheel : IElementWheel, IBufferElementData
     public float Percentage { get; set; }
 }
 
-public class ElementWheelComponent : BufferComponentAuthoring<ElementWheel>
+public class ElementWheelComponent : ComponentAuthoringBase
 {
     [SerializeField] private List<ElementData> _elements;
-    protected override NativeArray<ElementWheel> AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
         var array = new NativeArray<ElementWheel>(_elements.Count, Allocator.Temp);
-
-        int index = 0;
-        foreach (var element in _elements)
+        for (int i = 0; i < _elements.Count; i++)
         {
-            array[index] = new ElementWheel() { Type = element.Index, Percentage = 100.0f / _elements.Count };
-            index++;
+            array[i] = new ElementWheel() { Type = _elements[i].Index, Percentage = 100.0f / _elements.Count };
         }
-        return array;
+        var buffer = dstManager.AddBuffer<ElementWheel>(entity);
+        buffer.AddRange(array);
     }
 }

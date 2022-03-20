@@ -10,14 +10,14 @@ public class InstantiateOnClickUI : IComponentData
     public Entity Action { get; set; }
 }
 
-public class InstantiateOnClickUIComponent : ManagedComponentAuthoring<InstantiateOnClickUI>
+public class InstantiateOnClickUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private UIEvents _clickEvent;
     [SerializeField] private EntityData _action;
 
-    protected override InstantiateOnClickUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
         //TODO: Yucky linq for runtime stuff
-        return new InstantiateOnClickUI() { Action = _action.GetPrefab(world.EntityManager), ClickEvent = _clickEvent };
+        dstManager.AddComponentData(entity, new InstantiateOnClickUI() { Action = _action.GetPrefab(dstManager), ClickEvent = _clickEvent });
     }
 }

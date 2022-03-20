@@ -9,14 +9,14 @@ public class StatusEffectGaugeUI : IComponentData
     public RectTransform ResourceHolder { get; set; }
 }
 
-public class StatusEffectGaugeUIComponent : ManagedComponentAuthoring<StatusEffectGaugeUI>
+public class StatusEffectGaugeUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private ElementDataGroup _elementData;
     [SerializeField] private RectTransform _resourceHolder;
 
-    protected override StatusEffectGaugeUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new StatusEffectGaugeUI() { ElementData = _elementData, ResourceHolder = _resourceHolder };
+        dstManager.AddComponentData(entity, new StatusEffectGaugeUI() { ElementData = _elementData, ResourceHolder = _resourceHolder });
     }
 }
 

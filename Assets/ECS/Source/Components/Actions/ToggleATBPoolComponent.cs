@@ -8,11 +8,11 @@ public struct ToggleATBPool : IComponentData
     public bool Enable { get; set; }
 }
 
-public class ToggleATBPoolComponent : ComponentAuthoring<ToggleATBPool>
+public class ToggleATBPoolComponent : ComponentAuthoringBase
 {
     [SerializeField] private bool _enable;
-    protected override ToggleATBPool AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new ToggleATBPool() { Enable = _enable };
+        dstManager.AddComponentData(entity, new ToggleATBPool() { Enable = _enable });
     }
 }

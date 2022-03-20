@@ -9,12 +9,12 @@ public class HealthTextUI : IComponentData
     public string Format { get; set; }
 }
 
-public class HealthTextUIComponent : ManagedComponentAuthoring<HealthTextUI>
+public class HealthTextUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private TMPro.TextMeshProUGUI _textMesh;
     [SerializeField] private string _format = "{Current}/{Max}";
-    protected override HealthTextUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new HealthTextUI() { TextMesh = _textMesh, Format = _format };
+        dstManager.AddComponentData(entity, new HealthTextUI() { TextMesh = _textMesh, Format = _format });
     }
 }

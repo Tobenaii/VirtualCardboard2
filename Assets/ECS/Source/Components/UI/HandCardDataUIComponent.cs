@@ -11,13 +11,13 @@ public class HandCardDataUI : IComponentData
 }
 
 [MovedFrom(true, sourceClassName: "CardDataUIComponent")]
-public class HandCardDataUIComponent : ManagedComponentAuthoring<HandCardDataUI>
+public class HandCardDataUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private TMPro.TextMeshProUGUI _title;
     [SerializeField] private TMPro.TextMeshProUGUI _description;
 
-    protected override HandCardDataUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new HandCardDataUI() { Title = _title, Description = _description };
+        dstManager.AddComponentData(entity, new HandCardDataUI() { Title = _title, Description = _description });
     }
 }

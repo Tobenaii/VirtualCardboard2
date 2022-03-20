@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PlayCardUI : IComponentData { }
 
-public class PlayCardUIComponent : ManagedComponentAuthoring<PlayCardUI>
+public class PlayCardUIComponent : ComponentAuthoringBase
 {
-    protected override PlayCardUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new PlayCardUI();
+        dstManager.AddComponent<PlayCardUI>(entity);
     }
 }

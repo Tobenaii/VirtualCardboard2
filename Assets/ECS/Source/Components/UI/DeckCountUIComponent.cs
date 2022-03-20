@@ -9,12 +9,12 @@ public class DeckCountUI : IComponentData
     public string Format { get; set; }
 }
 
-public class DeckCountUIComponent : ManagedComponentAuthoring<DeckCountUI>
+public class DeckCountUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private TMPro.TextMeshProUGUI _text;
     [SerializeField] private string _format;
-    protected override DeckCountUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new DeckCountUI() { Text = _text, Format = _format };
+        dstManager.AddComponentData(entity, new DeckCountUI() { Text = _text, Format = _format });
     }
 }

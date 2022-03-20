@@ -13,15 +13,21 @@ public class ATBStoreUI : IComponentData
 
 }
 
-public class ATBStoreUIComponent : ManagedComponentAuthoring<ATBStoreUI>
+public class ATBStoreUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private Image _poolImage;
     [SerializeField] private TMPro.TextMeshProUGUI _poolText;
     [SerializeField] private string _poolTextFormat;
     [SerializeField] private List<Image> _barImages;
 
-    protected override ATBStoreUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new ATBStoreUI() { PoolImage = _poolImage, PoolText = _poolText, PoolTextFormat = _poolTextFormat, BarImages = _barImages };
+        dstManager.AddComponentData(entity, new ATBStoreUI() { PoolImage = _poolImage, PoolText = _poolText, PoolTextFormat = _poolTextFormat, BarImages = _barImages });
+    }
+
+    public override void UpdateComponent(Entity entity, EntityManager dstManager)
+    {
+        dstManager.SetComponentData(entity, new ATBStoreUI() { PoolImage = _poolImage, PoolText = _poolText, PoolTextFormat = _poolTextFormat, BarImages = _barImages });
+
     }
 }

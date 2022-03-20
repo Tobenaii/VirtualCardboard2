@@ -13,23 +13,17 @@ MonoBehaviour:
   m_Name: CombatPhase
   m_EditorClassIdentifier: 
   _authoring:
-    _archetype: {fileID: 11400000, guid: fb9f478266293a946b219618e3af906a, type: 2}
+    _template: {fileID: 11400000, guid: fb9f478266293a946b219618e3af906a, type: 2}
     _components:
     - _component:
-        rid: 5362458487760355347
-    - _component:
-        rid: 5362458487760355339
-    - _component:
         rid: 8471835072163479553
+    - _component:
+        rid: 8471835402377363458
   references:
     version: 2
     RefIds:
-    - rid: 5362458487760355339
-      type: {class: EmptyATBPoolRequirementComponent, ns: , asm: Assembly-CSharp}
-    - rid: 5362458487760355347
-      type: {class: EmptyATBRequirementComponent, ns: , asm: Assembly-CSharp}
     - rid: 8471835072163479553
-      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
+      type: {class: ActionComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions:
         - _component:
@@ -42,3 +36,15 @@ MonoBehaviour:
       type: {class: DrawCardsComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 5
+    - rid: 8471835402377363458
+      type: {class: RequirementsComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _actions:
+        - _component:
+            rid: 8471835402377363459
+        - _component:
+            rid: 8471835402377363460
+    - rid: 8471835402377363459
+      type: {class: EmptyATBRequirementComponent, ns: , asm: Assembly-CSharp}
+    - rid: 8471835402377363460
+      type: {class: EmptyATBPoolRequirementComponent, ns: , asm: Assembly-CSharp}

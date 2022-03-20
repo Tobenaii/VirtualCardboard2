@@ -12,13 +12,13 @@ public interface IStatPool
     public float ChargeTimer { get; set; }
 }
 
-public abstract class StatPoolAuthoring<T> : ComponentAuthoring<T> where T : unmanaged, IStatPool, IComponentData
+public abstract class StatPoolAuthoring<T> : ComponentAuthoringBase where T : unmanaged, IStatPool, IComponentData
 {
     [SerializeField] private int _maxCount;
     [SerializeField] private float _chargeTime;
 
-    protected override T AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new T() { MaxCount = _maxCount, CurrentCount = 0, ChargeTime = _chargeTime };
+        dstManager.AddComponentData(entity, new T() { MaxCount = _maxCount, CurrentCount = 0, ChargeTime = _chargeTime });
     }
 }

@@ -14,13 +14,13 @@ public struct PhaseNotification : INotification, IComponentData
     public FixedString128 Notification { get; set; }
 }
 
-public class PhaseNotificationComponent : ComponentAuthoring<PhaseNotification>
+public class PhaseNotificationComponent : ComponentAuthoringBase
 {
     [TextArea]
     [SerializeField] private string _notification;
 
-    protected override PhaseNotification AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new PhaseNotification() { Notification = _notification };
+        dstManager.AddComponentData(entity, new PhaseNotification() { Notification = _notification });
     }
 }

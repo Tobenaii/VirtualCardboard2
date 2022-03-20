@@ -22,18 +22,18 @@ public class ElementWheelUI : IComponentData
     }
 }
 
-public class ElementWheelUIComponent : ManagedComponentAuthoring<ElementWheelUI>
+public class ElementWheelUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private ElementDataGroup _elements;
     [SerializeField] private List<Image> _images;
     [SerializeField] private float _smoothTime;
 
-    protected override ElementWheelUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
         var damperooskis = new List<ElementWheelUI.SmoothDamperooski>();
         for (int i = 0; i < _images.Count; i++)
             damperooskis.Add(new ElementWheelUI.SmoothDamperooski() { SmoothTime = _smoothTime });
 
-        return new ElementWheelUI() { Images = _images, SmoothDamperooskis = damperooskis, ElementData = _elements };
+        dstManager.AddComponentData(entity, new ElementWheelUI() { Images = _images, SmoothDamperooskis = damperooskis, ElementData = _elements });
     }
 }

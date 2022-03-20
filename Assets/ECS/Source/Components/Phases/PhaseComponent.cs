@@ -21,15 +21,15 @@ public struct Phase : IPhase, IComponentData
     public Entity NextPhase { get; set; }
 }
 
-public class PhaseComponent : ComponentAuthoring<Phase>
+public class PhaseComponent : ComponentAuthoringBase
 {
     [SerializeField] private float _time;
     [SerializeField] private EntityData _nextPhase;
-    protected override Phase AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
         if (_nextPhase != null)
-            return new Phase() { Time = _time, HasNextPhase = true, NextPhase = _nextPhase.GetPrefab(world.EntityManager) };
+            dstManager.AddComponentData(entity, new Phase() { Time = _time, HasNextPhase = true, NextPhase = _nextPhase.GetPrefab(dstManager) });
         else
-            return new Phase() { Time = _time, HasNextPhase = false };
+            dstManager.AddComponentData(entity, new Phase() { Time = _time, HasNextPhase = false });
     }
 }

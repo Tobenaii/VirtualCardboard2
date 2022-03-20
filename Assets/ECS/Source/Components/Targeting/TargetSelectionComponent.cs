@@ -14,10 +14,10 @@ public struct TargetSelection : ITargetSelection, IComponentData
 
 }
 
-public class TargetSelectionComponent : ComponentAuthoring<TargetSelection>
+public class TargetSelectionComponent : ComponentAuthoringBase
 {
-    protected override TargetSelection AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new TargetSelection();
+        dstManager.AddComponent<TargetSelection>(entity);
     }
 }

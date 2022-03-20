@@ -8,10 +8,10 @@ public struct Damage : IComponentData
     public int Amount { get; set; }
 }
 
-public class DamageComponent : ComponentAuthoring<Damage>
+public class DamageComponent : ComponentAuthoringBase
 {
-    protected override Damage AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new Damage();
+        dstManager.AddComponentData(entity, new Damage());
     }
 }

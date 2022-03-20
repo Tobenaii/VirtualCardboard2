@@ -11,13 +11,13 @@ public class RequirementCheckUI : IComponentData
     public CanvasGroup BlockingGroup { get; set; }
 }
 
-public class RequirementCheckUIComponent : ManagedComponentAuthoring<RequirementCheckUI>
+public class RequirementCheckUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private EntityData _action;
     [SerializeField] private CanvasGroup _blockingGroup;
 
-    protected override RequirementCheckUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new RequirementCheckUI() { BlockingGroup = _blockingGroup, Prefab = _action.GetPrefab(world.EntityManager) };
+        dstManager.AddComponentData(entity, new RequirementCheckUI() { BlockingGroup = _blockingGroup, Prefab = _action.GetPrefab(dstManager) });
     }
 }

@@ -7,10 +7,14 @@ public struct ReceiveElementFromWheel : IComponentData
 {
 }
 
-public class ReceiveElementFromWheelComponent : ComponentAuthoring<ReceiveElementFromWheel>
+public class ReceiveElementFromWheelComponent : ComponentAuthoringBase
 {
-    protected override ReceiveElementFromWheel AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new ReceiveElementFromWheel();
+        dstManager.AddComponent<ReceiveElementFromWheel>(entity);
+    }
+
+    public override void UpdateComponent(Entity entity, EntityManager dstManager)
+    {
     }
 }

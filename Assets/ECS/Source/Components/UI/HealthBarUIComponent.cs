@@ -19,12 +19,17 @@ public class HealthBarUI : IComponentData, ISmoothDamp<float>
     }
 }
 
-public class HealthBarUIComponent : ManagedComponentAuthoring<HealthBarUI>
+public class HealthBarUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private Image _healthBar;
     [SerializeField] private float _smoothTime;
-    protected override HealthBarUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new HealthBarUI() { HealthBar = _healthBar, SmoothTime = _smoothTime };
+        dstManager.AddComponentData(entity, new HealthBarUI() { HealthBar = _healthBar, SmoothTime = _smoothTime });
+    }
+
+    public override void UpdateComponent(Entity entity, EntityManager dstManager)
+    {
+        dstManager.SetComponentData(entity, new HealthBarUI() { HealthBar = _healthBar, SmoothTime = _smoothTime });
     }
 }

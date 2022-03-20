@@ -16,12 +16,12 @@ public struct Targetable : ITargetable, IComponentData
     public Vector3 Scale { get; set; }
 }
 
-public class TargetableComponent : ComponentAuthoring<Targetable>
+public class TargetableComponent : ComponentAuthoringBase
 {
     [SerializeField] private Vector3 _position;
     [SerializeField] private Vector3 _scale;
-    protected override Targetable AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new Targetable() { Position = _position, Scale = _scale };
+        dstManager.AddComponentData(entity, new Targetable() { Position = _position, Scale = _scale });
     }
 }

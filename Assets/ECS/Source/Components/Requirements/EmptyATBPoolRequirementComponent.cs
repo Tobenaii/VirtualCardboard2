@@ -7,10 +7,10 @@ public struct EmptyATBPoolRequirement : IComponentData
 {
 }
 
-public class EmptyATBPoolRequirementComponent : ComponentAuthoring<EmptyATBPoolRequirement>
+public class EmptyATBPoolRequirementComponent : ComponentAuthoringBase
 {
-    protected override EmptyATBPoolRequirement AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new EmptyATBPoolRequirement();
+        dstManager.AddComponent<EmptyATBPoolRequirement>(entity);
     }
 }

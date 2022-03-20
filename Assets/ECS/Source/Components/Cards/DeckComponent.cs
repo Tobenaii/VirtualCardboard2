@@ -17,27 +17,21 @@ public struct DeckCard : IBufferElementData
     public Entity Entity { get; set; }
 }
 
-public class DeckComponent : ComponentAuthoring<Deck>
+public class DeckComponent : ComponentAuthoringBase
 {
     [SerializeField] private List<EntityData> _entities = new List<EntityData>();
 
-    protected override Deck AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new Deck() { CurrentCount = _entities.Count, MaxCount = _entities.Count };
-    }
-
-    public override void AuthorDependencies(Entity entity, EntityManager dstManager)
-    {
-        var instances = new NativeArray<DeckCard>(_entities.Count, Allocator.Temp);
-        int i = 0;
-        foreach (var modEntity in _entities)
+        dstManager.AddComponentData(entity, new Deck() { CurrentCount = _entities.Count, MaxCount = _entities.Count });
+        var array = new NativeArray<DeckCard>(_entities.Count, Allocator.Temp);
+        for (int i = 0; i < _entities.Count; i++)
         {
             var instance = new DeckCard();
-            instance.Entity = modEntity.GetPrefab(dstManager);
-            instances[i] = instance;
-            i++;
+            instance.Entity = _entities[i].GetPrefab(dstManager);
+            array[i] = instance;
         }
         var buffer = dstManager.AddBuffer<DeckCard>(entity);
-        buffer.AddRange(instances);
+        buffer.AddRange(array);
     }
 }

@@ -16,13 +16,13 @@ public class TargetMarkerScaleUI : IComponentData, ISmoothDamp<Vector3>
     }
 }
 
-public class TargetMarkerScaleUIComponent : ManagedComponentAuthoring<TargetMarkerScaleUI>
+public class TargetMarkerScaleUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private Transform _transform;
     [SerializeField] private float _smoothTime;
     
-    protected override TargetMarkerScaleUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new TargetMarkerScaleUI() { SmoothTime = _smoothTime, Transform = _transform };
+        dstManager.AddComponentData(entity, new TargetMarkerScaleUI() { SmoothTime = _smoothTime, Transform = _transform });
     }
 }

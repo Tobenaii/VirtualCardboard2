@@ -10,7 +10,7 @@ public interface IStat
     public int MaxValue { get; set; }
 }
 
-public abstract class StatAuthoring<T> : ComponentAuthoring<T> where T : unmanaged, IStat, IComponentData
+public abstract class StatAuthoring<T> : ComponentAuthoringBase where T : unmanaged, IStat, IComponentData
 {
     [SerializeField] private int _initialValue;
     [SerializeField] private int _maxValue;
@@ -21,9 +21,9 @@ public abstract class StatAuthoring<T> : ComponentAuthoring<T> where T : unmanag
             _initialValue = _maxValue;
     }
 
-    protected override T AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new T() { BaseValue = _maxValue, CurrentValue = _initialValue, MaxValue = _maxValue };
+        dstManager.AddComponentData(entity, new T() { BaseValue = _maxValue, CurrentValue = _initialValue, MaxValue = _maxValue });
     }
 }
 

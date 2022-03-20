@@ -15,10 +15,10 @@ public struct TargetMarker : ITargetMarker, IComponentData
     public Vector3 Scale { get; set; }
 }
 
-public class TargetMarkerComponent : ComponentAuthoring<TargetMarker>
+public class TargetMarkerComponent : ComponentAuthoringBase
 {
-    protected override TargetMarker AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new TargetMarker();
+        dstManager.AddComponent<TargetMarker>(entity);
     }
 }

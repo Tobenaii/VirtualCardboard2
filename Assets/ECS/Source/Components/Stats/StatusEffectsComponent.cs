@@ -20,17 +20,18 @@ public struct StatusEffect : IStatusEffectData, IBufferElementData
     public bool Active { get; set; }
 }
 
-public class StatusEffectsComponent : BufferComponentAuthoring<StatusEffect>
+public class StatusEffectsComponent : ComponentAuthoringBase
 {
     [SerializeField] private StatusEffectGroup _group;
 
-    protected override NativeArray<StatusEffect> AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
         var array = new NativeArray<StatusEffect>(_group.Count, Allocator.Temp);
-        for (int i = 0; i < array.Length; i++)
+        for (int i = 0; i < _group.Count; i++)
         {
             array[i] = new StatusEffect() { Type = i, Active = false };
         }
-        return array;
+        var buffer = dstManager.AddBuffer<StatusEffect>(entity);
+        buffer.AddRange(array);
     }
 }

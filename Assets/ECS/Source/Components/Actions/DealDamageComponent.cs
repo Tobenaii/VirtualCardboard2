@@ -9,7 +9,7 @@ public struct DealDamage : IComponentData
     public int Amount;
 }
 
-public class DealDamageComponent : ComponentAuthoring<DealDamage>
+public class DealDamageComponent : ComponentAuthoringBase
 {
     [System.Serializable]
     private struct DamageBuff
@@ -19,8 +19,8 @@ public class DealDamageComponent : ComponentAuthoring<DealDamage>
     }
     [SerializeField] private int _amount;
     [SerializeField] private List<DamageBuff> _buffs;
-    protected override DealDamage AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new DealDamage() { Amount = _amount };
+        dstManager.AddComponentData(entity, new DealDamage() { Amount = _amount });
     }
 }

@@ -23,7 +23,7 @@ public class HandCardPositionUI : IComponentData, ISmoothDamp<Vector2>
 }
 
 [MovedFrom(true, sourceClassName: "HandCardUIComponent")]
-public class HandCardPositionUIComponent : ManagedComponentAuthoring<HandCardPositionUI>
+public class HandCardPositionUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private RectTransform _transform;
     [SerializeField] private UIEvents _cardEvents;
@@ -34,10 +34,18 @@ public class HandCardPositionUIComponent : ManagedComponentAuthoring<HandCardPos
     [SerializeField] private float _rotationalOffset = -1.92f;
     [SerializeField] private float _smoothTime = 0.05f;
 
-    protected override HandCardPositionUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new HandCardPositionUI() { Transform = _transform, Radius = _radius, CircularOffset = _circularOffset, HorizontalOffset = _horizontalOffset,
-            RotationalOffset = _rotationalOffset, SmoothTime = _smoothTime, CardEvents = _cardEvents, HoverOffset = _hoverOffset
-        };
+        dstManager.AddComponentData(entity, new HandCardPositionUI()
+        {
+            Transform = _transform,
+            Radius = _radius,
+            CircularOffset = _circularOffset,
+            HorizontalOffset = _horizontalOffset,
+            RotationalOffset = _rotationalOffset,
+            SmoothTime = _smoothTime,
+            CardEvents = _cardEvents,
+            HoverOffset = _hoverOffset
+        });
     }
 }

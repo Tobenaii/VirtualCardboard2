@@ -9,12 +9,12 @@ public struct TimedDeferral : IComponentData
     public float Timer { get; set; }
 }
 
-public class TimedDeferralComponent : ComponentAuthoring<TimedDeferral>
+public class TimedDeferralComponent : ComponentAuthoringBase
 {
     [SerializeField] private float _delay;
 
-    protected override TimedDeferral AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new TimedDeferral() { Delay = _delay };
+        dstManager.AddComponentData(entity, new TimedDeferral() { Delay = _delay });
     }
 }

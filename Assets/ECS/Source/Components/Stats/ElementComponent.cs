@@ -21,7 +21,7 @@ public struct Element : IElementData, IBufferElementData
     public FixedString32 Name { get; set; }
 }
 
-public class ElementComponent : BufferComponentAuthoring<Element>
+public class ElementComponent : ComponentAuthoringBase
 {
     [System.Serializable]
     private class ElementAuthoring
@@ -33,11 +33,10 @@ public class ElementComponent : BufferComponentAuthoring<Element>
     [SerializeField] private ElementDataGroup _group;
     [SerializeField] private List<ElementAuthoring> _elements;
 
-    protected override NativeArray<Element> AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
         var array = new NativeArray<Element>(_group.Count, Allocator.Temp);
-        int index = 0;
-        for (int i = 0; i < array.Length; i++)
+        for (int i = 0; i < _group.Count; i++)
         {
             var authoring = _elements.Where(x => x.Type.Index == i).FirstOrDefault();
             if (authoring != null)
@@ -48,16 +47,16 @@ public class ElementComponent : BufferComponentAuthoring<Element>
                     Count = authoring.Count,
                     Name = _group[i].Name,
                 };
-                index++;
             }
             else
                 array[i] = new Element() { Type = i, Name = _group[i].Name };
         }
-        return array;
+        var buffer = dstManager.AddBuffer<Element>(entity);
+        buffer.AddRange(array);
     }
 }
 
-public abstract class ElementSelectionComponent<T, V> : BufferComponentAuthoring<T> where T : unmanaged, IBufferElementData, IElementData where V : DataGroupElement
+public abstract class ElementSelectionComponent<T, V> : ComponentAuthoringBase where T : unmanaged, IBufferElementData, IElementData where V : DataGroupElement
 {
     [System.Serializable]
     private struct Authoring
@@ -71,15 +70,14 @@ public abstract class ElementSelectionComponent<T, V> : BufferComponentAuthoring
     [ListDrawerSettings(Expanded = true, ShowItemCount = false)]
     [SerializeField] private List<Authoring> _elements = new List<Authoring>();
 
-    protected override NativeArray<T> AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
         var array = new NativeArray<T>(_elements.Count, Allocator.Temp);
-        int index = 0;
-        foreach (var authoring in _elements)
+        for (int i = 0; i < _elements.Count; i++)
         {
-            array[index] = new T() { Type = authoring.Type.Index, Count = authoring.Amount };
-            index++;
+            array[i] = new T() { Type = _elements[i].Type.Index, Count = _elements[i].Amount };
         }
-        return array;
+        var buffer = dstManager.AddBuffer<T>(entity);
+        buffer.AddRange(array);
     }
 }

@@ -15,15 +15,11 @@ public struct HandCard : IBufferElementData
     public Entity Entity { get; set; }
 }
 
-public class HandComponent : ComponentAuthoring<Hand>
+public class HandComponent : ComponentAuthoringBase
 {
-    public override void AuthorDependencies(Entity entity, EntityManager dstManager)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
+        dstManager.AddComponent<Hand>(entity);
         dstManager.AddBuffer<HandCard>(entity);
-    }
-
-    protected override Hand AuthorComponent(World world)
-    {
-        return new Hand();
     }
 }

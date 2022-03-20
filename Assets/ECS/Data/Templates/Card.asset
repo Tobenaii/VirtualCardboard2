@@ -20,8 +20,6 @@ MonoBehaviour:
       rid: 5362458279391526918
   - _component:
       rid: 5362458288434184208
-  - _component:
-      rid: 8471835160421335043
   references:
     version: 2
     RefIds:
@@ -31,10 +29,6 @@ MonoBehaviour:
         _name: 
         _description: 
     - rid: 5362458288434184208
-      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _actions: []
-    - rid: 8471835160421335043
-      type: {class: RequirementsComponent, ns: , asm: Assembly-CSharp}
+      type: {class: RequirementActionComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions: []

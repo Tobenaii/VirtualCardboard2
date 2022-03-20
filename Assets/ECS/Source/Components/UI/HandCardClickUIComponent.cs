@@ -8,11 +8,11 @@ public class HandCardClickUI : IComponentData
     public UIEvents CardClickEvent { get; set; }
 }
 
-public class HandCardClickUIComponent : ManagedComponentAuthoring<HandCardClickUI>
+public class HandCardClickUIComponent : ComponentAuthoringBase
 {
     [SerializeField] private UIEvents _cardClickEvent;
-    protected override HandCardClickUI AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new HandCardClickUI() { CardClickEvent = _cardClickEvent };
+        dstManager.AddComponentData(entity, new HandCardClickUI() { CardClickEvent = _cardClickEvent });
     }
 }

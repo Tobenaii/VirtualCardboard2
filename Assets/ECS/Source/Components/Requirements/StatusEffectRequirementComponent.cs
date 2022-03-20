@@ -9,13 +9,13 @@ public struct TargetStatusEffectRequirement : IComponentData
     public int Type { get; set; }
 }
 
-public class StatusEffectRequirementComponent : ComponentAuthoring<TargetStatusEffectRequirement>
+public class StatusEffectRequirementComponent : ComponentAuthoringBase
 {
     [HideLabel]
     [SerializeField] private StatusEffectData _type;
 
-    protected override TargetStatusEffectRequirement AuthorComponent(World world)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        return new TargetStatusEffectRequirement() { Type = _type.Index };
+        dstManager.AddComponentData(entity, new TargetStatusEffectRequirement() { Type = _type.Index });
     }
 }

@@ -19,7 +19,7 @@ public struct Action : IComponentData
 }
 
 [MovedFrom(true, sourceClassName: "ActionsComponent")]
-public class ActionComponent : ComponentAuthoring<Action>
+public class RequirementActionComponent : ComponentAuthoringBase
 {
     [ListDrawerSettings(Expanded = true, ShowItemCount = false, HideAddButton = true)]
     [SerializeField] private List<ReadWriteComponent> _actions;
@@ -31,21 +31,18 @@ public class ActionComponent : ComponentAuthoring<Action>
         picker.OpenAndGetInstance((instance) => _actions.Add(instance));
     }
 
-    public override void AuthorDependencies(Entity entity, EntityManager dstManager)
+    public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        dstManager.AddComponent<Dealer>(entity);
-    }
-
-    protected override Action AuthorComponent(World world)
-    {
-        var entity = world.EntityManager.CreateEntity();
-        world.EntityManager.AddComponent<Dealer>(entity);
-        world.EntityManager.AddComponent<Prefab>(entity);
+        var actionEntity = dstManager.CreateEntity();
+        dstManager.AddComponent<Dealer>(actionEntity);
+        dstManager.AddComponent<Prefab>(actionEntity);
         for (int i = 0; i < _actions.Count; i++)
         {
             var action = _actions[i];
-            action.Component.AuthorComponent(entity, world.EntityManager);
+            action.Component.AuthorComponent(actionEntity, dstManager);
         }
-        return new Action() { Prefab = entity };
+        dstManager.AddComponentData(entity, new Action() { Prefab = entity });
+        dstManager.AddComponent<Dealer>(entity);
+
     }
 }
