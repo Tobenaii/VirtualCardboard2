@@ -20,7 +20,7 @@ public class EntityData : ScriptableObject
         return _authoring.Convert(entity, dstManager);
     }
 
-    private void Update(Entity prefab, EntityManager dstManager)
+    private void UpdateChanges(Entity prefab, EntityManager dstManager)
     {
         _authoring.Update(prefab, dstManager);
     }
@@ -42,7 +42,7 @@ public class EntityData : ScriptableObject
         Entity prefab;
         _prefabs.TryGetValue(this, out prefab);
         if (prefab != default)
-            Update(prefab, dstManager);
+            UpdateChanges(prefab, dstManager);
     }
 
     public Entity GetPrefab(EntityManager dstManager)

@@ -12,10 +12,13 @@ public class UIEvents : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public void OnPointerClick(PointerEventData eventData)
     {
         HasClicked = true;
+        StartCoroutine(Clicked());
     }
 
-    private void LateUpdate()
+    //TODO: This is extremely trash
+    private IEnumerator Clicked()
     {
+        yield return null;
         HasClicked = false;
     }
 
