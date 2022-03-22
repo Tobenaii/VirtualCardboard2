@@ -20,7 +20,7 @@ MonoBehaviour:
     - _component:
         rid: 5362458300426223630
     - _component:
-        rid: 8471835160421335045
+        rid: 8471835455263604738
   references:
     version: 2
     RefIds:
@@ -50,13 +50,13 @@ MonoBehaviour:
         _buffs: []
     - rid: 8471835135291424777
       type: {class: ReceiveElementFromWheelComponent, ns: , asm: Assembly-CSharp}
-    - rid: 8471835160421335045
+    - rid: 8471835455263604738
       type: {class: RequirementsComponent, ns: , asm: Assembly-CSharp}
       data:
-        _actions:
+        _requirements:
         - _component:
-            rid: 8471835160421335046
-    - rid: 8471835160421335046
+            rid: 8471835455263604742
+    - rid: 8471835455263604742
       type: {class: ATBRequirementComponent, ns: , asm: Assembly-CSharp}
       data:
         _amount: 1

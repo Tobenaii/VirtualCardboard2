@@ -18,8 +18,8 @@ public struct Action : IComponentData
     public Entity Prefab { get; set; }
 }
 
-[MovedFrom(true, sourceClassName: "ActionsComponent")]
-public class RequirementActionComponent : ComponentAuthoringBase
+[MovedFrom(true, sourceClassName: "RequirementActionComponent")]
+public class ActionsComponent : ComponentAuthoringBase
 {
     [ListDrawerSettings(Expanded = true, ShowItemCount = false, HideAddButton = true)]
     [SerializeField] private List<ReadWriteComponent> _actions;
@@ -43,6 +43,7 @@ public class RequirementActionComponent : ComponentAuthoringBase
         }
         dstManager.AddComponentData(entity, new Action() { Prefab = entity });
         dstManager.AddComponent<Dealer>(entity);
+        dstManager.AddComponent<RequirementStatus>(entity);
 
     }
 }

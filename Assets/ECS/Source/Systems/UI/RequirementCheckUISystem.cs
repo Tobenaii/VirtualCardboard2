@@ -17,14 +17,9 @@ public class RequirementCheckUISystem : SystemBase
         var ecb = _commandBuffer.CreateCommandBuffer();
         Entities.WithStructuralChanges().ForEach((RequirementCheckUI ui, in Dealer dealer) =>
         {
-            //if (!EntityManager.Exists(ui.Requirement))
-            //{
-            //    ui.Requirement = EntityManager.Instantiate(GetComponentDataFromEntity<Requirement>(true)[ui.Prefab].Prefab);
-            //    EntityManager.AddComponentData(ui.Requirement, dealer);
-            //}
-            //var requirementStatus = GetComponentDataFromEntity<RequirementStatus>(true)[ui.Requirement];
-            //ui.BlockingGroup.interactable = !requirementStatus.Failed;
-            //ui.BlockingGroup.blocksRaycasts = !requirementStatus.Failed;
+            var requirementStatus = GetComponentDataFromEntity<RequirementStatus>(true)[ui.Requirement];
+            ui.BlockingGroup.interactable = !requirementStatus.Failed;
+            ui.BlockingGroup.blocksRaycasts = !requirementStatus.Failed;
         }).WithoutBurst().Run();
     }
 }

@@ -25,5 +25,6 @@ public class InstantiateOnClickUISystem : SystemBase
                 return;
             }
         }).WithoutBurst().Run();
+        _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }
 }

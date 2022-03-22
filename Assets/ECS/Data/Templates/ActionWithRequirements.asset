@@ -10,31 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
-  m_Name: Card
+  m_Name: ActionWithRequirements
   m_EditorClassIdentifier: 
   _entities:
-  - {fileID: 11400000, guid: 30be4572ac5873e449b70d7c82a1e102, type: 2}
-  - {fileID: 11400000, guid: 2f5feb86c6fb096479280253a94efab4, type: 2}
+  - {fileID: 11400000, guid: c92dda287be99be4cbd30102e9568aa7, type: 2}
   _components:
   - _component:
-      rid: 5362458279391526918
+      rid: 8471835407882911752
   - _component:
-      rid: 5362458288434184208
-  - _component:
-      rid: 8471835455263604736
+      rid: 8471835407882911751
   references:
     version: 2
     RefIds:
-    - rid: 5362458279391526918
-      type: {class: CardDataComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _name: 
-        _description: 
-    - rid: 5362458288434184208
+    - rid: 8471835407882911751
       type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions: []
-    - rid: 8471835455263604736
+    - rid: 8471835407882911752
       type: {class: RequirementsComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions: []

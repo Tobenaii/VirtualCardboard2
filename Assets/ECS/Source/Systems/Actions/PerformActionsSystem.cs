@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public class PerformActionSystem : SystemBase
+public class PerformActionsSystem : SystemBase
 {
     private EndSimulationEntityCommandBufferSystem _commandBuffer;
 
@@ -17,6 +17,7 @@ public class PerformActionSystem : SystemBase
         var ecb = _commandBuffer.CreateCommandBuffer().AsParallelWriter();
         Entities.ForEach((int entityInQueryIndex, Entity entity, in Action action, in Requirement requirement) =>
         {
+
         }).ScheduleParallel();
         _commandBuffer.AddJobHandleForProducer(this.Dependency);
     }

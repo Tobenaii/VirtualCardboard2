@@ -16,35 +16,35 @@ MonoBehaviour:
     _template: {fileID: 11400000, guid: fb9f478266293a946b219618e3af906a, type: 2}
     _components:
     - _component:
-        rid: 8471835072163479553
+        rid: 8471835407882911754
     - _component:
-        rid: 8471835402377363458
+        rid: 8471835407882911753
   references:
     version: 2
     RefIds:
-    - rid: 8471835072163479553
-      type: {class: ActionComponent, ns: , asm: Assembly-CSharp}
+    - rid: 8471835407882911753
+      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions:
         - _component:
-            rid: 8471835135291424778
+            rid: 8471835407882911757
         - _component:
-            rid: 8471835135291424788
-    - rid: 8471835135291424778
-      type: {class: ResetATBPoolComponent, ns: , asm: Assembly-CSharp}
-    - rid: 8471835135291424788
-      type: {class: DrawCardsComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _amount: 5
-    - rid: 8471835402377363458
+            rid: 8471835407882911758
+    - rid: 8471835407882911754
       type: {class: RequirementsComponent, ns: , asm: Assembly-CSharp}
       data:
         _actions:
         - _component:
-            rid: 8471835402377363459
+            rid: 8471835407882911755
         - _component:
-            rid: 8471835402377363460
-    - rid: 8471835402377363459
+            rid: 8471835407882911756
+    - rid: 8471835407882911755
       type: {class: EmptyATBRequirementComponent, ns: , asm: Assembly-CSharp}
-    - rid: 8471835402377363460
+    - rid: 8471835407882911756
       type: {class: EmptyATBPoolRequirementComponent, ns: , asm: Assembly-CSharp}
+    - rid: 8471835407882911757
+      type: {class: ResetATBPoolComponent, ns: , asm: Assembly-CSharp}
+    - rid: 8471835407882911758
+      type: {class: ToggleATBPoolComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _enable: 1
