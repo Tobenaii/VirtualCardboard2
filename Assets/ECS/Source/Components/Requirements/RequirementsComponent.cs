@@ -4,11 +4,6 @@ using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
 
-public struct Requirement : IComponentData
-{
-    public Entity Prefab { get; set; }
-}
-
 public struct RequirementStatus : IComponentData
 {
     public bool Failed { get; set; }
@@ -28,15 +23,12 @@ public class RequirementsComponent : ComponentAuthoringBase
 
     public override void AuthorComponent(Entity entity, EntityManager dstManager)
     {
-        var reqEntity = dstManager.CreateEntity();
-        dstManager.SetName(reqEntity, "Action Requirement");
-        dstManager.AddComponent<RequirementStatus>(reqEntity);
-        dstManager.AddComponent<Prefab>(reqEntity);
         for (int i = 0; i < _requirements.Count; i++)
         {
             var action = _requirements[i];
-            action.Component.AuthorComponent(reqEntity, dstManager);
+            action.Component.AuthorComponent(entity, dstManager);
         }
-        dstManager.AddComponentData(entity, new Requirement() { Prefab = reqEntity });
+        dstManager.AddComponent<RequirementStatus>(entity);
+        dstManager.AddComponent<Dealer>(entity);
     }
 }

@@ -10,23 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93920bc7e5309514380f6d987d5dc61b, type: 3}
-  m_Name: ActionWithRequirements
+  m_Name: StartupAction
   m_EditorClassIdentifier: 
-  _entities:
-  - {fileID: 11400000, guid: c92dda287be99be4cbd30102e9568aa7, type: 2}
+  _entities: []
   _components:
   - _component:
-      rid: 8471835407882911752
-  - _component:
-      rid: 8471835407882911751
+      rid: 8471835477999616003
   references:
     version: 2
     RefIds:
-    - rid: 8471835407882911751
-      type: {class: ActionsComponent, ns: , asm: Assembly-CSharp}
+    - rid: 8471835477999616003
+      type: {class: PerformActionOnSpawnComponent, ns: , asm: Assembly-CSharp}
       data:
-        _actions: []
-    - rid: 8471835407882911752
-      type: {class: RequirementsComponent, ns: , asm: Assembly-CSharp}
-      data:
-        _actions: []
+        _action: {fileID: 0}

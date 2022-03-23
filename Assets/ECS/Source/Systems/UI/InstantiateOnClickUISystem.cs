@@ -4,7 +4,7 @@ using Unity.Entities;
 using UnityEngine;
 
 [UpdateInGroup(typeof(UISystemGroup))]
-public class InstantiateOnClickUISystem : SystemBase
+public class ActionButtonUISystem : SystemBase
 {
     private BeginInitializationEntityCommandBufferSystem _commandBuffer;
 
@@ -16,11 +16,11 @@ public class InstantiateOnClickUISystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer();
-        Entities.ForEach((InstantiateOnClickUI ui, in Dealer dealer) =>
+        Entities.ForEach((ActionButtonUI ui, in Dealer dealer, in Action action) =>
         {
             if (ui.ClickEvent.HasClicked)
             {
-                var actionInstance = ecb.Instantiate(ui.Action);
+                var actionInstance = ecb.Instantiate(action.Prefab);
                 ecb.SetComponent<Dealer>(actionInstance, new Dealer() { Entity = dealer.Entity });
                 return;
             }

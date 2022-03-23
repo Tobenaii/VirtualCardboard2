@@ -4,7 +4,7 @@ using Unity.Entities;
 using UnityEngine;
 
 [UpdateInGroup(typeof(UISystemGroup))]
-public class RequirementCheckUISystem : SystemBase
+public class ButtonRequirementUISystem : SystemBase
 {
     private BeginInitializationEntityCommandBufferSystem _commandBuffer;
 
@@ -15,11 +15,10 @@ public class RequirementCheckUISystem : SystemBase
     protected override void OnUpdate()
     {
         var ecb = _commandBuffer.CreateCommandBuffer();
-        Entities.WithStructuralChanges().ForEach((RequirementCheckUI ui, in Dealer dealer) =>
+        Entities.WithStructuralChanges().ForEach((RequirementCheckUI ui, RequirementStatus status) =>
         {
-            var requirementStatus = GetComponentDataFromEntity<RequirementStatus>(true)[ui.Requirement];
-            ui.BlockingGroup.interactable = !requirementStatus.Failed;
-            ui.BlockingGroup.blocksRaycasts = !requirementStatus.Failed;
+            ui.BlockingGroup.interactable = !status.Failed;
+            ui.BlockingGroup.blocksRaycasts = !status.Failed;
         }).WithoutBurst().Run();
     }
 }

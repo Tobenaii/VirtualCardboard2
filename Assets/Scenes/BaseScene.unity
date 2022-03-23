@@ -652,18 +652,13 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 8471835384501501961
-      type: {class: InstantiateOnClickUIComponent, ns: , asm: Assembly-CSharp}
+      type: {class: ActionButtonUIComponent, ns: , asm: Assembly-CSharp}
       data:
         _clickEvent: {fileID: 192105379}
         _action: {fileID: 11400000, guid: 2f5feb86c6fb096479280253a94efab4, type: 2}
     - rid: 8471835384501501962
-      type: {class: RequirementCheckUIComponent, ns: , asm: Assembly-CSharp}
+      type: {class: CanvasRequirementUIComponent, ns: , asm: Assembly-CSharp}
       data:
-        _checkOn:
-          _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d,
-            type: 2}
-          _key: 0
-        _action: {fileID: 11400000, guid: 2f5feb86c6fb096479280253a94efab4, type: 2}
         _blockingGroup: {fileID: 192105380}
 --- !u!114 &192105379
 MonoBehaviour:
@@ -7209,13 +7204,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1718186207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45314e2589824014daaf63d7f25610e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d681de67868049498de1a4082fc969f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _dealer:
     _entityList: {fileID: 11400000, guid: bd3bea55e3d7ade4fb68c71ffbd9343d, type: 2}
     _key: 0
-  _entity: {fileID: 11400000, guid: c92dda287be99be4cbd30102e9568aa7, type: 2}
+  _authoring:
+    _template: {fileID: 11400000, guid: 4abe958e01859424383a6dc7d2f3c856, type: 2}
+    _components:
+    - _component:
+        rid: 8471835477999616004
+  references:
+    version: 2
+    RefIds:
+    - rid: 8471835477999616004
+      type: {class: PerformActionOnSpawnComponent, ns: , asm: Assembly-CSharp}
+      data:
+        _action: {fileID: 11400000, guid: c92dda287be99be4cbd30102e9568aa7, type: 2}
 --- !u!1001 &1736255195
 PrefabInstance:
   m_ObjectHideFlags: 0

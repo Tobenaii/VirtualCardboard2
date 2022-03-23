@@ -41,7 +41,7 @@ public class ActionsComponent : ComponentAuthoringBase
             var action = _actions[i];
             action.Component.AuthorComponent(actionEntity, dstManager);
         }
-        dstManager.AddComponentData(entity, new Action() { Prefab = entity });
+        dstManager.AddComponentData(entity, new Action() { Prefab = actionEntity });
         dstManager.AddComponent<Dealer>(entity);
         dstManager.AddComponent<RequirementStatus>(entity);
 
